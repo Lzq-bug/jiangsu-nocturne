@@ -41,3 +41,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# 独立视觉审计产物（非项目源码，不入库）
+.audit-shots/
