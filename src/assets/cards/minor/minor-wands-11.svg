@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="权杖侍从：踮足探身，去够架上最高那根还没点燃的杖芽——第一次接触火">
+  <defs>
+    <radialGradient id="w11-sky" cx="34%" cy="72%" r="125%">
+      <stop offset="0" stop-color="#241710"/><stop offset="0.55" stop-color="#170f0a"/><stop offset="1" stop-color="#0d0906"/>
+    </radialGradient>
+    <radialGradient id="w11-ember" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#d9814e" stop-opacity="0.5"/><stop offset="1" stop-color="#d9814e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#w11-sky)"/>
+
+  <!-- 夜空疏星 -->
+  <g fill="#c7cedd" opacity="0.4">
+    <circle cx="52" cy="40" r="0.9"/><circle cx="130" cy="30" r="0.8"/><circle cx="230" cy="56" r="0.8"/><circle cx="186" cy="84" r="0.7"/>
+  </g>
+
+  <!-- 营地杖架（右：横杆+双柱） -->
+  <g stroke="#2e1b10" stroke-linecap="round">
+    <path d="M 206 316 L 206 152" stroke-width="6.4"/>
+    <path d="M 262 316 L 262 156" stroke-width="6"/>
+    <path d="M 200 168 L 268 164" stroke-width="5"/>
+  </g>
+  <path d="M 201 170 L 266 166" stroke="#c98a54" stroke-width="0.9" opacity="0.5"/>
+  <!-- 架上斜靠的杖群 -->
+  <g stroke="#241509" stroke-linecap="round">
+    <path d="M 224 312 L 240 200" stroke-width="5.4"/>
+    <path d="M 244 312 L 252 208" stroke-width="5"/>
+  </g>
+  <g stroke="#c98a54" stroke-width="0.7" opacity="0.5">
+    <path d="M 225.4 306 L 240.6 204"/>
+  </g>
+  <!-- 最高那根：未燃的杖芽（目标物，位于高处） -->
+  <g>
+    <path d="M 254 168 L 246 96" stroke="#241509" stroke-width="5"/>
+    <path d="M 253.4 164 L 245.8 100" stroke="#c98a54" stroke-width="0.8" opacity="0.6"/>
+    <!-- 杖芽：未燃，灰木质绒芽 -->
+    <g fill="#6d5a40">
+      <ellipse cx="245" cy="88" rx="4.6" ry="6.4"/>
+      <ellipse cx="241.4" cy="92" rx="3" ry="4.4" transform="rotate(-24 241.4 92)"/>
+      <ellipse cx="249" cy="91" rx="2.8" ry="4.2" transform="rotate(20 249 91)"/>
+    </g>
+    <path d="M 245 81.6 L 245 78" stroke="#6d5a40" stroke-width="1"/>
+  </g>
+
+  <!-- 唯一叙事光源：左下火塘余烬（暖） -->
+  <g transform="translate(56 292)">
+    <circle r="30" fill="url(#w11-ember)"/>
+    <g fill="#d9814e" opacity="0.9">
+      <circle cx="-4" cy="2" r="2.2"/><circle cx="6" cy="4" r="1.6"/><circle cx="-12" cy="0" r="1.4"/>
+    </g>
+    <g stroke="#8a5a3a" stroke-width="0.9" fill="none" opacity="0.8">
+      <path d="M -20 8 C -8 13, 10 13, 22 7"/>
+    </g>
+  </g>
+
+  <!-- 侍从（主体：踮足，左臂上探，视线向上；剪影+左侧余烬轮廓光） -->
+  <g>
+    <!-- 身体剪影 -->
+    <path d="M 138 318
+             C 134 296, 132 272, 136 250
+             C 139 234, 142 220, 148 208
+             C 152 200, 158 194, 164 190
+             L 166 176
+             C 166 168, 168 160, 172 154
+             L 178 142
+             C 180 138, 184 136, 187 138
+             C 190 140, 190 144, 188 148
+             L 180 162
+             C 177 168, 176 174, 176 180
+             L 176 192
+             C 182 196, 186 204, 188 214
+             C 192 234, 194 262, 192 292
+             L 190 318 Z"
+          fill="#191018"/>
+    <!-- 踮起的足（跟离地） -->
+    <path d="M 138 318 C 136 312, 138 308, 144 306 L 158 308 L 158 318 Z" fill="#191018"/>
+    <path d="M 176 318 L 176 310 C 182 308, 188 310, 190 314 L 190 318 Z" fill="#191018"/>
+    <!-- 头（侧影，微仰） -->
+    <path d="M 172 138 C 170 128, 174 118, 182 116 C 190 114, 196 120, 196 128 C 196 134, 192 140, 186 142 Z" fill="#191018"/>
+    <!-- 轻小不完整的侍从冠饰：一枚斜插的叶芽细环 -->
+    <path d="M 172 126 C 176 120, 184 117, 192 120" stroke="#8a5a3a" stroke-width="1.2" fill="none"/>
+    <path d="M 190 118 C 194 115, 197 116, 198 119" stroke="#6d5a40" stroke-width="1.4" fill="none"/>
+    <!-- 探出的左手（向上够芽） -->
+    <path d="M 178 148 C 186 142, 196 136, 208 130 C 216 126, 226 122, 234 120" stroke="#191018" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M 234 120 C 239 118, 243 118, 246 119" stroke="#191018" stroke-width="5.4" fill="none" stroke-linecap="round"/>
+    <!-- 余烬轮廓光（左缘+手臂下缘，加强保证 96px 剪影可读） -->
+    <g stroke="#e8a266" fill="none" opacity="0.95">
+      <path d="M 137 302 C 133 280, 133 254, 137 234 C 139 222, 143 214, 148 208" stroke-width="1.4"/>
+      <path d="M 148 210 C 152 202, 158 196, 163 192" stroke-width="1.1"/>
+      <path d="M 179 149 C 187 143, 197 137, 207 131 C 215 126, 224 122, 232 120" stroke-width="1.1"/>
+      <path d="M 172 140 C 170 132, 172 124, 177 118" stroke-width="1" opacity="0.8"/>
+    </g>
+    <!-- 旅行腰带 -->
+    <path d="M 140 246 C 154 250, 176 250, 190 246" stroke="#8a5a3a" stroke-width="1.6" fill="none" opacity="0.85"/>
+  </g>
+
+  <!-- 地面 -->
+  <path d="M 0 300 C 80 296, 200 296, 300 300 L 300 340 L 0 340 Z" fill="#0e0906"/>
+  <g stroke="#241610" stroke-width="0.8" opacity="0.7" fill="none">
+    <path d="M 40 318 C 110 312, 210 312, 274 318"/>
+  </g>
+  <!-- 侍从影子被火光拉向右侧 -->
+  <path d="M 196 322 C 220 320, 244 320, 262 322" stroke="#1c1208" stroke-width="4" opacity="0.8" fill="none"/>
+</svg>
