@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="权杖骑士：侧后低角度，人马前冲，烬火自蹄后拖出一条向上的弧——冲">
+  <defs>
+    <radialGradient id="w12-sky" cx="30%" cy="80%" r="130%">
+      <stop offset="0" stop-color="#26160c"/><stop offset="0.55" stop-color="#170e08"/><stop offset="1" stop-color="#0d0805"/>
+    </radialGradient>
+    <radialGradient id="w12-ember" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#d9814e" stop-opacity="0.5"/><stop offset="1" stop-color="#d9814e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#w12-sky)"/>
+
+  <!-- 低角度夜空：星被风压拉出短线 -->
+  <g stroke="#c7cedd" opacity="0.35">
+    <path d="M 40 40 L 56 42" stroke-width="0.9"/>
+    <path d="M 100 26 L 114 28" stroke-width="0.8"/>
+    <path d="M 200 48 L 212 50" stroke-width="0.8"/>
+  </g>
+
+  <!-- 远处营地火光（次级光点，左下后方——出发的方向相反） -->
+  <g transform="translate(38 258)">
+    <circle r="12" fill="url(#w12-ember)" opacity="0.8"/>
+    <circle r="2.4" fill="#d9814e"/>
+  </g>
+
+  <!-- 唯一叙事光源：骑士手中前指的杖端焰（自画内主体出发） -->
+  <circle cx="228" cy="118" r="20" fill="url(#w12-ember)"/>
+  <path d="M 228 108 C 234 114, 234 122, 228 128 C 224 123, 224 113, 228 108 Z" fill="#e8a266"/>
+  <path d="M 228 112 C 231 116, 231 121, 228 124" stroke="#f4c896" stroke-width="1" fill="none" opacity="0.9"/>
+
+  <!-- 骑士与马（主体：侧后低角度——马臀近、马首远，向右上冲） -->
+  <g>
+    <!-- 马体剪影（奔跃：前腿腾空收起，后腿蹬地） -->
+    <path d="M 84 268
+             C 92 252, 108 240, 128 234
+             C 148 228, 168 224, 186 218
+             C 202 213, 216 204, 226 192
+             C 232 185, 236 176, 238 168
+             C 246 170, 254 176, 258 184
+             C 252 190, 246 196, 240 202
+             C 250 200, 260 202, 266 208
+             C 258 214, 248 218, 238 220
+             C 224 232, 206 240, 186 246
+             C 166 252, 144 258, 124 264
+             C 110 268, 96 272, 84 268 Z"
+          fill="#1c1008"/>
+    <!-- 马首（远处，冲向右上） -->
+    <path d="M 238 168 C 244 158, 252 150, 262 146 C 268 144, 274 146, 276 150 C 278 154, 274 158, 268 160 C 262 164, 256 168, 252 172 Z" fill="#1c1008"/>
+    <path d="M 262 146 L 268 138" stroke="#1c1008" stroke-width="3" stroke-linecap="round"/>
+    <!-- 前腿（腾空收起） -->
+    <path d="M 196 232 C 192 244, 186 252, 176 258" stroke="#1c1008" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M 214 226 C 212 238, 206 248, 198 254" stroke="#1c1008" stroke-width="6.4" fill="none" stroke-linecap="round"/>
+    <!-- 后腿（蹬地伸直） -->
+    <path d="M 100 262 C 92 272, 86 284, 84 296" stroke="#1c1008" stroke-width="7.4" fill="none" stroke-linecap="round"/>
+    <path d="M 118 258 C 112 270, 108 282, 108 294" stroke="#1c1008" stroke-width="6.6" fill="none" stroke-linecap="round"/>
+    <!-- 尾（向后上飘） -->
+    <path d="M 88 258 C 76 250, 68 240, 64 228" stroke="#1c1008" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- 骑士（前倾，剪影小而贴马） -->
+    <g>
+      <path d="M 150 224
+               C 154 210, 162 198, 174 192
+               C 186 186, 198 184, 208 186
+               C 214 188, 218 192, 220 198
+               C 214 202, 206 206, 198 210
+               C 186 216, 172 222, 158 226 Z"
+            fill="#140c06"/>
+      <!-- 头与骑士羽饰（方向性羽冠） -->
+      <path d="M 196 184 C 197 176, 203 170, 210 170 C 216 170, 220 175, 219 181 C 218 187, 212 190, 206 189 Z" fill="#140c06"/>
+      <path d="M 214 170 C 222 162, 232 160, 240 164 C 232 166, 226 170, 220 174 Z" fill="#c98a54" opacity="0.9"/>
+      <!-- 手中的杖（前指，端头即光源） -->
+      <path d="M 208 196 C 216 182, 222 160, 227 140" stroke="#2e1b10" stroke-width="4.6" fill="none" stroke-linecap="round"/>
+      <path d="M 209 194 C 217 181, 223 160, 227.4 141" stroke="#c98a54" stroke-width="0.8" fill="none" opacity="0.7"/>
+      <!-- 斗篷向后掀 -->
+      <path d="M 172 200 C 158 208, 144 214, 128 218 C 140 220, 154 218, 166 214 C 158 222, 144 228, 130 230 C 146 230, 162 224, 174 216 Z" fill="#140c06" opacity="0.95"/>
+    </g>
+    <!-- 焰光照亮的马颈与骑手背线（轮廓光） -->
+    <g stroke="#d9814e" fill="none" opacity="0.6">
+      <path d="M 232 176 C 236 184, 232 192, 224 198" stroke-width="1"/>
+      <path d="M 214 190 C 218 194, 220 198, 220 202" stroke-width="0.8"/>
+      <path d="M 240 172 C 248 168, 256 164, 262 158" stroke-width="0.9"/>
+    </g>
+  </g>
+
+  <!-- 烬火尾迹（自杖焰沿冲势反向散落——速度的证据） -->
+  <g fill="#d9814e">
+    <circle cx="206" cy="140" r="1.6" opacity="0.9"/><circle cx="188" cy="148" r="1.3" opacity="0.7"/>
+    <circle cx="170" cy="158" r="1.1" opacity="0.55"/><circle cx="152" cy="170" r="1" opacity="0.45"/>
+    <circle cx="134" cy="184" r="0.9" opacity="0.35"/><circle cx="118" cy="198" r="0.8" opacity="0.3"/>
+    <circle cx="104" cy="214" r="0.7" opacity="0.22"/>
+  </g>
+  <!-- 蹄下扬尘 -->
+  <g stroke="#3a2214" stroke-width="1.4" opacity="0.6" fill="none">
+    <path d="M 84 300 C 104 292, 128 288, 152 288"/>
+    <path d="M 100 310 C 124 302, 152 298, 180 298"/>
+  </g>
+
+  <!-- 地面 -->
+  <path d="M 0 286 C 80 280, 200 280, 300 286 L 300 340 L 0 340 Z" fill="#0f0a06"/>
+  <g stroke="#241610" stroke-width="0.8" opacity="0.7" fill="none">
+    <path d="M 40 322 C 120 316, 220 316, 284 322"/>
+  </g>
+</svg>

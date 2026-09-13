@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="宝剑骑士：高位斜俯，人马自云隙切入雨幕，一剑低垂前指——切">
+  <defs>
+    <linearGradient id="s12-sky" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#1c2540"/><stop offset="0.6" stop-color="#141c30"/><stop offset="1" stop-color="#0d1220"/>
+    </linearGradient>
+    <linearGradient id="s12-gap" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dfe8f6" stop-opacity="0.5"/><stop offset="1" stop-color="#dfe8f6" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#s12-sky)"/>
+
+  <!-- 高空云层（俯视：云在脚下铺开） -->
+  <g fill="#18213a" stroke="#4d5878" stroke-width="0.8">
+    <path d="M -10 96 C 40 84, 110 82, 168 94 C 190 99, 204 106, 208 114 C 160 124, 70 126, 16 118 C -2 114, -14 104, -10 96 Z"/>
+    <path d="M 180 210 C 224 200, 272 200, 300 208 C 282 220, 236 224, 196 220 C 180 218, 172 214, 180 210 Z"/>
+  </g>
+  <!-- 云隙冷光（唯一叙事光源：右上窄横缝，光沿冲势斜切而下） -->
+  <path d="M 226 56 C 250 50, 274 50, 294 56 L 294 74 C 272 66, 248 64, 228 68 Z" fill="url(#s12-gap)"/>
+  <path d="M 224 56 C 248 49, 272 49, 296 55" stroke="#dfe8f6" stroke-width="0.9" fill="none" opacity="0.5"/>
+  <path d="M 228 70 C 250 64, 272 64, 294 72" stroke="#aebdd6" stroke-width="0.6" fill="none" opacity="0.3"/>
+
+  <!-- 雨丝（强方向斜线：与马冲向一致，全部右下向左下切） -->
+  <g stroke="#8a93ad" stroke-width="0.7" opacity="0.5">
+    <path d="M 60 30 L 44 84 M 108 22 L 94 72 M 156 34 L 142 86 M 250 30 L 236 80 M 284 96 L 270 148"/>
+    <path d="M 40 130 L 24 184 M 190 60 L 176 112 M 230 140 L 216 194 M 120 150 L 106 204 M 64 230 L 50 284"/>
+  </g>
+  <g stroke="#aebdd6" stroke-width="0.5" opacity="0.35">
+    <path d="M 84 100 L 70 152 M 262 180 L 248 232 M 176 250 L 162 300"/>
+  </g>
+
+  <!-- 俯视下的远谷地面（小块，冷灰） -->
+  <path d="M 40 286 C 110 278, 200 278, 264 286 L 264 306 C 200 298, 110 298, 40 306 Z" fill="#111828"/>
+  <g stroke="#232c44" stroke-width="0.7" opacity="0.7" fill="none">
+    <path d="M 70 294 C 130 289, 200 289, 246 294"/>
+  </g>
+
+  <!-- 人马（主体：高位斜俯——身位斜切画面对角，向左下切入；马小于权杖骑士） -->
+  <g>
+    <!-- 马（俯视角：短身，斜姿，四腿交错下探） -->
+    <path d="M 150 190
+             C 158 178, 172 168, 190 164
+             C 204 161, 216 164, 224 172
+             C 230 178, 232 186, 230 194
+             C 226 204, 216 210, 204 214
+             C 190 218, 176 220, 164 218
+             C 154 216, 146 210, 144 202
+             C 143 197, 145 193, 150 190 Z"
+          fill="#161e34"/>
+    <!-- 马首（左下，切入方向） -->
+    <path d="M 148 196 C 138 192, 128 192, 120 196 C 114 199, 110 204, 110 208 C 116 208, 122 207, 128 206 C 136 205, 144 203, 150 200 Z" fill="#161e34"/>
+    <path d="M 110 208 C 106 212, 104 216, 104 220" stroke="#161e34" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- 腿（俯视：交错斜伸） -->
+    <g stroke="#161e34" stroke-linecap="round" fill="none">
+      <path d="M 162 218 C 158 232, 152 244, 144 254" stroke-width="6"/>
+      <path d="M 180 220 C 178 236, 174 250, 168 262" stroke-width="5.4"/>
+      <path d="M 212 212 C 214 228, 212 244, 206 258" stroke-width="5.4"/>
+      <path d="M 226 198 C 232 212, 234 226, 232 240" stroke-width="5"/>
+    </g>
+    <!-- 骑士（俯伏马背，剪影） -->
+    <g>
+      <path d="M 186 172
+               C 190 160, 198 150, 210 146
+               C 222 142, 232 144, 238 152
+               C 242 158, 242 166, 238 172
+               C 230 178, 218 182, 206 182
+               C 197 182, 190 178, 186 172 Z"
+            fill="#101828"/>
+      <!-- 头（俯视朝左下） -->
+      <path d="M 202 148 C 200 140, 205 132, 213 132 C 220 132, 225 138, 224 145 C 223 151, 216 154, 210 152 Z" fill="#101828"/>
+      <!-- 骑士羽饰（切风形） -->
+      <path d="M 222 138 C 230 132, 240 132, 246 138 C 238 139, 231 141, 226 144 Z" fill="#aebdd6" opacity="0.85"/>
+      <!-- 持剑臂：剑低垂前指（切入），不举 -->
+      <path d="M 200 168 C 190 172, 180 176, 170 178" stroke="#101828" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M 168 178 L 138 186" stroke="#1c2540" stroke-width="3.6" stroke-linecap="round"/>
+      <path d="M 166 178.4 L 140 185" stroke="#e8eefb" stroke-width="0.9" opacity="0.75"/>
+      <!-- 披风向后上掀（俯视风） -->
+      <path d="M 232 156 C 244 152, 254 152, 262 156 C 252 160, 242 162, 234 162 Z" fill="#101828" opacity="0.9"/>
+    </g>
+    <!-- 云隙轮廓光（右上缘，加强缩略可读性） -->
+    <g stroke="#dfe8f6" fill="none" opacity="0.85">
+      <path d="M 216 166 C 226 168, 234 166, 240 162" stroke-width="1.1"/>
+      <path d="M 224 174 C 230 178, 234 184, 236 190" stroke-width="0.9"/>
+      <path d="M 210 148 C 214 144, 219 142, 224 142" stroke-width="1"/>
+      <path d="M 150 192 C 142 194, 134 196, 126 200" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- 切入的冷白锋线（自云隙沿冲势划下——速度线，非焰尾） -->
+  <g stroke="#dfe8f6" opacity="0.5">
+    <path d="M 246 92 L 232 148" stroke-width="1.2"/>
+    <path d="M 262 100 L 248 156" stroke-width="0.8"/>
+  </g>
+  <!-- 蹄下溅起的水雾 -->
+  <g stroke="#8a93ad" stroke-width="0.8" fill="none" opacity="0.5">
+    <path d="M 140 258 C 150 252, 162 250, 172 252"/>
+    <path d="M 202 262 C 210 258, 218 258, 224 260"/>
+  </g>
+</svg>

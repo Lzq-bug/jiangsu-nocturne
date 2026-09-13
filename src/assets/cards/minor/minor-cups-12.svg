@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="圣杯骑士：立于一叶小舟，潮水托舟缓行，杯按在身侧——流">
+  <defs>
+    <radialGradient id="c12-night" cx="50%" cy="20%" r="135%">
+      <stop offset="0" stop-color="#0f1e2a"/><stop offset="0.55" stop-color="#0b151f"/><stop offset="1" stop-color="#060d14"/>
+    </radialGradient>
+    <radialGradient id="c12-moon" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#c7d8e8" stop-opacity="0.42"/><stop offset="1" stop-color="#c7d8e8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#c12-night)"/>
+
+  <!-- 低月与疏星（唯一叙事光源：月光照水，水推舟） -->
+  <g transform="translate(70 56)">
+    <circle r="17" fill="url(#c12-moon)"/>
+    <path d="M 5.4 -9 A 9.6 9.6 0 1 0 5.4 9 A 7.4 7.4 0 1 1 5.4 -9 Z" fill="#c7d8e8" opacity="0.9"/>
+  </g>
+  <g fill="#c7cedd" opacity="0.4">
+    <circle cx="160" cy="36" r="0.9"/><circle cx="216" cy="52" r="0.8"/><circle cx="256" cy="34" r="0.8"/>
+  </g>
+
+  <!-- 远岸礁线（左侧退后） -->
+  <g fill="#0a1420">
+    <path d="M 0 168 C 30 160, 54 162, 74 170 C 54 176, 26 176, 0 172 Z"/>
+    <path d="M 96 170 C 110 165, 126 166, 138 171 C 126 175, 108 175, 96 173 Z"/>
+  </g>
+  <path d="M 0 174 C 60 170, 140 170, 220 174" stroke="#8a93ad" stroke-width="0.6" opacity="0.3" fill="none"/>
+
+  <!-- 月光水路（自月到舟，倾斜碎光） -->
+  <g stroke="#c7d8e8" fill="none">
+    <path d="M 74 92 L 80 112" stroke-width="1.4" opacity="0.5"/>
+    <path d="M 84 122 L 92 146" stroke-width="1.2" opacity="0.42"/>
+    <path d="M 98 156 L 106 184" stroke-width="1.1" opacity="0.34"/>
+    <path d="M 112 196 L 120 226" stroke-width="1" opacity="0.26"/>
+  </g>
+
+  <!-- 水面流线（水平流动，潮托的语言） -->
+  <g stroke="#6fc2c9" fill="none">
+    <path d="M 0 226 C 60 222, 140 222, 220 226" stroke-width="0.8" opacity="0.4"/>
+    <path d="M 40 252 C 110 247, 200 247, 268 252" stroke-width="0.9" opacity="0.5"/>
+    <path d="M 0 280 C 80 274, 190 274, 280 280" stroke-width="1" opacity="0.55"/>
+    <path d="M 30 306 C 110 300, 210 300, 290 306" stroke-width="1.1" opacity="0.6"/>
+  </g>
+
+  <!-- 潮托弧（舟底被水托起的隆起弧线——水的动作） -->
+  <path d="M 96 268 C 130 258, 176 258, 210 268" stroke="#8ed8de" stroke-width="1.2" opacity="0.65" fill="none"/>
+  <path d="M 84 276 C 126 264, 180 264, 222 276" stroke="#6fc2c9" stroke-width="0.9" opacity="0.45" fill="none"/>
+
+  <!-- 小舟（主体之一：细长，微微昂首） -->
+  <g>
+    <path d="M 92 262 C 118 252, 188 252, 214 262 C 206 274, 186 280, 152 280 C 120 280, 100 274, 92 262 Z" fill="#0e1722" stroke="#c7cedd" stroke-width="1.2"/>
+    <path d="M 96 264 C 122 256, 184 256, 210 264" stroke="#8a93ad" stroke-width="0.6" opacity="0.4" fill="none"/>
+    <!-- 舟首水花 -->
+    <path d="M 214 262 C 222 260, 228 256, 232 250" stroke="#8ed8de" stroke-width="1.2" fill="none" opacity="0.7"/>
+    <path d="M 92 262 C 84 260, 78 256, 74 250" stroke="#8ed8de" stroke-width="1" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- 骑士（立于舟中：侧影直立微后坐——水在动，人静；杯按在身侧） -->
+  <g>
+    <!-- 斗篷与身形 -->
+    <path d="M 138 258
+             C 136 244, 138 228, 144 214
+             C 149 202, 157 194, 166 190
+             C 176 186, 186 188, 192 196
+             C 197 203, 198 212, 196 222
+             C 194 234, 190 246, 186 256 Z"
+          fill="#0d1620"/>
+    <!-- 头（侧影朝右） -->
+    <path d="M 168 188 C 166 178, 172 170, 181 170 C 189 170, 194 176, 193 184 C 192 191, 185 194, 178 193 Z" fill="#0d1620"/>
+    <!-- 骑士羽饰（潮弧形细羽） -->
+    <path d="M 170 180 C 176 175, 184 174, 191 177" stroke="#8ed8de" stroke-width="1" fill="none" opacity="0.85"/>
+    <path d="M 189 175 C 197 170, 205 171, 210 176 C 203 177, 197 179, 192 181 Z" fill="#aebdd6" opacity="0.8"/>
+    <!-- 手臂垂按杯于身侧 -->
+    <path d="M 186 206 C 190 216, 192 228, 190 240" stroke="#0d1620" stroke-width="6.4" fill="none" stroke-linecap="round"/>
+    <!-- 杯（身份物，不高举：按在胯侧） -->
+    <g>
+      <path d="M 184 244 L 202 242 C 203 234, 200 229, 193 227 L 193 221 L 198 217 L 177 217 L 182 221 L 182 227 C 176 229, 173 234, 175 242 Z"
+            fill="#0a141e" stroke="#c7cedd" stroke-width="1.2"/>
+      <path d="M 179 232 C 181 230.4, 189 230.4, 191 232" stroke="#8ed8de" stroke-width="0.8" fill="none" opacity="0.8"/>
+    </g>
+    <!-- 月光轮廓（背缘） -->
+    <g stroke="#aebdd6" fill="none" opacity="0.55">
+      <path d="M 140 250 C 138 236, 140 220, 146 208" stroke-width="1"/>
+      <path d="M 152 194 C 158 189, 165 187, 170 188" stroke-width="0.8"/>
+      <path d="M 194 198 C 197 206, 197 214, 195 222" stroke-width="0.8"/>
+    </g>
+  </g>
+
+  <!-- 舟行拖尾（自尾散开的涟漪——流的速度感，慢而持续） -->
+  <g stroke="#6fc2c9" fill="none" opacity="0.6">
+    <path d="M 88 268 C 70 272, 54 278, 40 286" stroke-width="1"/>
+    <path d="M 92 276 C 76 282, 62 290, 52 300" stroke-width="0.8"/>
+    <path d="M 218 268 C 234 272, 248 278, 260 286" stroke-width="1"/>
+  </g>
+  <!-- 舟下水光（月路落点） -->
+  <path d="M 128 292 C 144 288, 168 288, 182 292" stroke="#c7d8e8" stroke-width="0.8" opacity="0.3" fill="none"/>
+</svg>

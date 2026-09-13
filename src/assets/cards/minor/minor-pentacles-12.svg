@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="星币骑士：牵着驮环璧的驴沿田垄走，不赶路也不停——稳">
+  <defs>
+    <radialGradient id="p12-dusk" cx="24%" cy="26%" r="135%">
+      <stop offset="0" stop-color="#1e1b12"/><stop offset="0.55" stop-color="#14120c"/><stop offset="1" stop-color="#0b0a06"/>
+    </radialGradient>
+    <radialGradient id="p12-sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#d9b478" stop-opacity="0.4"/><stop offset="1" stop-color="#d9b478" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#p12-dusk)"/>
+
+  <!-- 唯一叙事光源：左后方低天残照（暖，出发处不在画内） -->
+  <circle cx="44" cy="84" r="30" fill="url(#p12-sun)"/>
+  <circle cx="44" cy="84" r="7" fill="#d9b478" opacity="0.75"/>
+  <path d="M 0 110 C 40 106, 84 106, 124 110" stroke="#8a7a52" stroke-width="0.7" opacity="0.35" fill="none"/>
+
+  <!-- 远处农舍与堡楼剪影 -->
+  <g fill="#131109">
+    <path d="M 236 158 L 236 140 L 244 132 L 252 140 L 252 158 Z"/>
+    <rect x="258" y="146" width="34" height="12"/>
+  </g>
+  <path d="M 0 158 C 90 154, 200 155, 300 158" stroke="#39412f" stroke-width="0.7" opacity="0.45" fill="none"/>
+
+  <!-- 田垄（水平垄线，向左缓升——行进方向） -->
+  <g fill="none" stroke-width="0.8">
+    <path d="M 0 186 C 90 182, 200 182, 300 186" stroke="#2a2d1c" opacity="0.6"/>
+    <path d="M 0 216 C 80 210, 200 210, 300 215" stroke="#2f3220" opacity="0.7"/>
+    <path d="M 0 250 C 70 243, 200 243, 300 249" stroke="#35382a" opacity="0.8"/>
+  </g>
+  <!-- 垄上苗 -->
+  <g stroke="#39412f" stroke-width="0.9" fill="none" opacity="0.75">
+    <path d="M 58 182 C 58 176, 56 172, 52 170 M 58 182 C 58 176, 60 172, 64 170"/>
+    <path d="M 250 214 C 250 208, 248 204, 244 202 M 250 214 C 250 208, 252 204, 256 202"/>
+    <path d="M 96 246 C 96 240, 94 236, 90 234 M 96 246 C 96 240, 98 236, 102 234"/>
+  </g>
+
+  <!-- 驮驴（主体之一：稳步，驮着环璧） -->
+  <g>
+    <!-- 驮架上的环璧（大，驮在背最上） -->
+    <circle cx="176" cy="208" r="26" fill="#2e3324" stroke="#8f9a7d" stroke-width="1.6"/>
+    <circle cx="176" cy="208" r="26" fill="none" stroke="#c7cedd" stroke-width="0.9" opacity="0.7"/>
+    <circle cx="176" cy="208" r="17" fill="#12110b"/>
+    <path d="M 156 194 A 26 26 0 0 1 190 184" stroke="#d9b478" stroke-width="1" fill="none" opacity="0.55"/>
+    <path d="M 158 222 L 164 227" stroke="#3c442c" stroke-width="0.8" opacity="0.9"/>
+    <ellipse cx="196" cy="226" rx="3" ry="2" fill="#4a5636" opacity="0.9"/>
+    <!-- 捆扎绳 -->
+    <path d="M 162 232 C 168 240, 184 240, 190 232" stroke="#8a7a52" stroke-width="1" fill="none" opacity="0.8"/>
+    <!-- 驴体（侧影：头低，步稳） -->
+    <path d="M 128 262
+             C 126 250, 130 240, 140 234
+             C 150 228, 164 226, 178 228
+             C 192 230, 204 236, 210 244
+             C 214 250, 214 256, 210 262 Z"
+          fill="#171410"/>
+    <!-- 驴首（低垂向左前行方向） -->
+    <path d="M 132 246 C 124 244, 116 246, 110 252 C 106 256, 104 262, 106 266 C 112 264, 118 261, 124 258 C 128 256, 131 252, 132 248 Z" fill="#171410"/>
+    <path d="M 128 238 C 122 234, 114 234, 108 238" stroke="#171410" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- 腿（步行交错：两前一后落地，一前抬起） -->
+    <g stroke="#171410" stroke-linecap="round" fill="none">
+      <path d="M 140 262 L 138 292" stroke-width="5.4"/>
+      <path d="M 156 264 L 156 294" stroke-width="5"/>
+      <path d="M 186 264 L 188 294" stroke-width="5"/>
+      <path d="M 202 262 C 206 270, 206 280, 202 290" stroke-width="4.6"/>
+    </g>
+    <!-- 耳与尾 -->
+    <path d="M 128 240 L 124 230" stroke="#171410" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M 210 250 C 216 254, 218 260, 216 266" stroke="#171410" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- 骑士（主体：步行牵驴，一手缰一手杖，斗篷沉静，无英姿） -->
+  <g>
+    <path d="M 78 296
+             C 76 282, 78 266, 84 252
+             C 89 240, 97 232, 106 228
+             C 112 225, 118 226, 122 230
+             C 126 234, 127 240, 126 246
+             C 124 258, 120 274, 118 296 Z"
+          fill="#191712"/>
+    <!-- 头（侧影朝右前方，微低看路） -->
+    <path d="M 104 226 C 102 216, 108 208, 117 208 C 125 208, 130 214, 129 222 C 128 229, 121 232, 114 231 Z" fill="#191712"/>
+    <!-- 骑士冠饰：苔枝小环 -->
+    <path d="M 106 218 C 111 213, 119 212, 126 215" stroke="#5d6a52" stroke-width="1.2" fill="none"/>
+    <path d="M 124 212 C 128 209, 132 209, 135 212" stroke="#6d7a52" stroke-width="1" fill="none" opacity="0.8"/>
+    <!-- 牵缰的手臂（向前下伸向驴） -->
+    <path d="M 120 240 C 128 248, 136 256, 142 262" stroke="#191712" stroke-width="5.6" fill="none" stroke-linecap="round"/>
+    <path d="M 142 262 C 140 268, 138 274, 138 280" stroke="#8a7a52" stroke-width="0.9" fill="none" opacity="0.7"/>
+    <!-- 行杖（另一手拄地） -->
+    <path d="M 84 254 C 82 268, 80 282, 80 296" stroke="#6d5137" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M 88 250 C 86 250, 84 252, 84 254" stroke="#191712" stroke-width="4.6" fill="none" stroke-linecap="round"/>
+    <!-- 斗篷下摆（被地面拖住——慢） -->
+    <path d="M 78 296 C 74 292, 70 286, 70 280 C 76 284, 82 290, 84 296 Z" fill="#191712" opacity="0.9"/>
+    <!-- 残照轮廓光（左缘） -->
+    <g stroke="#d9b478" fill="none" opacity="0.55">
+      <path d="M 84 254 C 79 266, 77 280, 78 292" stroke-width="0.9"/>
+      <path d="M 104 210 C 108 208, 113 208, 117 209" stroke-width="0.8"/>
+    </g>
+  </g>
+
+  <!-- 脚印与蹄印（留在垄上的慢行证据） -->
+  <g fill="#242616" opacity="0.8">
+    <ellipse cx="96" cy="316" rx="3.6" ry="1.6"/><ellipse cx="118" cy="322" rx="3.2" ry="1.4"/>
+    <ellipse cx="146" cy="314" rx="2.8" ry="1.3"/><ellipse cx="170" cy="320" rx="2.8" ry="1.3"/>
+  </g>
+
+  <!-- 地面 -->
+  <path d="M 0 300 C 80 296, 200 296, 300 300 L 300 340 L 0 340 Z" fill="#0e0d08"/>
+  <g stroke="#242616" stroke-width="0.8" opacity="0.7" fill="none">
+    <path d="M 30 324 C 110 318, 210 318, 280 324"/>
+  </g>
+</svg>
