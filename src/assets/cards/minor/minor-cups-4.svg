@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="圣杯四：对眼前之物视而不见">
+  <defs>
+    <radialGradient id="c4-ground" cx="50%" cy="30%" r="92%">
+      <stop offset="0" stop-color="#131e26"/><stop offset="0.62" stop-color="#0f181f"/><stop offset="1" stop-color="#081016"/>
+    </radialGradient>
+    <radialGradient id="c4-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#6fc2c9" stop-opacity="0.36"/><stop offset="1" stop-color="#6fc2c9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#c4-ground)"/>
+
+  <!-- 树（右侧伸入，抱臂者的依靠） -->
+  <g>
+    <path d="M 300 340 L 300 60 C 268 56, 240 68, 224 92 C 210 114, 208 140, 218 162 C 230 186, 256 198, 300 196"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.7"/>
+    <path d="M 236 96 C 224 116, 222 142, 232 164" fill="none" stroke="#8a93ad" stroke-width="0.7" opacity="0.6"/>
+    <g fill="#0b0f20" stroke="#c7cedd" stroke-width="1.1">
+      <path d="M 240 74 C 230 64, 228 50, 236 40 C 246 48, 248 64, 240 74 Z"/>
+      <path d="M 258 52 C 252 40, 254 26, 264 20 C 270 30, 268 44, 258 52 Z"/>
+    </g>
+  </g>
+
+  <!-- 抱臂坐影（树下，闭目） -->
+  <g>
+    <path d="M 138 264
+             C 136 240, 140 218, 152 204
+             C 162 194, 176 190, 188 194
+             L 190 210 C 180 210, 170 214, 164 222
+             C 158 230, 156 244, 158 264 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.5"/>
+    <!-- 头（低垂闭目） -->
+    <path d="M 172 200 C 168 186, 174 174, 186 172 C 196 171, 204 178, 205 188 C 205 196, 200 202, 192 204 C 184 206, 176 205, 172 200 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.4"/>
+    <path d="M 180 190 L 190 189 M 181 195 L 189 194" stroke="#8a93ad" stroke-width="0.9" opacity="0.85"/>
+    <!-- 交叉抱臂 -->
+    <path d="M 158 226 C 168 220, 180 218, 190 220 M 158 234 C 168 228, 180 226, 190 228" fill="none" stroke="#c7cedd" stroke-width="1.4" opacity="0.9"/>
+    <g stroke="#8a93ad" stroke-width="0.6" opacity="0.5" fill="none">
+      <path d="M 146 230 C 144 242, 144 254, 146 264"/>
+      <path d="M 174 210 C 170 220, 166 232, 164 244"/>
+    </g>
+  </g>
+
+  <!-- 云递出的三杯（悬空一线，他未视） -->
+  <g>
+    <!-- 云手 -->
+    <path d="M 28 92 C 44 78, 68 74, 84 84 C 92 76, 106 76, 112 86 C 122 84, 130 90, 130 100 C 128 110, 118 114, 108 112"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.4"/>
+    <path d="M 108 112 C 116 118, 118 128, 114 136" fill="none" stroke="#c7cedd" stroke-width="1.2"/>
+    <!-- 递出的细线 -->
+    <path d="M 114 136 C 120 150, 124 162, 126 174" fill="none" stroke="#8a93ad" stroke-width="0.9" opacity="0.8"/>
+    <!-- 三只悬空杯 -->
+    <g transform="translate(126 192)">
+      <path d="M -13 -12 L 13 -12 C 13 -2, 8 3, 3 5 L 3 12 L 8 16 L -8 16 L -3 12 L -3 5 C -8 3, -13 -2, -13 -12 Z"
+            fill="#0b0f20" stroke="#6fc2c9" stroke-width="1.4"/>
+      <ellipse cx="0" cy="-12" rx="13" ry="2.6" fill="none" stroke="#6fc2c9" stroke-width="0.9"/>
+      <circle r="13" fill="url(#c4-glow)" opacity="0.8"/>
+    </g>
+    <g transform="translate(96 216)">
+      <path d="M -13 -12 L 13 -12 C 13 -2, 8 3, 3 5 L 3 12 L 8 16 L -8 16 L -3 12 L -3 5 C -8 3, -13 -2, -13 -12 Z"
+            fill="#0b0f20" stroke="#6fc2c9" stroke-width="1.3"/>
+      <ellipse cx="0" cy="-12" rx="13" ry="2.6" fill="none" stroke="#6fc2c9" stroke-width="0.9"/>
+      <circle r="11" fill="url(#c4-glow)" opacity="0.6"/>
+    </g>
+    <g transform="translate(134 238)">
+      <path d="M -13 -12 L 13 -12 C 13 -2, 8 3, 3 5 L 3 12 L 8 16 L -8 16 L -3 12 L -3 5 C -8 3, -13 -2, -13 -12 Z"
+            fill="#0b0f20" stroke="#6fc2c9" stroke-width="1.3"/>
+      <ellipse cx="0" cy="-12" rx="13" ry="2.6" fill="none" stroke="#6fc2c9" stroke-width="0.9"/>
+      <circle r="11" fill="url(#c4-glow)" opacity="0.6"/>
+    </g>
+  </g>
+
+  <!-- 地面草线 -->
+  <path d="M 0 292 L 300 292" stroke="#8a93ad" stroke-width="0.8" opacity="0.55"/>
+  <g stroke="#8a93ad" stroke-width="0.6" opacity="0.45" fill="none">
+    <path d="M 40 306 C 80 300, 130 300, 176 306 M 200 314 C 234 309, 262 309, 288 314"/>
+  </g>
+</svg>

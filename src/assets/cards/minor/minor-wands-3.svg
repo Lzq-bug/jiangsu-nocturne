@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="权杖三：三杖成桅，静候远帆">
+  <defs>
+    <radialGradient id="w3-ground" cx="44%" cy="28%" r="95%">
+      <stop offset="0" stop-color="#1e1610"/><stop offset="0.6" stop-color="#17110c"/><stop offset="1" stop-color="#0e0a07"/>
+    </radialGradient>
+    <radialGradient id="w3-sail" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#d9814e" stop-opacity="0.3"/><stop offset="1" stop-color="#d9814e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#w3-ground)"/>
+
+  <!-- 海天（叙事光源：远帆处的天光微亮） -->
+  <path d="M 0 176 L 300 176" stroke="#8a93ad" stroke-width="0.9" opacity="0.6"/>
+  <ellipse cx="216" cy="176" rx="70" ry="16" fill="url(#w3-sail)"/>
+  <g stroke="#8a93ad" stroke-width="0.5" opacity="0.4" fill="none">
+    <path d="M 130 190 L 190 190 M 150 200 L 214 200 M 120 212 L 180 212"/>
+  </g>
+  <!-- 远帆（指甲盖大小） -->
+  <g transform="translate(216 168)">
+    <path d="M 0 0 L 0 -12 L 9 -2 Z" fill="#0b0f20" stroke="#e9edf5" stroke-width="0.9"/>
+    <path d="M -1 0 L -1 -9 L -7 -2 Z" fill="#0b0f20" stroke="#8a93ad" stroke-width="0.7"/>
+  </g>
+  <g fill="#c7cedd" opacity="0.5">
+    <circle cx="64" cy="52" r="1"/><circle cx="128" cy="38" r="0.9"/><circle cx="262" cy="60" r="1"/>
+  </g>
+
+  <!-- 坡顶（左下） -->
+  <g>
+    <path d="M 0 340 L 0 236 C 48 228, 96 232, 140 248 L 140 340 Z" fill="#0d1226" stroke="#c7cedd" stroke-width="1.4"/>
+    <path d="M 0 236 C 48 228, 96 232, 140 248 L 140 262 C 96 248, 48 244, 0 252 Z" fill="#14100c"/>
+    <path d="M 12 260 C 44 254, 76 256, 104 264" stroke="#8a93ad" stroke-width="0.6" opacity="0.5" fill="none"/>
+    <path d="M 20 286 C 52 280, 84 282, 110 290" stroke="#8a93ad" stroke-width="0.6" opacity="0.45" fill="none"/>
+  </g>
+
+  <!-- 三杖钉成斜桅（主体，上升斜线家族） -->
+  <g>
+    <path d="M 44 240 L 116 84 L 124 88 L 56 242 Z" fill="#14100c" stroke="#c7cedd" stroke-width="1.6"/>
+    <path d="M 84 250 L 150 96 L 158 100 L 96 252 Z" fill="#14100c" stroke="#c7cedd" stroke-width="1.6"/>
+    <path d="M 124 256 L 180 112 L 188 116 L 136 258 Z" fill="#14100c" stroke="#c7cedd" stroke-width="1.6"/>
+    <!-- 杖顶芽苞 -->
+    <g fill="#0b0f20" stroke="#c7cedd" stroke-width="1.1">
+      <path d="M 116 84 C 112 76, 116 68, 124 66 C 127 74, 123 81, 116 84 Z"/>
+      <path d="M 150 96 C 147 88, 151 81, 158 79 C 160 87, 156 93, 150 96 Z"/>
+      <path d="M 180 112 C 178 104, 182 98, 189 96 C 190 103, 186 109, 180 112 Z"/>
+    </g>
+    <!-- 缚杖的绳结 -->
+    <g stroke="#c7cedd" stroke-width="1" opacity="0.85" fill="none">
+      <path d="M 92 208 C 100 202, 112 200, 122 202"/>
+      <path d="M 92 214 C 100 208, 112 206, 124 208"/>
+    </g>
+  </g>
+
+  <!-- 背身影远眺（次级） -->
+  <g>
+    <path d="M 62 246 C 66 232, 74 224, 86 222 C 94 221, 100 224, 104 230 L 106 246 Z" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.3"/>
+    <path d="M 78 222 C 78 214, 82 208, 88 206 C 92 210, 92 218, 88 222 Z" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.2"/>
+    <!-- 手搭前杖 -->
+    <path d="M 98 232 C 106 226, 114 220, 122 214" fill="none" stroke="#c7cedd" stroke-width="1.2" opacity="0.85"/>
+  </g>
+
+  <!-- 坡上草叶 -->
+  <g stroke="#c7cedd" stroke-width="0.8" opacity="0.6" fill="none">
+    <path d="M 30 250 C 30 244, 32 240, 36 238 M 118 264 C 118 258, 121 254, 125 252"/>
+  </g>
+</svg>
