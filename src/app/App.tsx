@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link, NavLink, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { useGame } from '@/game/store';
 import { audio } from '@/audio/AudioService';
+import { EnvironmentScene, type SceneKey } from '@/ui/EnvironmentScene';
 import HomePage from '@/pages/HomePage';
 import StarCatchPage from '@/pages/StarCatchPage';
 import UnsealPage from '@/pages/UnsealPage';
@@ -19,11 +20,23 @@ function ScrollTop() {
   return null;
 }
 
+/** 路由 → 环境场景（统一背景系统 + 轻微场景差异） */
+function sceneFor(pathname: string): SceneKey {
+  if (pathname === '/') return 'home';
+  if (pathname.startsWith('/starcatch')) return 'observatory';
+  if (pathname.startsWith('/unseal')) return 'unseal';
+  if (pathname.startsWith('/collection')) return 'archive';
+  if (pathname.startsWith('/card/')) return 'detail';
+  return 'quiet';
+}
+
 function Shell() {
   const stardust = useGame((s) => s.stardust);
   const init = useGame((s) => s.init);
   const ready = useGame((s) => s.ready);
   const settings = useGame((s) => s.settings);
+  const { pathname } = useLocation();
+  const scene = sceneFor(pathname);
 
   useEffect(() => {
     init();
@@ -52,7 +65,9 @@ function Shell() {
   }, []);
 
   return (
-    <div className="shell">
+    <>
+      <EnvironmentScene scene={scene} />
+      <div className="shell">
       <header className="topbar">
         <div className="topbar-inner">
           <Link to="/" className="brand" aria-label="宵月秘藏 · 回到主厅">
@@ -83,7 +98,8 @@ function Shell() {
         {' · '}
         <Link to="/about" style={{ color: 'inherit' }}>关于本项目</Link>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }
 

@@ -51,13 +51,9 @@ body {
   margin: 0;
   color: var(--text-hi);
   font-family: var(--font-serif);
+  /* 底色：深靛夜色。空间层次由 EnvironmentScene（环境视觉系统）承担 */
   background-color: var(--ink-0);
-  /* 魔女书房：深靛绒布 + 顶部一盏烛光的暖晕 + 细星 */
-  background-image:
-    radial-gradient(ellipse 60% 40% at 50% -5%, rgba(230, 198, 135, 0.07), transparent 70%),
-    radial-gradient(ellipse 90% 60% at 80% 110%, rgba(27, 35, 71, 0.9), transparent 70%),
-    linear-gradient(180deg, #0e1327 0%, #0b0f20 100%);
-  background-attachment: fixed;
+  background-image: linear-gradient(180deg, #10162e 0%, #0b0f20 100%);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -67,6 +63,8 @@ body {
 /* ---------- 布局骨架 ---------- */
 
 .shell {
+  position: relative;
+  z-index: 1;              /* 永远压在环境场景（z-index 0）之上 */
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -77,7 +75,7 @@ body {
   top: 0;
   z-index: 40;
   backdrop-filter: blur(10px);
-  background: linear-gradient(180deg, rgba(13, 18, 38, 0.92), rgba(13, 18, 38, 0.75));
+  background: linear-gradient(180deg, rgba(11, 15, 32, 0.94), rgba(11, 15, 32, 0.78));
   border-bottom: 1px solid var(--line);
 }
 
@@ -227,7 +225,15 @@ body {
 }
 .btn-primary:hover:not(:disabled) { filter: brightness(1.15); }
 
-.btn:focus-visible, .nav a:focus-visible, .card-btn:focus-visible {
+.btn:focus-visible,
+.brand:focus-visible,
+.nav a:focus-visible,
+.card-btn:focus-visible,
+.entry-card:focus-visible,
+.filter-btn:focus-visible,
+.orb-gate:focus-visible,
+.sky-star:focus-visible,
+input:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 2px;
 }
@@ -259,8 +265,9 @@ body {
   border-radius: 16px;
   border: 1px solid var(--line);
   background:
-    radial-gradient(ellipse 70% 90% at 85% 10%, rgba(230, 198, 135, 0.06), transparent 60%),
-    linear-gradient(160deg, #182050, #10142b, #0b0f20);
+    radial-gradient(ellipse 70% 90% at 85% 10%, rgba(230, 198, 135, 0.07), transparent 60%),
+    linear-gradient(160deg, rgba(28, 36, 74, 0.88), rgba(17, 22, 46, 0.93) 55%, rgba(11, 15, 32, 0.95));
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
 }
 .desk-hero::before {
   /* 黄铜星盘弧线 */
@@ -333,15 +340,50 @@ body {
   padding: 18px;
   border-radius: 13px;
   border: 1px solid var(--line);
-  background: linear-gradient(165deg, rgba(27, 35, 71, 0.5), rgba(13, 18, 38, 0.6));
+  background:
+    linear-gradient(165deg, rgba(28, 36, 70, 0.82), rgba(11, 15, 32, 0.9));
   color: var(--text-hi);
   text-decoration: none;
-  transition: transform 0.15s, border-color 0.15s;
+  box-shadow: inset 0 1px 0 rgba(230, 198, 135, 0.07), 0 10px 26px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.2s;
 }
-.entry-card:hover { transform: translateY(-3px); border-color: rgba(230, 198, 135, 0.3); }
+.entry-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(230, 198, 135, 0.32);
+  box-shadow: inset 0 1px 0 rgba(230, 198, 135, 0.12), 0 16px 34px rgba(0, 0, 0, 0.38);
+}
 .entry-card .ico { font-size: 22px; margin-bottom: 8px; }
 .entry-card h3 { margin: 0 0 6px; font-size: 15px; letter-spacing: 0.12em; }
+.entry-card .sub {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  opacity: 0.9;
+}
 .entry-card p { margin: 0; font-size: 12.5px; color: var(--text-mid); line-height: 1.7; }
+
+/* 主厅：一眼看懂「玩 → 攒 → 启封 → 收藏」 */
+.hero-how {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  color: var(--text-mid);
+}
+.hero-how b {
+  color: var(--moonlight);
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(11, 15, 32, 0.5);
+}
+.hero-how i { color: var(--text-low); font-style: normal; }
 
 /* ---------- 魔女阁 ---------- */
 
@@ -377,6 +419,16 @@ body {
 }
 .card-grid.majors { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
 
+/* 魔女阁展墙：78 张的陈列底板 —— 让异形牌成为绝对主角，
+   同时用深靛 matte plate 托住暗牌，避免被环境背景吃掉。 */
+.archive-wall {
+  padding: 16px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(199, 206, 221, 0.07);
+  background: linear-gradient(180deg, rgba(8, 11, 24, 0.58), rgba(8, 11, 24, 0.32));
+  box-shadow: inset 0 1px 0 rgba(230, 198, 135, 0.05), 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
 .card-btn {
   display: block;
   width: 100%;
@@ -386,8 +438,22 @@ body {
   cursor: pointer;
   font-family: var(--font-serif);
   color: inherit;
+  position: relative;
   transition: transform 0.16s;
 }
+/* 深靛 matte plate：极弱的旧银环境阴影（禁止发光卡框） */
+.card-btn::before {
+  content: '';
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  top: 1%;
+  bottom: 20%;
+  border-radius: 9px;
+  background: radial-gradient(ellipse at 50% 44%, rgba(5, 8, 18, 0.88), rgba(5, 8, 18, 0.38) 68%, rgba(5, 8, 18, 0) 100%);
+  pointer-events: none;
+}
+.card-btn > svg { position: relative; }
 .card-btn:hover { transform: translateY(-4px) scale(1.02); }
 
 .card-name-line {
@@ -515,6 +581,9 @@ body {
   display: grid;
   place-items: center;
   text-align: center;
+  /* 封缄匣外圈黄铜环是旋转的：旋转会放大其外接矩形，
+     窄屏下会间歇性把文档撑宽造成横向滚动。圆环本体（直径恒定）不会被裁到。 */
+  overflow-x: clip;
 }
 
 .ritual-stage {
@@ -597,9 +666,12 @@ body {
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--line);
+  /* 窗外夜空：深靛夜色，不是纯黑。位置在实体观测平台之外 */
   background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(27, 35, 71, 0.8), transparent 70%),
-    linear-gradient(180deg, #0a0e1e, #070a16);
+    radial-gradient(ellipse 84% 62% at 50% -4%, rgba(46, 60, 108, 0.5), rgba(46, 60, 108, 0) 70%),
+    radial-gradient(ellipse 70% 50% at 82% 96%, rgba(30, 40, 78, 0.4), rgba(30, 40, 78, 0) 72%),
+    linear-gradient(180deg, #0e1533 0%, #0b1027 55%, #080c1c 100%);
+  box-shadow: inset 0 0 90px rgba(6, 9, 20, 0.75);
   touch-action: manipulation;
   cursor: crosshair;
   user-select: none;
@@ -613,11 +685,20 @@ body {
   display: grid;
   place-items: center;
   cursor: pointer;
+  /* 星星是真 button：必须清掉 UA 默认外观，否则会显示成白色方块 */
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
   animation: star-in 0.3s ease-out both;
 }
+/* 只动 opacity：入场若动 transform，fill-mode: both 会永久覆盖 JS 写入的定位 transform */
 @keyframes star-in {
-  from { opacity: 0; transform: scale(0.4); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .sky-star .core {
   width: 12px;

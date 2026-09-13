@@ -47,3 +47,12 @@ pnpm-debug.log*
 
 # 美术生产审计产物（contact sheet 等，不入库）
 .audit-art/
+
+# 最终展示截图包（README / 比赛 / 说明书 / 软著候选，不入库）
+.showcase/
+
+# 本地开发 / 截图工具链（不入库）
+.tools/
+
+# 本地智能体工作目录（记忆与工作日志，仅存本机，不入库）
+.workbuddy/

@@ -21,6 +21,12 @@ export default function HomePage() {
             在观星台攒下星屑，于启封仪式上亲手破开封缄——<br />
             每一张被启明的牌，都会永远留在你的魔女阁里。
           </p>
+          <div className="hero-how" aria-label="玩法速览">
+            <b>① 玩观星小游戏</b><i>→</i>
+            <b>② 获得星屑</b><i>→</i>
+            <b>③ 启封卡牌</b><i>→</i>
+            <b>④ 收藏 78 张</b>
+          </div>
           <div className="hero-actions">
             <Link to="/starcatch" className="btn">🔭 前往观星台 · 攒星屑</Link>
             <Link to="/unseal" className="btn btn-primary">✦ 启封仪式 · {ECONOMY.unsealCost} 星屑一次</Link>
@@ -49,11 +55,13 @@ export default function HomePage() {
         <Link to="/unseal" className="entry-card">
           <div className="ico">✦</div>
           <h3>启封仪式</h3>
-          <p>消耗星屑，从扇形的封缄牌阵中亲手翻开一封星之遗言。新卡入阁，重复化作补偿。</p>
+          <span className="sub">消耗星屑 · 开启秘仪牌</span>
+          <p>从扇形的封缄牌阵中亲手翻开一封星之遗言。新卡入阁，重复化作补偿。</p>
         </Link>
         <Link to="/collection" className="entry-card">
           <div className="ico">📖</div>
           <h3>魔女阁</h3>
+          <span className="sub">查看已收藏的 78 张牌</span>
           <p>七十八个牌位的档案库。已启封的牌可见真容，封缄的位子静静等它到来。</p>
         </Link>
         <Link to="/starwhisper" className="entry-card">

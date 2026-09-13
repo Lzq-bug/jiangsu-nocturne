@@ -72,18 +72,23 @@ export default function StarCatchPage() {
   /** 渲染推进（写星星位置）——仅前台 rAF；reducedMotion 时用静立星阵 */
   function renderPositions() {
     const round = roundRef.current;
-    if (!round) return;
+    const host = skyRef.current;
+    if (!round || !host) return;
     const now = performance.now();
     const staticMode = useGame.getState().settings.reducedMotion;
+    // 像素位移（相对天幕实际尺寸）：
+    // 不能用百分比——translate 的百分比相对元素自身宽高，会让星星全部堆在左上角。
+    const w = host.clientWidth;
+    const h = host.clientHeight;
     for (const s of round.stars) {
       const el = elMap.current.get(s.id);
       if (!el) continue;
       const pos = staticMode
-        ? { x: 10 + ((s.id * 37) % 80), y: 12 + ((s.id * 53) % 64) }
+        ? { x: (10 + ((s.id * 37) % 80)) / 100, y: (12 + ((s.id * 53) % 64)) / 100 }
         : starPos(s, now);
       el.style.left = '0';
       el.style.top = '0';
-      el.style.transform = `translate(${pos.x.toFixed(2)}%, ${pos.y.toFixed(2)}%) translate(-50%,-50%)`;
+      el.style.transform = `translate(${(pos.x * w).toFixed(1)}px, ${(pos.y * h).toFixed(1)}px)`;
     }
   }
 
@@ -142,7 +147,7 @@ export default function StarCatchPage() {
       >
         {phase === 'playing' && (
           <div className="sky-hud">
-            <span>⏱ {hud.time}s</span>
+            <span>剩余 {hud.time}s</span>
             <span>✦ {hud.score}</span>
           </div>
         )}

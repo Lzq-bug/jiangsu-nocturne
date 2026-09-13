@@ -58,7 +58,7 @@ export default function CollectionPage() {
         ))}
       </div>
 
-      <div className="card-grid">
+      <div className="card-grid archive-wall">
         {cards.map((c) => {
           const isOwned = owned.has(c.id);
           const entry = collection[c.id];

@@ -1,0 +1,281 @@
+/* ============================================================
+   宵月秘藏 · 环境视觉系统（ENVIRONMENT VISUAL SYSTEM）
+   核心一句话：窗外是星夜，室内是魔女会的旧观星书房。
+
+   空间三层结构：
+     Layer 1  远景夜空（env-sky）      —— 只在「窗外」出现
+     Layer 2  中景书房（env-room SVG） —— 窗棂 / 书架 / 星盘 / 烛光
+     Layer 3  近景 UI（global.css）    —— 卡牌 / 面板 / 正文，永远最高可读性
+
+   硬约束（见 docs/ENVIRONMENT_VISUAL_SYSTEM.md）：
+     · 实体空间，不是宇宙舞台
+     · 无紫蓝星云、无巨型发光行星、无环绕轨道、无整屏 bloom
+     · 背景纯装饰：aria-hidden、pointer-events:none、不进焦点顺序
+     · 每页最多 1–2 类环境动效，尊重 prefers-reduced-motion
+     · 移动端自动减层
+   ============================================================ */
+
+:root {
+  /* 夜空（Layer 1） */
+  --env-sky-top: #171e38;
+  --env-sky-mid: #11172e;
+  --env-sky-low: #0d1226;
+  --env-sky-deep: #0b0f20;
+
+  /* 室内（Layer 2） */
+  --env-room-0: #0a0e1e;
+  --env-room-1: #131832;
+  --env-wood-0: #241611;
+  --env-wood-1: #120b09;
+
+  /* 器具 */
+  --env-brass: 178, 140, 79;      /* 黄铜（配合 rgba 使用） */
+  --env-silver: 199, 206, 221;    /* 旧银 */
+  --env-moon: 233, 237, 245;      /* 月白 */
+  --env-candle: 230, 198, 135;    /* 烛光 */
+}
+
+/* ---------------- 容器 ---------------- */
+
+.env-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint style;
+  /* 夜空本体 + 空气层（不透明，作为整个空间的底） */
+  background-color: var(--env-sky-low);
+  background-image:
+    radial-gradient(ellipse 62% 26% at 64% 16%, rgba(96, 116, 178, 0.07), rgba(96, 116, 178, 0) 72%),
+    radial-gradient(ellipse 80% 40% at 22% 8%, rgba(88, 104, 160, 0.05), rgba(88, 104, 160, 0) 70%),
+    linear-gradient(180deg, var(--env-sky-top) 0%, var(--env-sky-mid) 38%, var(--env-sky-low) 76%, var(--env-sky-deep) 100%);
+}
+
+/* ---------------- Layer 1：夜空（星点层，单独一层以便极弱呼吸） ---------------- */
+
+.env-sky {
+  position: absolute;
+  inset: 0;
+  background-image:
+    /* 低密度星点：集中在上部与两侧，中心留给内容 */
+    radial-gradient(1.5px 1.5px at 8% 12%, rgba(233, 237, 245, 0.50), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.2px 1.2px at 15% 31%, rgba(233, 237, 245, 0.30), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.3px 1.3px at 22% 7%, rgba(233, 237, 245, 0.36), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.1px 1.1px at 31% 21%, rgba(233, 237, 245, 0.24), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.6px 1.6px at 38% 6%, rgba(233, 237, 245, 0.44), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.1px 1.1px at 44% 27%, rgba(233, 237, 245, 0.22), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.3px 1.3px at 52% 14%, rgba(233, 237, 245, 0.32), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.2px 1.2px at 58% 4%, rgba(233, 237, 245, 0.28), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.3px 1.3px at 64% 23%, rgba(233, 237, 245, 0.28), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.5px 1.5px at 70% 10%, rgba(233, 237, 245, 0.38), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.1px 1.1px at 77% 29%, rgba(233, 237, 245, 0.22), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.4px 1.4px at 84% 16%, rgba(233, 237, 245, 0.34), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.2px 1.2px at 90% 6%, rgba(233, 237, 245, 0.30), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.1px 1.1px at 95% 25%, rgba(233, 237, 245, 0.24), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.1px 1.1px at 11% 45%, rgba(233, 237, 245, 0.20), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1.1px 1.1px at 88% 41%, rgba(233, 237, 245, 0.20), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1px 1px at 5% 61%, rgba(233, 237, 245, 0.15), rgba(233, 237, 245, 0) 100%),
+    radial-gradient(1px 1px at 94% 57%, rgba(233, 237, 245, 0.16), rgba(233, 237, 245, 0) 100%);
+}
+
+/* 极慢星点呼吸：幅度极低，reduced-motion 下关闭 */
+.env-sky { animation: env-star-breathe 11s ease-in-out infinite; }
+@keyframes env-star-breathe {
+  0%, 100% { opacity: 0.82; }
+  50% { opacity: 1; }
+}
+
+/* ---------------- Layer 2：魔女会空间 ---------------- */
+
+.env-room {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 移动端专用简化场景：默认隐藏 */
+.env-room-m {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+/* 默认隐藏的场景元素（各场景按需开启） */
+.env-g-shelf-r,
+.env-g-labels,
+.env-g-rail,
+.env-g-parchment {
+  display: none;
+}
+
+/* 室内体积感：两侧墙体压暗 + 顶部梁影，中央留给 UI */
+.env-room-tint {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 52% at 50% -12%, rgba(7, 9, 20, 0.78), rgba(7, 9, 20, 0) 68%),
+    linear-gradient(90deg,
+      rgba(6, 8, 18, 0.52) 0%,
+      rgba(6, 8, 18, 0.26) 15%,
+      rgba(6, 8, 18, 0) 36%,
+      rgba(6, 8, 18, 0) 64%,
+      rgba(6, 8, 18, 0.26) 85%,
+      rgba(6, 8, 18, 0.52) 100%);
+}
+
+/* 近景：旧木桌边缘 */
+.env-desk {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20vh;
+  min-height: 84px;
+  background: linear-gradient(180deg,
+    rgba(36, 22, 17, 0) 0%,
+    rgba(30, 18, 13, 0.42) 46%,
+    rgba(18, 11, 9, 0.72) 100%);
+}
+.env-desk::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(230, 198, 135, 0.16) 26%,
+    rgba(230, 198, 135, 0.10) 72%,
+    transparent);
+}
+
+/* ---------------- 场景差异 ---------------- */
+
+/* 主厅：完整观星书房 */
+.env-home .env-g-shelf { opacity: 0.9; }
+.env-home .env-g-window { opacity: 0.95; }
+.env-home .env-g-astro { opacity: 0.85; }
+.env-home .env-g-candle { opacity: 1; }
+.env-home .env-g-rail { display: none; }
+.env-home .env-g-shelf-r { display: none; }
+.env-home .env-g-parchment { display: none; }
+
+/* 观星台：夜空比例更高，仍是实体观测平台 */
+.env-observatory .env-g-window {
+  opacity: 1;
+  transform: scale(1.34) translate(-58px, -34px);
+  transform-origin: 1362px 384px;
+}
+.env-observatory .env-g-shelf { opacity: 0.35; }
+.env-observatory .env-g-astro { display: none; }
+.env-observatory .env-g-candle { opacity: 0.55; }
+.env-observatory .env-g-rail { display: block; }
+.env-observatory .env-desk { opacity: 0.35; }
+
+/* 启封：仪式桌，更暗，桌面 + 烛火 + 羊皮纸 */
+.env-unseal .env-g-window { display: none; }
+.env-unseal .env-g-shelf { opacity: 0.42; }
+.env-unseal .env-g-astro { opacity: 0.4; }
+.env-unseal .env-g-candle { opacity: 1; }
+.env-unseal .env-g-parchment { display: block; opacity: 0.9; }
+.env-unseal .env-sky { opacity: 0.72; }
+.env-unseal .env-desk { height: 26vh; }
+
+/* 魔女阁：档案室 / 收藏柜，最暗最实体，星点极少 */
+.env-archive .env-g-window { display: none; }
+.env-archive .env-g-shelf { opacity: 1; }
+.env-archive .env-g-shelf-r { display: block; opacity: 0.92; }
+.env-archive .env-g-labels { display: block; opacity: 0.8; }
+.env-archive .env-g-astro { opacity: 0.3; }
+.env-archive .env-g-candle { opacity: 0.7; }
+.env-archive .env-sky { opacity: 0.4; animation: none; }
+
+/* 详情：最安静，桌面 + 羊皮纸 + 低亮书房 */
+.env-detail .env-g-window { display: none; }
+.env-detail .env-g-shelf { opacity: 0.24; }
+.env-detail .env-g-astro { display: none; }
+.env-detail .env-g-candle { opacity: 0.6; }
+.env-detail .env-g-parchment { display: block; opacity: 0.75; }
+.env-detail .env-sky { opacity: 0.42; animation: none; }
+
+/* 其余页面（设置 / 关于 / 星语）：安静版书房 */
+.env-quiet .env-g-window { opacity: 0.5; }
+.env-quiet .env-g-shelf { opacity: 0.6; }
+.env-quiet .env-g-astro { opacity: 0.5; }
+.env-quiet .env-g-candle { opacity: 0.8; }
+
+/* ---------------- 轻环境动效 ---------------- */
+
+/* 烛光呼吸（6–10s） */
+.env-flame-glow { animation: env-candle-breathe 7.5s ease-in-out infinite; transform-origin: center; }
+@keyframes env-candle-breathe {
+  0%, 100% { opacity: 0.72; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+.env-flame { animation: env-flame-flicker 6.2s ease-in-out infinite; transform-origin: center bottom; }
+@keyframes env-flame-flicker {
+  0%, 100% { opacity: 0.78; }
+  40% { opacity: 0.95; }
+  70% { opacity: 0.7; }
+}
+
+/* 窗外薄云（40–60s 缓慢横移） */
+.env-cloud { animation: env-cloud-drift 52s linear infinite; }
+@keyframes env-cloud-drift {
+  0% { transform: translateX(-22px); }
+  50% { transform: translateX(22px); }
+  100% { transform: translateX(-22px); }
+}
+
+/* 黄铜星盘极慢旋转（仅主厅） */
+.env-astro-ring { animation: env-astro-turn 180s linear infinite; transform-origin: center; }
+@keyframes env-astro-turn {
+  to { transform: rotate(360deg); }
+}
+
+/* 观星台：星点极低幅度闪烁（由全局 sky 呼吸承担，不额外增加粒子） */
+
+/* ---------------- 移动端减层 ---------------- */
+
+@media (max-width: 640px) {
+  .env-sky {
+    background-image:
+      radial-gradient(1.3px 1.3px at 12% 10%, rgba(233, 237, 245, 0.42), rgba(233, 237, 245, 0) 100%),
+      radial-gradient(1.1px 1.1px at 30% 6%, rgba(233, 237, 245, 0.30), rgba(233, 237, 245, 0) 100%),
+      radial-gradient(1.2px 1.2px at 62% 12%, rgba(233, 237, 245, 0.34), rgba(233, 237, 245, 0) 100%),
+      radial-gradient(1.1px 1.1px at 84% 8%, rgba(233, 237, 245, 0.30), rgba(233, 237, 245, 0) 100%),
+      radial-gradient(1px 1px at 92% 34%, rgba(233, 237, 245, 0.20), rgba(233, 237, 245, 0) 100%),
+      radial-gradient(1px 1px at 6% 38%, rgba(233, 237, 245, 0.18), rgba(233, 237, 245, 0) 100%);
+  }
+  .env-sky,
+  .env-sky::after { animation: none; }
+
+  /* 移动端只留：夜色 + 1 个高窗暗影 + 少量烛光 / 黄铜纹 */
+  .env-room { display: none; }
+  .env-room-m { display: block; }
+  .env-desk { height: 14vh; min-height: 60px; }
+
+  /* 移动端关闭缓慢动效，避免省电与掉帧 */
+  .env-flame-glow, .env-flame, .env-cloud, .env-astro-ring { animation: none; }
+}
+
+@media (max-width: 400px) {
+  .env-desk { height: 11vh; min-height: 48px; }
+}
+
+/* ---------------- Reduced Motion ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .env-sky,
+  .env-flame-glow,
+  .env-flame,
+  .env-cloud,
+  .env-astro-ring {
+    animation: none !important;
+  }
+}
