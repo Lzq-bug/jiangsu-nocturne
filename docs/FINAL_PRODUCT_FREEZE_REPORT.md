@@ -21,14 +21,18 @@
 
 ## 3. Git status
 
-窗口结束：**clean**（`.tools/`、`.showcase/`、`.audit-art/`、`.workbuddy/` 均已在 `.gitignore` 中隔离）。
+窗口结束：**clean**（`.tools/qa/`、`.showcase/`、`.audit-art/`、`.workbuddy/` 均已在 `.gitignore` 中隔离；
+`.tools/*.mjs` 工具脚本按维护需要入库）。
 
-窗口期间共有 2 个提交：
+窗口期间共有 3 个提交：
 
 | # | commit | 内容 |
 | --- | --- | --- |
-| 1 | `ce178a4` | `feat(env)`: 环境视觉系统 + 最终 polish + Bug 修复 + 8 份文档 |
-| 2 | 冻结记录 | `DEVELOPMENT_FREEZE.md` + 本报告 |
+| 1 | `ce178a4` | `feat(env)`: 环境视觉系统 + 最终 polish + Bug 修复 + 8 份文档（**产品代码冻结点 = FINAL_HEAD**） |
+| 2 | `274185b` | `docs`: `DEVELOPMENT_FREEZE.md` + 本报告 |
+| 3 | `dc03cff` | `chore(tools)`: 展示 / QA 工具链入库（产物仍忽略） |
+
+提交 1 之后**未再改动任何产品代码**；提交 2、3 仅涉及文档与本地工具。
 
 ## 4. baseline（窗口开始时实测）
 
@@ -160,8 +164,8 @@
 | 项 | 值 |
 | --- | --- |
 | baseline | 13,799 B |
-| final | **20,740 B**（gzip **5.61 KB**，单文件内联，无额外 CSS 请求） |
-| 增量 | **+6,941 B ≈ +6.8 KB** |
+| final | **20,863 B**（gzip **5.65 KB**，单文件内联，无额外 CSS 请求） |
+| 增量 | **+7,064 B ≈ +6.9 KB** |
 | 说明 | 环境系统 10.5 KB raw 中约一半是新规则；其余为 matte plate / 展墙 / focus 补全 |
 
 ## 18. 动效

@@ -180,8 +180,8 @@
 | 星点 DOM 节点 | **0** |
 | 新增网络资源下载体积 | **0 字节**（无新增图片 / 字体 / 独立 CSS 请求） |
 | JS 产物 | 277,519 B（窗口 START_HEAD `bdd36ab`）→ **291,067 B**（**+13,548 B ≈ +13.2 KB**；gzip 97.81 KB） |
-| CSS 产物 | 13,799 B → **20,740 B**（**+6,941 B ≈ +6.8 KB**；gzip 5.61 KB） |
-| `dist/` 总体积 | 846 KB → **868 KB**（**+22 KB**，其中含本轮两处 Bug 修复的代码） |
+| CSS 产物 | 13,799 B → **20,863 B**（**+7,064 B ≈ +6.9 KB**；gzip 5.65 KB） |
+| `dist/` 总体积 | 846 KB → **868 KB**（**+22 KB**，其中含本轮 3 处 Bug 修复的代码） |
 | 背景源码 | `src/styles/environment.css` 10.5 KB（raw）+ `src/ui/EnvironmentScene.tsx` |
 | 增量量级 | **十 KB 级，不是 MB 级**——满足「不因背景加入数 MB」的硬要求 |
 | 重绘策略 | `.env-scene` 为 `position: fixed` + `contain: layout paint style`，滚动不重绘 |

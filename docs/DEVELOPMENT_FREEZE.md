@@ -16,7 +16,8 @@
 | 项目 | 《宵月秘藏 · The Veiled Moon Reliquary》 |
 | 版本 | 0.1.0（package.json） |
 | START_HEAD | `bdd36ab` |
-| FINAL_HEAD | `ce178a4` |
+| FINAL_HEAD（产品代码冻结点） | `ce178a4` |
+| 冻结记录提交 | `274185b`（本声明 + 最终报告）、`dc03cff`（展示/QA 工具链入库） |
 | 正式卡面 | **78 / 78**（月章 22 · 星签 56 · 宫廷 16） |
 | Final Art Audit | **PASS** / Gate **A** |
 | FINAL_ART_FREEZE | **YES** |
