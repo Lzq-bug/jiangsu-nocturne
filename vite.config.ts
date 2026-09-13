@@ -8,6 +8,10 @@ const dir = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    // 卡面 SVG 一律独立发射为文件（懒加载、可缓存），禁止内联成 base64 塞进 JS
+    assetsInlineLimit: 0,
+  },
   resolve: {
     alias: [{ find: /^@\/(.*)$/, replacement: resolve(dir, 'src/$1') }],
   },
