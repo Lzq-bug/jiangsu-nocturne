@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="宝剑七：军械架上七槽空五，两柄犹在，帐门缝漏进夜风">
+  <defs>
+    <radialGradient id="s7-ground" cx="30%" cy="34%" r="110%">
+      <stop offset="0" stop-color="#131a2a"/><stop offset="0.6" stop-color="#0e1522"/><stop offset="1" stop-color="#080d16"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#s7-ground)"/>
+
+  <!-- 帐内后壁 -->
+  <path d="M 0 0 L 300 0 L 300 268 L 0 268 Z" fill="#0b101c" opacity="0.7"/>
+
+  <!-- 帐布（右侧，被掀起一角：冷风与夜光线由此进入） -->
+  <g>
+    <path d="M 300 0 L 188 6 C 178 60, 176 130, 184 200 C 188 232, 196 256, 208 272 L 300 276 Z"
+          fill="#101726" stroke="#c7cedd" stroke-width="1.5"/>
+    <path d="M 200 12 C 192 70, 191 140, 198 206 C 201 234, 208 254, 218 268" fill="none" stroke="#8a93ad" stroke-width="0.7" opacity="0.6"/>
+    <!-- 帐布褶 -->
+    <g stroke="#8a93ad" stroke-width="0.6" opacity="0.45" fill="none">
+      <path d="M 236 8 C 230 70, 230 150, 238 240 M 268 6 C 263 80, 263 170, 270 260"/>
+    </g>
+    <!-- 系绳（解开垂落） -->
+    <path d="M 196 96 C 210 100, 224 100, 236 96" fill="none" stroke="#8a93ad" stroke-width="1" opacity="0.7"/>
+  </g>
+
+  <!-- 门缝夜光与风线（唯一叙事光源：帐外的冷夜） -->
+  <path d="M 184 8 L 200 10 C 192 80, 191 160, 198 240 L 186 238 C 180 160, 180 80, 184 8 Z" fill="#c7d8e8" opacity="0.08"/>
+  <g stroke="#c7d8e8" stroke-linecap="round" opacity="0.7">
+    <line x1="150" y1="60" x2="182" y2="52" stroke-width="1"/>
+    <line x1="138" y1="120" x2="180" y2="112" stroke-width="0.8"/>
+    <line x1="146" y1="180" x2="184" y2="172" stroke-width="0.9"/>
+    <line x1="160" y1="240" x2="190" y2="232" stroke-width="0.7"/>
+  </g>
+
+  <!-- 军械架（主体，右中重心）：七槽，五空二留 -->
+  <g>
+    <!-- 架体 -->
+    <path d="M 74 268 L 74 78 C 74 70, 80 64, 88 64 L 148 60 C 156 60, 162 66, 162 74 L 162 264 Z"
+          fill="#131a2c" stroke="#c7cedd" stroke-width="1.5"/>
+    <!-- 七道竖槽：五道空（暗槽），两道有剑 -->
+    <g>
+      <rect x="84" y="80" width="11" height="176" rx="3" fill="#070b14" stroke="#5d6780" stroke-width="0.9"/>
+      <rect x="100" y="79" width="11" height="177" rx="3" fill="#070b14" stroke="#5d6780" stroke-width="0.9"/>
+      <rect x="116" y="78" width="11" height="178" rx="3" fill="#070b14" stroke="#5d6780" stroke-width="0.9"/>
+      <rect x="132" y="77" width="11" height="179" rx="3" fill="#070b14" stroke="#5d6780" stroke-width="0.9"/>
+      <rect x="148" y="77" width="11" height="180" rx="3" fill="#070b14" stroke="#5d6780" stroke-width="0.9"/>
+    </g>
+    <!-- 空槽口的浮尘 -->
+    <g fill="#8a93ad" opacity="0.4">
+      <circle cx="89" cy="92" r="0.8"/><circle cx="121" cy="104" r="0.8"/><circle cx="153" cy="90" r="0.8"/>
+    </g>
+  </g>
+
+  <!-- 仍在的两柄剑（冷白锋线，插在左二与中槽外——主人只带走了五柄之外……不，带走五柄，这两柄被留下了） -->
+  <g>
+    <!-- 留剑一：斜倚画外左侧，与架体完全分离（被匆忙放回的样子） -->
+    <g transform="translate(46 178) rotate(-11)">
+      <path d="M 0 -104 L 3.4 -95 L 3.4 70 L 0 78 L -3.4 70 L -3.4 -95 Z" fill="#1c2438" stroke="#eef2fa" stroke-width="1.5"/>
+      <path d="M -1.1 -91 L -1.1 66" stroke="#f6f8ff" stroke-width="1" opacity="1"/>
+      <path d="M -8.6 70 L 8.6 70 L 6.4 78 L -6.4 78 Z" fill="#10182c" stroke="#c7cedd" stroke-width="1.2"/>
+      <circle cx="0" cy="86" r="2.6" fill="#c7cedd"/>
+    </g>
+    <!-- 留剑二：直插架前地面 -->
+    <g transform="translate(178 196)">
+      <path d="M 0 -104 L 3.4 -95 L 3.4 62 L 0 70 L -3.4 62 L -3.4 -95 Z" fill="#1c2438" stroke="#eef2fa" stroke-width="1.5"/>
+      <path d="M 1.1 -91 L 1.1 58" stroke="#f6f8ff" stroke-width="1" opacity="1"/>
+      <path d="M -8.6 62 L 8.6 62 L 6.4 70 L -6.4 70 Z" fill="#10182c" stroke="#c7cedd" stroke-width="1.2"/>
+      <circle cx="0" cy="78" r="2.6" fill="#c7cedd"/>
+      <!-- 插入地面的土痕 -->
+      <path d="M -10 96 C -4 92, 4 92, 10 96" fill="none" stroke="#8a93ad" stroke-width="0.9" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- 地面：拖曳的划痕（重物被拖走的痕迹） -->
+  <g stroke="#8a93ad" stroke-width="0.8" opacity="0.5" fill="none">
+    <path d="M 96 300 C 130 296, 170 296, 206 299"/>
+    <path d="M 110 312 C 150 309, 190 309, 224 311"/>
+  </g>
+  <path d="M 0 268 L 300 272" stroke="#8a93ad" stroke-width="0.7" opacity="0.4"/>
+  <g stroke="#8a93ad" stroke-width="0.5" opacity="0.35" fill="none">
+    <path d="M 30 292 L 88 292 M 240 318 L 286 318"/>
+  </g>
+
+  <!-- 落在帐内的冷光线（门缝光延伸到地面） -->
+  <path d="M 190 250 L 208 252 L 236 286 L 210 282 Z" fill="#c7d8e8" opacity="0.05"/>
+</svg>
