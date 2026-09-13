@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="圣杯六：旧庭院里递来的一杯花">
+  <defs>
+    <radialGradient id="c6-ground" cx="42%" cy="30%" r="98%">
+      <stop offset="0" stop-color="#1a1c2c"/><stop offset="0.62" stop-color="#141624"/><stop offset="1" stop-color="#0c0e1a"/>
+    </radialGradient>
+    <radialGradient id="c6-lamp" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#c9bfa0" stop-opacity="0.32"/><stop offset="1" stop-color="#c9bfa0" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="c6-stone" width="16" height="9" patternUnits="userSpaceOnUse">
+      <path d="M 0 4.5 L 16 4.5 M 8 0 L 8 4.5 M 4 4.5 L 4 9" fill="none" stroke="#8a93ad" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#c6-ground)"/>
+
+  <!-- 旧庭院：矮墙与旧灯（背景） -->
+  <g>
+    <path d="M 0 210 L 120 210 L 120 340 L 0 340 Z" fill="#0d1226" stroke="#8a93ad" stroke-width="1.2"/>
+    <path d="M 0 210 L 120 210 L 120 240 L 0 240 Z" fill="url(#c6-stone)" opacity="0.7"/>
+    <!-- 挂在墙上的旧灯（叙事光源，低饱和暖） -->
+    <g transform="translate(56 172)">
+      <circle r="24" fill="url(#c6-lamp)"/>
+      <path d="M -6 -8 L 6 -8 L 5 8 L -5 8 Z" fill="#0b0f20" stroke="#c9bfa0" stroke-width="1.2"/>
+      <path d="M -7 -8 C -4 -12, 4 -12, 7 -8" fill="none" stroke="#c9bfa0" stroke-width="1"/>
+      <path d="M 0 -1 C 2.6 2, 2 6, 0 7 C -2 6, -2.6 2, 0 -1 Z" fill="#c9bfa0" opacity="0.9"/>
+    </g>
+  </g>
+
+  <!-- 高个剪影（左，自墙角走来递杯） -->
+  <g>
+    <path d="M 96 300
+             C 96 268, 102 244, 116 230
+             C 126 220, 140 216, 150 220
+             L 152 210 A 7.4 7.4 0 0 1 165 213
+             L 160 226
+             C 172 232, 180 244, 184 260
+             L 188 300 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.5"/>
+    <!-- 递出的双手托杯（盛花） -->
+    <path d="M 152 246 C 166 240, 182 238, 196 240" fill="none" stroke="#c7cedd" stroke-width="1.6" opacity="0.95"/>
+    <g transform="translate(206 240)">
+      <path d="M -15 -11 L 15 -11 C 15 -3, 10 2, 4 4 L 4 11 L 11 15 L -11 15 L -4 11 L -4 4 C -10 2, -15 -3, -15 -11 Z"
+            fill="#0b0f20" stroke="#c7cedd" stroke-width="1.5"/>
+      <ellipse cx="0" cy="-11" rx="15" ry="3" fill="none" stroke="#c7cedd" stroke-width="1.1"/>
+      <!-- 杯中盛花（三朵小白花） -->
+      <g fill="none" stroke="#e9edf5" stroke-width="1">
+        <circle cx="-7" cy="-14" r="3"/>
+        <circle cx="1" cy="-17" r="3.4"/>
+        <circle cx="8" cy="-13" r="2.7"/>
+      </g>
+      <g stroke="#8a93ad" stroke-width="0.8" opacity="0.8" fill="none">
+        <path d="M -7 -11 L -5 -8 M 1 -13.6 L 0 -9 M 8 -10.4 L 5 -8"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- 矮个剪影（右，仰接） -->
+  <g>
+    <path d="M 226 300
+             C 226 278, 230 260, 240 250
+             C 248 242, 258 240, 266 244
+             L 268 236 A 6.4 6.4 0 0 1 280 239
+             L 276 250
+             C 284 258, 288 270, 288 284
+             L 290 300 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.4"/>
+    <!-- 仰接的手 -->
+    <path d="M 244 252 C 236 252, 228 249, 222 246" fill="none" stroke="#c7cedd" stroke-width="1.4" opacity="0.9"/>
+  </g>
+
+  <!-- 庭院石地与旧水渍 -->
+  <path d="M 0 300 L 300 300" stroke="#8a93ad" stroke-width="0.9" opacity="0.6"/>
+  <path d="M 0 300 L 300 300 L 300 340 L 0 340 Z" fill="url(#c6-stone)" opacity="0.6"/>
+  <g stroke="#8a93ad" stroke-width="0.5" opacity="0.4" fill="none">
+    <path d="M 40 316 L 110 314 M 150 322 L 226 320"/>
+  </g>
+  <!-- 石缝小花（记忆的回声，次级） -->
+  <g fill="none" stroke="#e9edf5" stroke-width="0.9" opacity="0.8">
+    <circle cx="70" cy="320" r="2.6"/><circle cx="182" cy="326" r="2.2"/>
+  </g>
+</svg>
