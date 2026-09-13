@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="星币王后：蹲在园畦边，松手让环璧沉进土里交给植物——最接地的一位">
+  <defs>
+    <radialGradient id="p13-dusk" cx="26%" cy="30%" r="135%">
+      <stop offset="0" stop-color="#1d1b12"/><stop offset="0.55" stop-color="#14120c"/><stop offset="1" stop-color="#0b0a06"/>
+    </radialGradient>
+    <radialGradient id="p13-sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#d9b478" stop-opacity="0.4"/><stop offset="1" stop-color="#d9b478" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#p13-dusk)"/>
+
+  <!-- 唯一叙事光源：左侧地平残照（低机位的光，贴近土面） -->
+  <circle cx="40" cy="180" r="30" fill="url(#p13-sun)"/>
+  <circle cx="40" cy="180" r="6.6" fill="#d9b478" opacity="0.7"/>
+  <path d="M 0 196 C 40 193, 80 193, 120 196" stroke="#8a7a52" stroke-width="0.7" opacity="0.4" fill="none"/>
+
+  <!-- 园圃支架（次级：矮棚架） -->
+  <g stroke="#2c2a1a" stroke-width="3.4" fill="none" stroke-linecap="round">
+    <path d="M 226 210 L 232 302 M 268 206 L 264 300"/>
+    <path d="M 226 232 L 266 228 M 228 258 L 264 254"/>
+  </g>
+  <!-- 架上垂藤 -->
+  <g stroke="#39412f" stroke-width="1" fill="none" opacity="0.85">
+    <path d="M 240 232 C 240 244, 238 254, 242 264 C 244 270, 242 276, 244 282"/>
+    <path d="M 254 230 C 256 242, 254 250, 258 260"/>
+  </g>
+  <g fill="#4a5636">
+    <ellipse cx="242" cy="266" rx="2.6" ry="4.4"/><ellipse cx="258" cy="262" rx="2.2" ry="3.8"/>
+  </g>
+
+  <!-- 王后（主体：蹲身俯土，低机位；侧影朝左下的畦） -->
+  <g>
+    <!-- 蹲姿身形（紧凑，裙裾堆在脚边） -->
+    <path d="M 148 302
+             C 142 292, 138 280, 138 268
+             C 138 254, 142 240, 150 230
+             C 157 221, 166 216, 175 216
+             C 183 216, 189 221, 191 229
+             C 193 237, 191 246, 186 254
+             C 180 264, 174 276, 172 288
+             C 171 294, 170 298, 168 302
+             C 162 304, 154 304, 148 302 Z"
+          fill="#191712"/>
+    <!-- 裙裾堆叠 -->
+    <path d="M 148 302 C 140 300, 132 296, 128 290 C 138 290, 148 292, 154 296 Z" fill="#191712" opacity="0.95"/>
+    <path d="M 168 302 C 176 302, 184 300, 190 296 C 182 296, 174 296, 168 298 Z" fill="#191712" opacity="0.95"/>
+    <!-- 头（低垂，几乎看进土里） -->
+    <path d="M 168 214 C 165 205, 170 196, 179 195 C 187 194, 194 200, 194 208 C 194 215, 188 220, 181 220 Z" fill="#191712"/>
+    <!-- 王后冠饰：花冠细环（苔与小花） -->
+    <path d="M 170 206 C 176 200, 185 199, 192 204" stroke="#5d6a52" stroke-width="1.2" fill="none"/>
+    <circle cx="178" cy="201" r="1.4" fill="#9db87a"/><circle cx="187" cy="202.6" r="1.2" fill="#b5cf8a"/>
+    <!-- 双臂（向下：一只手刚松开环璧，一只撑膝） -->
+    <path d="M 152 246 C 148 256, 146 266, 148 276" stroke="#191712" stroke-width="5.6" fill="none" stroke-linecap="round"/>
+    <path d="M 186 240 C 184 252, 180 262, 174 270" stroke="#191712" stroke-width="5.2" fill="none" stroke-linecap="round"/>
+    <!-- 指尖余晖（刚离开环缘的那只手） -->
+    <circle cx="174" cy="272" r="1.4" fill="#d9b478" opacity="0.8"/>
+    <!-- 残照轮廓光（左缘+臂） -->
+    <g stroke="#d9b478" fill="none" opacity="0.55">
+      <path d="M 150 232 C 144 242, 140 254, 140 266" stroke-width="0.9"/>
+      <path d="M 152 248 C 149 257, 148 266, 149 274" stroke-width="0.7"/>
+    </g>
+  </g>
+
+  <!-- 环璧（次主体：半嵌进土里，正在被"交给"土壤） -->
+  <g>
+    <ellipse cx="118" cy="298" rx="30" ry="9" fill="#12110b"/>
+    <circle cx="118" cy="284" r="22" fill="#2e3324" stroke="#8f9a7d" stroke-width="1.4"/>
+    <circle cx="118" cy="284" r="22" fill="none" stroke="#c7cedd" stroke-width="0.8" opacity="0.6"/>
+    <circle cx="118" cy="284" r="13" fill="#12110b"/>
+    <path d="M 100 274 A 22 22 0 0 1 128 266" stroke="#d9b478" stroke-width="0.9" fill="none" opacity="0.5"/>
+    <!-- 环缘冒出的新苗（它已经是园子的一部分） -->
+    <path d="M 118 268 C 118 262, 118 258, 118 254" stroke="#9db87a" stroke-width="1.3" fill="none"/>
+    <path d="M 118 262 C 113 260, 111 256, 111 252 C 115 253, 117 256, 118 260 Z" fill="#8fae6f"/>
+    <path d="M 118 259 C 122 256, 123 253, 123 250 C 119 251, 118 254, 118 257 Z" fill="#a9c483"/>
+    <!-- 周围土痕 -->
+    <path d="M 88 300 C 104 304, 134 304, 150 300" stroke="#2a2d1c" stroke-width="1.2" fill="none" opacity="0.9"/>
+  </g>
+
+  <!-- 园畦（低机位：畦线横过前景） -->
+  <path d="M 0 306 C 90 300, 200 300, 300 306 L 300 340 L 0 340 Z" fill="#0e0d08"/>
+  <g stroke="#242616" stroke-width="0.8" opacity="0.75" fill="none">
+    <path d="M 20 320 C 100 314, 210 314, 284 320"/>
+  </g>
+  <!-- 畦上幼苗两株 -->
+  <g stroke="#39412f" stroke-width="0.9" fill="none" opacity="0.8">
+    <path d="M 208 318 C 208 312, 206 308, 202 306 M 208 318 C 208 312, 210 308, 214 306"/>
+    <path d="M 236 322 C 236 317, 234 314, 231 312 M 236 322 C 236 317, 238 314, 241 312"/>
+  </g>
+  <!-- 残照在土面的暖痕 -->
+  <path d="M 60 312 C 76 309, 96 309, 110 312" stroke="#d9b478" stroke-width="0.8" fill="none" opacity="0.3"/>
+</svg>
