@@ -47,7 +47,10 @@ export function majorOutlinePath(s: MajorShapeSpec): string {
   // 左肩新月凹刻 → 主尖（月芒顶的不对称来源）
   const crest = `C ${X_L + 4} ${SHOULDER_Y - 9}, ${apexX - 14} ${APEX_Y + 6}, ${apexX - 7} ${APEX_Y + 3} C ${apexX - 3} ${APEX_Y + 1}, ${apexX - 1} ${APEX_Y}, ${apexX} ${APEX_Y}`;
 
-  const steps = majorPedestalPath(s.steps);
+  // 台座段必须延续当前子路径（不得带 M，否则 Z 闭合会产生穿牌对角线）
+  const steps = s.steps === 2
+    ? `L 64 206 L 68 214 L 32 214 L 36 206 L ${X_L} ${BASE_Y}`
+    : `L 66 206 L 69 213 L 73 219 L 27 219 L 31 213 L 34 206 L ${X_L} ${BASE_Y}`;
 
   return [
     `M ${apexX} ${APEX_Y}`,
