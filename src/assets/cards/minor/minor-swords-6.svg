@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="宝剑六：渡向更安静的水">
+  <defs>
+    <radialGradient id="s6-ground" cx="56%" cy="26%" r="98%">
+      <stop offset="0" stop-color="#141b2b"/><stop offset="0.6" stop-color="#101624"/><stop offset="1" stop-color="#0a0e18"/>
+    </radialGradient>
+    <linearGradient id="s6-far" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#c7cedd" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#c7cedd" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#s6-ground)"/>
+
+  <!-- 对岸的微明（叙事光源：行进方向的终点） -->
+  <path d="M 196 148 L 300 148" stroke="url(#s6-far)" stroke-width="2.6"/>
+  <ellipse cx="268" cy="148" rx="52" ry="14" fill="none"/>
+  <g stroke="#8a93ad" stroke-width="0.5" opacity="0.4" fill="none">
+    <path d="M 0 156 L 180 156 M 20 164 L 150 164"/>
+  </g>
+  <g fill="#c7cedd" opacity="0.5">
+    <circle cx="52" cy="60" r="1"/><circle cx="120" cy="44" r="0.9"/><circle cx="216" cy="70" r="1"/>
+  </g>
+
+  <!-- 小舟：船首向右，全速平静行进 -->
+  <g>
+    <path d="M 60 210 C 96 202, 168 200, 232 208 C 236 214, 232 222, 220 226 C 168 232, 112 230, 74 224 C 64 220, 58 216, 60 210 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.7"/>
+    <path d="M 74 214 C 120 208, 180 207, 226 212" fill="none" stroke="#8a93ad" stroke-width="0.6" opacity="0.6"/>
+    <!-- 艄公撑篙 -->
+    <g>
+      <path d="M 138 196 C 140 176, 142 152, 142 128" fill="none" stroke="#c7cedd" stroke-width="1.5"/>
+      <path d="M 136 196 C 130 188, 126 176, 126 166 C 134 172, 140 184, 142 196" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.2"/>
+    </g>
+    <!-- 六道竖直剑影立于舟中（一列剪影，锋线家族） -->
+    <g stroke="#e9edf5" stroke-width="1.4" fill="#0b0f20">
+      <path d="M 96 206 L 96 158 M 92 162 L 100 162" />
+      <path d="M 116 206 L 116 152 M 112 156 L 120 156" />
+      <path d="M 136 206 L 136 148 M 132 152 L 140 152" />
+      <path d="M 156 206 L 156 152 M 152 156 L 160 156" />
+      <path d="M 176 206 L 176 158 M 172 162 L 180 162" />
+      <path d="M 196 206 L 196 164 M 192 168 L 200 168" />
+    </g>
+    <!-- 剑后遮布（裹剑的布，垂坠） -->
+    <path d="M 108 206 C 112 192, 122 184, 136 184 C 150 184, 162 190, 166 204 C 148 208, 126 208, 108 206 Z"
+          fill="#0b0f20" stroke="#8a93ad" stroke-width="1"/>
+  </g>
+
+  <!-- 船下静水纹（离开的涟漪拖向左后） -->
+  <g stroke="#8a93ad" stroke-width="0.7" opacity="0.55" fill="none">
+    <path d="M 56 236 C 40 242, 26 250, 16 260"/>
+    <path d="M 70 246 C 54 252, 40 262, 30 274"/>
+    <path d="M 84 254 C 70 262, 58 274, 50 288"/>
+  </g>
+  <g stroke="#c7cedd" stroke-width="0.6" opacity="0.4" fill="none">
+    <path d="M 240 226 C 252 232, 262 240, 270 250"/>
+  </g>
+</svg>

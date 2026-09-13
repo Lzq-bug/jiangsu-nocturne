@@ -1,5 +1,7 @@
 # REMAINING_70_CARD_ART_PLAN · 剩余 70 张正式美术量产设计清单（v1）
 
+> **状态更新（窗口 #2 结束）**：Batch 01–08 已全部完成，正式美术累计 **40/78**。本清单中 Batch 01–08 对应的 32 张已生产（视觉锚点与实施记录见 `ART_PRODUCTION_SESSION_01/02_REPORT.md` 与 `CARD_ART_COMPOSITION_LEDGER.md`），**剩余 38 张**继续以本清单为设计基线。
+>
 > 依据 `CARD_ART_STYLE_LOCK.md` v1 制定。每张一行为"可生产"级设计记录。
 > 已完成 8 张不在本表（见 ART_PILOT_8_CARDS.md）。生产顺序按 batch 建议（§末）执行，允许按一致性微调。
 > 列说明：锚点=原创视觉锚点｜主体=主视觉(+次级≤2)｜构图=方向@重心｜光=叙事光源｜复杂度 S/M/L｜缩略=96px 识别锚｜风险=IP/同质化备注。
