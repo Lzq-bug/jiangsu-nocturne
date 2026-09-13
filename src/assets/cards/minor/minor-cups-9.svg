@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="圣杯九：碗柜里用旧的九盏器皿，柜内一点暖灯">
+  <defs>
+    <radialGradient id="c9-ground" cx="50%" cy="42%" r="105%">
+      <stop offset="0" stop-color="#131e28"/><stop offset="0.6" stop-color="#0e1620"/><stop offset="1" stop-color="#070d14"/>
+    </radialGradient>
+    <radialGradient id="c9-lamp" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#6fc2c9" stop-opacity="0.35"/><stop offset="1" stop-color="#6fc2c9" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="c9-warm" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#d9c9a0" stop-opacity="0.32"/><stop offset="1" stop-color="#d9c9a0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#c9-ground)"/>
+
+  <!-- 碗柜（主体：中带，两层开放格） -->
+  <g>
+    <path d="M 52 66 C 46 66, 42 70, 42 76 L 42 264 C 42 270, 46 274, 52 274 L 248 274 C 254 274, 258 270, 258 264 L 258 76 C 258 70, 254 66, 248 66 Z"
+          fill="#10161f" stroke="#c7cedd" stroke-width="1.6"/>
+    <!-- 格层板 -->
+    <path d="M 42 172 L 258 172" stroke="#c7cedd" stroke-width="1.3"/>
+    <path d="M 46 178 L 254 178" stroke="#8a93ad" stroke-width="0.6" opacity="0.5"/>
+    <!-- 柜门微开的右侧缝（暖光自内漏出——不，柜内灯青暖各半，见下） -->
+    <path d="M 244 70 L 252 70 L 252 270 L 244 270 Z" fill="#0a0f16" stroke="#8a93ad" stroke-width="0.8" opacity="0.9"/>
+  </g>
+
+  <!-- 柜内的灯（唯一叙事光源：拥有的暖意） -->
+  <g transform="translate(150 168)">
+    <circle r="60" fill="url(#c9-warm)"/>
+    <path d="M -5 8 C -5 4, 5 4, 5 8 L 4 13 L -4 13 Z" fill="#0e1420" stroke="#8a93ad" stroke-width="0.9"/>
+    <path d="M 0 3 C 2.2 0, 1.4 -4, 0 -6 C -1.4 -4, -2.2 0, 0 3 Z" fill="#d9c9a0"/>
+  </g>
+
+  <!-- 上层：五盏，各有使用痕迹 -->
+  <g stroke="#c7cedd" fill="#0e1420">
+    <!-- 满水的高爵（水线亮） -->
+    <g transform="translate(74 148)">
+      <path d="M -11 -14 L 11 -14 C 11 -6, 7 -2, 3 0 L 3 8 L 8 12 L -8 12 L -3 8 L -3 0 C -7 -2, -11 -6, -11 -14 Z" stroke-width="1.3"/>
+      <ellipse cx="0" cy="-14" rx="11" ry="2.2" fill="none" stroke-width="1"/>
+      <path d="M -8 -12 C -4 -9, 4 -9, 8 -12 L 7 -9 C 3 -7, -3 -7, -7 -9 Z" fill="#6fc2c9" opacity="0.65" stroke="none"/>
+    </g>
+    <!-- 缺口的钵（chip） -->
+    <g transform="translate(112 152)">
+      <path d="M -14 -6 L 14 -6 C 14 2, 8 8, 0 8 C -8 8, -14 2, -14 -6 Z" stroke-width="1.2"/>
+      <path d="M 4 -6 L 9 -10" stroke-width="1.2" fill="none"/>
+      <path d="M -10 -6 L 10 -6" stroke="#8a93ad" stroke-width="0.6" fill="none" opacity="0.7"/>
+    </g>
+    <!-- 有茶渍的盏 -->
+    <g transform="translate(150 150)">
+      <path d="M -9 -9 L 9 -9 C 9 -3, 5 1, 2 2 L 2 7 L 6 10 L -6 10 L -2 7 L -2 2 C -5 1, -9 -3, -9 -9 Z" stroke-width="1.2"/>
+      <ellipse cx="0" cy="-9" rx="9" ry="1.9" fill="none" stroke-width="0.9"/>
+      <path d="M -4 -8.6 C -2 -7.6, 2 -7.6, 4 -8.6" stroke="#a07b55" stroke-width="0.9" fill="none" stroke-opacity="0.8"/>
+    </g>
+    <!-- 倒扣的碗（用完扣干） -->
+    <g transform="translate(190 154)">
+      <path d="M -13 8 C -13 -4, -6 -10, 0 -10 C 6 -10, 13 -4, 13 8 Z" stroke-width="1.2"/>
+      <circle cx="0" cy="-10" r="1.6" fill="#8a93ad" stroke="none"/>
+    </g>
+    <!-- 长颈瓶（剩一指） -->
+    <g transform="translate(228 146)">
+      <path d="M -3 -22 L 3 -22 L 3 -8 C 8 -4, 10 2, 8 10 L -8 10 C -10 2, -8 -4, -3 -8 Z" stroke-width="1.2"/>
+      <path d="M -5 2 C -2 3.4, 2 3.4, 5 2" stroke="#6fc2c9" stroke-width="1" fill="none" stroke-opacity="0.8"/>
+    </g>
+  </g>
+
+  <!-- 下层：四盏（其中一只侧倒已空——被用尽的那只） -->
+  <g stroke="#c7cedd" fill="#0e1420">
+    <g transform="translate(80 224)">
+      <path d="M -12 -13 L 12 -13 C 12 -5, 8 -1, 4 1 L 4 9 L 9 13 L -9 13 L -4 9 L -4 1 C -8 -1, -12 -5, -12 -13 Z" stroke-width="1.3"/>
+      <ellipse cx="0" cy="-13" rx="12" ry="2.3" fill="none" stroke-width="1"/>
+    </g>
+    <!-- 侧倒的杯（空了，静静躺着） -->
+    <g transform="translate(126 232) rotate(96)">
+      <path d="M -10 -11 L 10 -11 C 10 -5, 6 -1, 3 1 L 3 8 L 7 11 L -7 11 L -3 8 L -3 1 C -6 -1, -10 -5, -10 -11 Z" stroke-width="1.2"/>
+    </g>
+    <!-- 双耳小鼎（常用品） -->
+    <g transform="translate(176 226)">
+      <path d="M -11 -8 L 11 -8 L 9 10 L -9 10 Z" stroke-width="1.2"/>
+      <path d="M -11 -8 C -15 -8, -15 -2, -11 -3 M 11 -8 C 15 -8, 15 -2, 11 -3" fill="none" stroke-width="1.1"/>
+      <path d="M -7 -4 L 7 -4" stroke="#8a93ad" stroke-width="0.6" fill="none" opacity="0.7"/>
+    </g>
+    <!-- 有磕痕的广口碗（叠着抹布） -->
+    <g transform="translate(222 228)">
+      <path d="M -15 -7 L 15 -7 C 15 3, 8 9, 0 9 C -8 9, -15 3, -15 -7 Z" stroke-width="1.2"/>
+      <path d="M -9 -7 C -4 -12, 6 -12, 10 -8" fill="none" stroke-width="1.1"/>
+    </g>
+  </g>
+
+  <!-- 层板上的使用痕：水渍环与刻记 -->
+  <g stroke="#8a93ad" stroke-width="0.6" fill="none" opacity="0.5">
+    <ellipse cx="100" cy="170" rx="6" ry="1.4"/>
+    <ellipse cx="206" cy="170" rx="5" ry="1.3"/>
+    <ellipse cx="150" cy="272" rx="0" ry="0"/>
+    <path d="M 96 268 L 102 268 M 99 265 L 99 271"/>
+  </g>
+  <g stroke="#8a93ad" stroke-width="0.5" opacity="0.35" fill="none">
+    <path d="M 60 288 L 130 288 M 170 298 L 240 298"/>
+  </g>
+
+  <!-- 柜脚影 -->
+  <path d="M 48 274 L 252 274" stroke="#8a93ad" stroke-width="0.8" opacity="0.5"/>
+</svg>

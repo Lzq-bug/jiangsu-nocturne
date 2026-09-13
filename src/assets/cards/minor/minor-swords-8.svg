@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="宝剑八：八柄剑插成开口的弧篱，开口一侧被月光照亮">
+  <defs>
+    <radialGradient id="s8-ground" cx="26%" cy="30%" r="115%">
+      <stop offset="0" stop-color="#131b2c"/><stop offset="0.6" stop-color="#0e1522"/><stop offset="1" stop-color="#080d16"/>
+    </radialGradient>
+    <radialGradient id="s8-moon" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#a5e1e8" stop-opacity="0.35"/><stop offset="1" stop-color="#a5e1e8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#s8-ground)"/>
+
+  <!-- 夜与低月（唯一叙事光源：从开口一侧照进来） -->
+  <g transform="translate(56 58)">
+    <circle r="15" fill="url(#s8-moon)"/>
+    <path d="M 5 -8 A 8.8 8.8 0 1 0 5 8 A 7 7 0 1 1 5 -8 Z" fill="#c7d8e8" opacity="0.9"/>
+  </g>
+  <g fill="#c7cedd" opacity="0.5">
+    <circle cx="110" cy="42" r="0.9"/><circle cx="170" cy="60" r="0.8"/><circle cx="230" cy="38" r="0.9"/>
+  </g>
+
+  <!-- 月光经开口斜入（主动线：指向缺口的对角光带） -->
+  <path d="M 42 74 L 66 68 L 116 236 L 96 240 Z" fill="#a5e1e8" opacity="0.06"/>
+
+  <!-- 八柄剑：C 形弧篱（缺口朝向左下的开阔地——出口在负空间） -->
+  <g stroke-linecap="round">
+    <path d="M 128 288 L 140 176" stroke="#1a2236" stroke-width="5"/>
+    <path d="M 152 292 L 170 172" stroke="#1a2236" stroke-width="5"/>
+    <path d="M 178 292 L 200 174" stroke="#1c2438" stroke-width="5"/>
+    <path d="M 204 290 L 228 180" stroke="#1a2236" stroke-width="5"/>
+    <path d="M 228 284 L 254 190" stroke="#1c2438" stroke-width="5"/>
+    <path d="M 250 274 L 272 202" stroke="#1a2236" stroke-width="5"/>
+    <path d="M 266 262 L 284 216" stroke="#1c2438" stroke-width="4.6"/>
+    <path d="M 112 276 L 118 182" stroke="#1c2438" stroke-width="4.6"/>
+  </g>
+  <!-- 冷白锋线（右侧受月光的亮棱） -->
+  <g stroke="#eef2fa" stroke-width="1.1" opacity="0.95">
+    <path d="M 141 180 L 130 284 M 171 176 L 154 288 M 201 178 L 180 288 M 229 184 L 206 286"/>
+    <path d="M 255 194 L 230 280 M 273 204 L 252 270 M 285 218 L 268 258 M 119 186 L 113 272"/>
+  </g>
+  <!-- 护手与柄（低处的小十字） -->
+  <g stroke="#a9b1c7" stroke-width="1.4">
+    <path d="M 126 262 L 142 260 M 168 262 L 184 261 M 196 262 L 212 261 M 224 260 L 240 258"/>
+    <path d="M 250 250 L 264 248 M 270 240 L 281 238 M 109 244 L 122 243"/>
+  </g>
+  <g fill="#8a93ad">
+    <circle cx="134" cy="286" r="1.8"/><circle cx="162" cy="290" r="1.8"/><circle cx="190" cy="290" r="1.8"/>
+    <circle cx="216" cy="288" r="1.8"/><circle cx="241" cy="281" r="1.7"/><circle cx="260" cy="271" r="1.6"/>
+    <circle cx="276" cy="260" r="1.5"/><circle cx="115" cy="275" r="1.5"/>
+  </g>
+
+  <!-- 圈内：松脱的蒙眼布（束缚从未系紧，被留在地上） -->
+  <g>
+    <path d="M 176 296 C 190 290, 206 290, 218 295 C 212 302, 196 304, 184 302 C 179 301, 176 299, 176 296 Z"
+          fill="#18203a" stroke="#8a93ad" stroke-width="1"/>
+    <path d="M 218 295 C 226 297, 232 300, 236 305" fill="none" stroke="#8a93ad" stroke-width="1" opacity="0.8"/>
+  </g>
+
+  <!-- 开口侧的开阔地（负空间：真正的出口，安静无物） -->
+  <path d="M 0 250 C 30 246, 62 246, 92 250" fill="none" stroke="#a5e1e8" stroke-width="0.8" opacity="0.4"/>
+  <g stroke="#8a93ad" stroke-width="0.5" opacity="0.35" fill="none">
+    <path d="M 24 296 L 78 296 M 40 314 L 96 314"/>
+  </g>
+  <path d="M 0 258 L 300 262" stroke="#8a93ad" stroke-width="0.7" opacity="0.4"/>
+
+  <!-- 地面石 -->
+  <g fill="#0d1424" stroke="#8a93ad" stroke-width="0.8">
+    <path d="M 96 306 C 102 300, 112 300, 116 306 C 112 312, 100 312, 96 306 Z"/>
+  </g>
+</svg>
