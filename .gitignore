@@ -8,7 +8,11 @@ dist-ssr/
 .env
 
 # Local tooling / downloaded binaries
-.tools/
+# 截图与 QA 脚本入库（展示维护 / 截图复拍可复现），其产物与任务清单不入库
+.tools/*
+!.tools/*.mjs
+!.tools/*.md
+.tools/_data.mjs
 .omc/
 .claude/settings.local.json
 
@@ -50,9 +54,6 @@ pnpm-debug.log*
 
 # 最终展示截图包（README / 比赛 / 说明书 / 软著候选，不入库）
 .showcase/
-
-# 本地开发 / 截图工具链（不入库）
-.tools/
 
 # 本地智能体工作目录（记忆与工作日志，仅存本机，不入库）
 .workbuddy/

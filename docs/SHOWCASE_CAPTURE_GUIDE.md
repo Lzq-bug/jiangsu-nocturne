@@ -178,3 +178,6 @@ node .tools/shots.mjs .tools/jobs-readme.json
 
 > 之所以不用 Playwright：本机 Playwright 浏览器下载未成功（见 `pw-install.log`）。
 > CDP 方案零依赖、可控性更高，且能直接采集 console error 做门禁。
+>
+> 工具链脚本位于 `.tools/`（**已入库**，供后续展示维护 / 截图复拍复现），
+> 其产出的图片与任务清单不入库。用法见 `.tools/README.md`。
