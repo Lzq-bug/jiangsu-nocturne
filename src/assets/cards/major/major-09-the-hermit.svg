@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" role="img" aria-label="隐士：雪原上唯一亮着的灯">
+  <defs>
+    <radialGradient id="hm-ground" cx="58%" cy="24%" r="100%">
+      <stop offset="0" stop-color="#2a3143"/><stop offset="0.55" stop-color="#1c2337"/><stop offset="1" stop-color="#0f1424"/>
+    </radialGradient>
+    <radialGradient id="hm-lamp" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#e6c687" stop-opacity="0.5"/><stop offset="1" stop-color="#e6c687" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="420" fill="url(#hm-ground)"/>
+
+  <!-- 大面积留白的雪原 -->
+  <g fill="#e9edf5" opacity="0.06">
+    <ellipse cx="80" cy="330" rx="200" ry="60"/>
+    <ellipse cx="230" cy="380" rx="220" ry="70"/>
+  </g>
+  <g stroke="#8a93ad" stroke-width="0.7" opacity="0.45" fill="none">
+    <path d="M 0 300 C 60 292, 130 290, 200 296"/>
+    <path d="M 40 330 C 100 322, 170 320, 240 328"/>
+  </g>
+  <!-- 远山两道淡线 -->
+  <path d="M 0 210 L 70 176 L 128 206" fill="none" stroke="#8a93ad" stroke-width="0.9" opacity="0.45"/>
+  <path d="M 150 214 L 214 184 L 268 212" fill="none" stroke="#8a93ad" stroke-width="0.7" opacity="0.35"/>
+  <g fill="#c7cedd" opacity="0.55">
+    <circle cx="58" cy="84" r="1"/><circle cx="122" cy="60" r="0.9"/><circle cx="196" cy="96" r="1"/>
+  </g>
+
+  <!-- 雪脊（人物所立） -->
+  <path d="M 0 356 C 70 344, 150 342, 220 350 C 250 354, 280 352, 300 348 L 300 420 L 0 420 Z"
+        fill="#10162a" stroke="#c7cedd" stroke-width="1.3"/>
+  <path d="M 0 356 C 70 344, 150 342, 220 350 C 250 354, 280 352, 300 348" fill="none" stroke="#e9edf5" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- 提灯者：右三分之一，俯身姿态（轮廓变奏：主尖偏左） -->
+  <g>
+    <path d="M 186 240
+             C 184 226, 190 214, 202 210
+             L 200 202 A 8 8 0 0 1 214 200
+             L 214 210
+             C 224 216, 228 228, 226 240
+             L 232 288 C 234 300, 228 308, 218 308
+             L 196 308 C 188 306, 184 298, 186 290 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.6"/>
+    <!-- 兜帽俯身 -->
+    <path d="M 200 202 C 196 190, 202 180, 212 178 C 222 177, 228 184, 228 192 C 228 198, 224 203, 218 205"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.5"/>
+    <path d="M 212 178 L 224 174" stroke="#c7cedd" stroke-width="1.1" opacity="0.8"/>
+    <!-- 手杖 -->
+    <path d="M 188 232 L 176 306" stroke="#c7cedd" stroke-width="1.8"/>
+    <path d="M 172 306 L 180 306" stroke="#c7cedd" stroke-width="1.6"/>
+    <!-- 提灯杆与灯（叙事光源） -->
+    <path d="M 226 226 L 242 240" stroke="#c7cedd" stroke-width="1.5"/>
+    <g transform="translate(246 252)">
+      <circle r="26" fill="url(#hm-lamp)"/>
+      <path d="M -8 -10 L 8 -10 L 10 12 L -10 12 Z" fill="#0b0f20" stroke="#e6c687" stroke-width="1.5"/>
+      <path d="M -5 -10 L -5 -14 L 5 -14 L 5 -10" fill="none" stroke="#e6c687" stroke-width="1.1"/>
+      <path d="M -4 12 L -4 16 L 4 16 L 4 12" fill="none" stroke="#e6c687" stroke-width="1.1"/>
+      <path d="M 0 -5 L 3.4 0 L 0 8 L -3.4 0 Z" fill="#e6c687" opacity="0.95"/>
+      <path d="M 0 -8 L 0 -12 M -6 -2 L -9 -3 M 6 -2 L 9 -3" stroke="#e6c687" stroke-width="0.8" opacity="0.7"/>
+    </g>
+    <!-- 灯光在雪地上的长影与光斑 -->
+    <ellipse cx="238" cy="330" rx="40" ry="8" fill="url(#hm-lamp)" opacity="0.5"/>
+  </g>
+
+  <!-- 雪中半埋的沙漏（次级） -->
+  <g transform="translate(96 340)">
+    <path d="M -7 -8 L 7 -8 L 1 0 L 7 8 L -7 8 L -1 0 Z" fill="#0b0f20" stroke="#8a93ad" stroke-width="1.1"/>
+    <path d="M -9 -8 L 9 -8 M -9 8 L 9 8" stroke="#8a93ad" stroke-width="1.2"/>
+    <path d="M -7 10 C -2 13, 2 13, 7 10" fill="none" stroke="#8a93ad" stroke-width="0.6" opacity="0.6"/>
+  </g>
+
+  <!-- 脚印一串 -->
+  <g fill="#8a93ad" opacity="0.5">
+    <ellipse cx="196" cy="322" rx="4" ry="2.2"/><ellipse cx="182" cy="332" rx="4" ry="2.2"/>
+    <ellipse cx="166" cy="340" rx="4" ry="2.2"/>
+  </g>
+</svg>

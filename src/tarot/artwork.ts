@@ -44,6 +44,11 @@ const FILE_BY_CARD: Record<string, string> = {
   'major-7': 'major-07-the-chariot',
   'minor-wands-3': 'minor-wands-3',
   'minor-cups-4': 'minor-cups-4',
+  // —— Batch 04 ——
+  'major-8': 'major-08-strength',
+  'major-9': 'major-09-the-hermit',
+  'minor-swords-4': 'minor-swords-4',
+  'minor-pentacles-3': 'minor-pentacles-3',
 };
 
 export const ARTWORK_BY_CARD: Readonly<Record<string, string | undefined>> = Object.fromEntries(
