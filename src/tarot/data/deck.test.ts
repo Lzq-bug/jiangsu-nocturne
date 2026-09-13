@@ -3,7 +3,7 @@ import { ALL_CARDS, CARD_BY_ID, DECK_SIZE, cardsBySuit, isMajor } from '@/tarot/
 import { MAJORS } from '@/tarot/data/majors';
 import { MINORS } from '@/tarot/data/minors';
 import { SUITS } from '@/tarot/data/minorSource';
-import { RANK_ZH, SUIT_ZH, minorNameZh } from '@/tarot/types';
+import { SUIT_ZH, minorNameZh } from '@/tarot/types';
 
 describe('78 张牌数据完整性', () => {
   it('总数为 78：22 月章 + 56 星签', () => {

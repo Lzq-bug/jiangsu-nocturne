@@ -27,7 +27,7 @@ export interface RoundState {
   endedAt: number | null;
 }
 
-export function createRound(rng: Rng, now: number): RoundState {
+export function createRound(now: number): RoundState {
   return { stars: [], nextId: 1, caught: { stars: 0, golds: 0 }, startedAt: now, endedAt: null };
 }
 
