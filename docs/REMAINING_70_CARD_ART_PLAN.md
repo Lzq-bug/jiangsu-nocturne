@@ -1,5 +1,7 @@
 # REMAINING_70_CARD_ART_PLAN · 剩余 70 张正式美术量产设计清单（v1）
 
+> **状态更新（窗口 #4 结束 · 项目完结）**：Batch 13–18 已全部完成，正式美术 **78/78 完整封板**（月章 22/22 · 星签 56/56 · 宫廷 16/16）。最后 22 张的实施记录见 `CARD_ART_COMPOSITION_LEDGER.md`（量产登记 22 行）与 `ART_PRODUCTION_SESSION_04_REPORT.md`；宫廷牌执行新增的 `COURT_CARD_ANTI_TEMPLATE_PROTOCOL.md`。**本清单设计使命完成**，其中的具体设计行在量产中被按窗口任务书的 DO NOT REUSE 约束迭代（以登记表为准）；生产已按硬停止要求停在第 78 张，等待 Final Art Audit。
+>
 > **状态更新（窗口 #3 结束）**：Batch 01–12 已全部完成，正式美术累计 **56/78（71.8%）**，其中月章 **22/22 全部完成**（`MAJOR_ARCANA_ART_COMPLETE = TRUE`）。**本清单的 major-19 太阳与 major-20 审判两行 v1 设计已按窗口 #3 任务书专项规则替换实施**（太阳=静物晨光转译，规避日轮/骑马孩童；审判=崩封名册垂直上升，规避号角天使/坟起群像），实施记录见 `CARD_ART_COMPOSITION_LEDGER.md` 与 `ART_PRODUCTION_SESSION_03_REPORT.md`。**剩余 22 张全部为星签**（含 16 张宫廷牌），继续以本清单为设计基线；高频母题配额约束见 `CARD_ART_MOTIF_BUDGET.md`。
 >
 > 依据 `CARD_ART_STYLE_LOCK.md` v1 制定。每张一行为"可生产"级设计记录。
