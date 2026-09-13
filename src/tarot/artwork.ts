@@ -89,6 +89,34 @@ const FILE_BY_CARD: Record<string, string> = {
   'minor-cups-10': 'minor-cups-10',
   'minor-swords-9': 'minor-swords-9',
   'minor-pentacles-8': 'minor-pentacles-8',
+  // —— Batch 13（窗口 #4，最后非宫廷 1/2）——
+  'minor-wands-10': 'minor-wands-10',
+  'minor-cups-1': 'minor-cups-1',
+  'minor-swords-1': 'minor-swords-1',
+  'minor-swords-10': 'minor-swords-10',
+  // —— Batch 14（窗口 #4，最后非宫廷 2/2 · 非宫廷剩余=0）——
+  'minor-pentacles-1': 'minor-pentacles-1',
+  'minor-pentacles-9': 'minor-pentacles-9',
+  'minor-pentacles-10': 'minor-pentacles-10',
+  // —— Batch 15（窗口 #4，四侍从 · Court Protocol 首执行）——
+  'minor-wands-11': 'minor-wands-11',
+  'minor-cups-11': 'minor-cups-11',
+  'minor-swords-11': 'minor-swords-11',
+  'minor-pentacles-11': 'minor-pentacles-11',
+  // —— Batch 16（窗口 #4，四骑士 · 冲/流/切/稳）——
+  'minor-wands-12': 'minor-wands-12',
+  'minor-cups-12': 'minor-cups-12',
+  'minor-swords-12': 'minor-swords-12',
+  'minor-pentacles-12': 'minor-pentacles-12',
+  // —— Batch 17（窗口 #4，四王后 · 六维互异）——
+  'minor-wands-13': 'minor-wands-13',
+  'minor-cups-13': 'minor-cups-13',
+  'minor-swords-13': 'minor-swords-13',
+  'minor-pentacles-13': 'minor-pentacles-13',
+  // —— Batch 18（窗口 #4，三国王 · 78/78 收官）——
+  'minor-wands-14': 'minor-wands-14',
+  'minor-cups-14': 'minor-cups-14',
+  'minor-swords-14': 'minor-swords-14',
 };
 
 export const ARTWORK_BY_CARD: Readonly<Record<string, string | undefined>> = Object.fromEntries(
