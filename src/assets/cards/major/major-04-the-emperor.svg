@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" role="img" aria-label="皇帝：荒岩上的空王座与疆界">
+  <defs>
+    <radialGradient id="er-ground" cx="50%" cy="40%" r="90%">
+      <stop offset="0" stop-color="#231616"/><stop offset="0.6" stop-color="#1a1112"/><stop offset="1" stop-color="#0f0a0b"/>
+    </radialGradient>
+    <radialGradient id="er-ram" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#c06a52" stop-opacity="0.5"/><stop offset="1" stop-color="#c06a52" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="er-rock" width="12" height="9" patternUnits="userSpaceOnUse">
+      <path d="M 0 4.5 L 12 4.5 M 6 0 L 6 4.5 M 3 4.5 L 3 9" fill="none" stroke="#8a93ad" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+  </defs>
+
+  <rect width="300" height="420" fill="url(#er-ground)"/>
+
+  <!-- 天际疏星与远山暗脊 -->
+  <g fill="#c7cedd" opacity="0.45">
+    <circle cx="52" cy="66" r="1"/><circle cx="248" cy="52" r="1.1"/><circle cx="150" cy="40" r="0.9"/>
+  </g>
+  <path d="M 0 130 L 70 112 L 132 128 L 210 108 L 300 126" fill="none" stroke="#8a93ad" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- 荒岩台地 -->
+  <g>
+    <path d="M 0 420 L 0 330 C 44 316, 88 312, 132 318 C 180 324, 236 318, 300 326 L 300 420 Z"
+          fill="#0d1226" stroke="#c7cedd" stroke-width="1.4"/>
+    <path d="M 20 348 L 120 342 M 160 360 L 268 352" stroke="#8a93ad" stroke-width="0.6" opacity="0.5" fill="none"/>
+    <path d="M 0 330 C 44 316, 88 312, 132 318 C 180 324, 236 318, 300 326 L 300 344 C 236 336, 180 340, 132 336 C 88 330, 44 334, 0 348 Z"
+          fill="url(#er-rock)" opacity="0.7"/>
+  </g>
+
+  <!-- 疆界刻线：自王座向观者放射（刻痕非光束） -->
+  <g stroke="#c7cedd" stroke-width="1" opacity="0.65">
+    <path d="M 150 318 L 60 420 M 150 318 L 150 420 M 150 318 L 240 420 M 150 318 L 24 396 M 150 318 L 276 396"/>
+  </g>
+  <g stroke="#8a93ad" stroke-width="0.6" opacity="0.5">
+    <path d="M 150 318 L 100 420 M 150 318 L 200 420 M 150 318 L 44 420 M 150 318 L 256 420"/>
+  </g>
+  <!-- 刻线上的界碑小段 -->
+  <g stroke="#e9edf5" stroke-width="1.4" opacity="0.7">
+    <path d="M 117 364 L 131 362 M 144 380 L 156 380 M 187 366 L 201 368"/>
+  </g>
+
+  <!-- 空王座（主体） -->
+  <g>
+    <path d="M 106 318 L 106 190 C 106 168, 120 156, 150 156 C 180 156, 194 168, 194 190 L 194 318 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.8"/>
+    <path d="M 96 318 L 96 176 C 96 162, 104 152, 118 148 L 182 148 C 196 152, 204 162, 204 176 L 204 318"
+          fill="none" stroke="#8a93ad" stroke-width="0.9" opacity="0.6"/>
+    <!-- 座背交叉权杖与宝珠 -->
+    <path d="M 128 168 L 172 288 M 172 168 L 128 288" stroke="#8a93ad" stroke-width="1.4" opacity="0.85"/>
+    <circle cx="150" cy="228" r="6" fill="none" stroke="#c7cedd" stroke-width="1.3"/>
+    <path d="M 150 222 L 150 234 M 144 228 L 156 228" stroke="#c7cedd" stroke-width="0.9"/>
+    <!-- 扶手羊头（叙事光源：内焰暖红） -->
+    <g transform="translate(106 236)">
+      <circle r="20" fill="url(#er-ram)"/>
+      <path d="M -6 -12 C -14 -10, -16 -2, -10 2 C -14 6, -12 12, -6 12 L -6 -12 Z" fill="none" stroke="#c7cedd" stroke-width="1.3"/>
+      <path d="M -10 -8 C -4 -14, 2 -14, 6 -10" fill="none" stroke="#c7cedd" stroke-width="1.1"/>
+      <circle cx="-2" cy="-4" r="2.4" fill="#c06a52" opacity="0.95"/>
+    </g>
+    <g transform="translate(194 236) scale(-1 1)">
+      <circle r="20" fill="url(#er-ram)"/>
+      <path d="M -6 -12 C -14 -10, -16 -2, -10 2 C -14 6, -12 12, -6 12 L -6 -12 Z" fill="none" stroke="#c7cedd" stroke-width="1.3"/>
+      <path d="M -10 -8 C -4 -14, 2 -14, 6 -10" fill="none" stroke="#c7cedd" stroke-width="1.1"/>
+      <circle cx="-2" cy="-4" r="2.4" fill="#c06a52" opacity="0.95"/>
+    </g>
+  </g>
+
+  <!-- 台地碎石 -->
+  <g fill="#0b0f20" stroke="#8a93ad" stroke-width="0.8">
+    <path d="M 52 386 C 56 380, 64 380, 66 386 C 64 391, 56 391, 52 386 Z"/>
+    <path d="M 238 392 C 241 387, 248 387, 250 391 C 248 395, 241 396, 238 392 Z"/>
+  </g>
+</svg>
