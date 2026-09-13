@@ -10,31 +10,35 @@
 
   <rect width="300" height="340" fill="url(#s2-ground)"/>
 
-  <!-- 极静的海平线 -->
+  <!-- 极静的海平线 + 风痕（宝剑族冷白锋线） -->
   <path d="M 0 226 L 300 226" stroke="#8a93ad" stroke-width="0.9" opacity="0.6"/>
   <g stroke="#8a93ad" stroke-width="0.5" opacity="0.4" fill="none">
     <path d="M 30 238 L 96 238 M 210 244 L 272 244 M 60 254 L 120 254"/>
+  </g>
+  <g stroke="#c7cedd" stroke-width="0.8" opacity="0.55" stroke-linecap="round">
+    <path d="M 36 88 L 84 84"/><path d="M 52 106 L 88 104"/>
+    <path d="M 214 96 L 266 92"/><path d="M 226 114 L 262 112"/>
   </g>
   <g fill="#c7cedd" opacity="0.5">
     <circle cx="70" cy="52" r="1"/><circle cx="232" cy="60" r="1.1"/><circle cx="150" cy="36" r="0.9"/>
   </g>
 
-  <!-- 交叉双剑（竖扶横抱于胸前），交点冷光（叙事光源） -->
+  <!-- 交叉双剑（竖扶横抱于胸前），交点冷光（叙事光源）+ 冷白锋刃提亮 -->
   <g transform="translate(150 150)">
-    <circle r="26" fill="url(#s2-x)"/>
+    <circle r="28" fill="url(#s2-x)"/>
     <g transform="rotate(24)">
       <path d="M 0 -54 L 5 -8 L 3 44 L 0 56 L -3 44 L -5 -8 Z" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.4"/>
-      <path d="M 0 -46 L 0 40" stroke="#8a93ad" stroke-width="0.6" opacity="0.6"/>
-      <rect x="-11" y="-64" width="22" height="7" rx="2.5" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.1"/>
+      <path d="M 0 -50 L 2 -10 L 1 40" fill="none" stroke="#e9edf5" stroke-width="1.1" opacity="0.95"/>
+      <rect x="-11" y="-64" width="22" height="7" rx="2.5" fill="#0b0f20" stroke="#e9edf5" stroke-width="1.2"/>
       <circle cx="0" cy="-70" r="4" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.1"/>
     </g>
     <g transform="rotate(-24)">
       <path d="M 0 -54 L 5 -8 L 3 44 L 0 56 L -3 44 L -5 -8 Z" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.4"/>
-      <path d="M 0 -46 L 0 40" stroke="#8a93ad" stroke-width="0.6" opacity="0.6"/>
-      <rect x="-11" y="-64" width="22" height="7" rx="2.5" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.1"/>
+      <path d="M 0 -50 L 2 -10 L 1 40" fill="none" stroke="#e9edf5" stroke-width="1.1" opacity="0.95"/>
+      <rect x="-11" y="-64" width="22" height="7" rx="2.5" fill="#0b0f20" stroke="#e9edf5" stroke-width="1.2"/>
       <circle cx="0" cy="-70" r="4" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.1"/>
     </g>
-    <circle cx="0" cy="-4" r="2.2" fill="#e9edf5" opacity="0.95"/>
+    <circle cx="0" cy="-4" r="2.4" fill="#e9edf5" opacity="1"/>
   </g>
 
   <!-- 蒙眼坐影：双臂抱剑的姿态由剑体暗示，人形在剑后 -->
