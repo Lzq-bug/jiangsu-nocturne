@@ -44,3 +44,6 @@ pnpm-debug.log*
 
 # 独立视觉审计产物（非项目源码，不入库）
 .audit-shots/
+
+# 美术生产审计产物（contact sheet 等，不入库）
+.audit-art/
