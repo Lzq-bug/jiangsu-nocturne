@@ -4,8 +4,9 @@
  */
 import type { CSSProperties } from 'react';
 import type { CardData, MajorCardData, MinorCardData } from '@/tarot/types';
+import { artworkFor } from '@/tarot/artwork';
 import { MOTIFS } from './motifs';
-import { majorOutlinePath, minorOutlinePath, pentacleRingPath, worldRingPath } from './cardShapes';
+import { majorOutlinePath, majorPedestalPath, minorOutlinePath, pentacleRingPath, worldRingPath } from './cardShapes';
 
 export interface CardArtProps {
   card: CardData;
@@ -19,6 +20,7 @@ export interface CardArtProps {
 export function MajorCardArt({ card, style, className }: { card: MajorCardData } & Omit<CardArtProps, 'card'>) {
   const uid = `mj-${card.num}`;
   const path = majorOutlinePath(card.shape);
+  const art = artworkFor(card.id);
   const Motif = MOTIFS[card.num] ?? MOTIFS[0];
 
   return (
@@ -63,7 +65,7 @@ export function MajorCardArt({ card, style, className }: { card: MajorCardData }
             </text>
           </g>
 
-          {/* 星轨饰带：弧线 + 星点（数 = 愚者之旅章序 mod 7 + 1） */}
+          {/* 星轨饰带：弧线 + 星点（数 = 愚者之旅中的叙事章序，纯装饰性） */}
           <path d="M 22 58 C 34 52, 66 52, 78 58" fill="none" stroke="var(--silver)" strokeWidth="0.7" opacity="0.55" />
           {Array.from({ length: (card.num % 7) + 1 }).map((_, i, arr) => {
             const t = (i + 1) / (arr.length + 1);
@@ -72,10 +74,26 @@ export function MajorCardArt({ card, style, className }: { card: MajorCardData }
             return <circle key={i} cx={x} cy={y} r="0.9" fill="var(--cyan)" opacity="0.9" />;
           })}
 
-          {/* 秘仪窗：主画面 */}
-          <g transform="translate(18 74) scale(0.64)">
-            <Motif a={card.accent} />
-          </g>
+          {/* 秘仪窗：正式插画优先，程序化纹章兜底 */}
+          {art ? (
+            <g>
+              <rect x="10" y="63" width="80" height="110" fill="#0c1126" />
+              <image
+                href={art}
+                x="10"
+                y="63"
+                width="80"
+                height="110"
+                preserveAspectRatio="xMidYMid slice"
+              />
+              {/* 画窗银线内框（版画“图版”感，与牌框分离） */}
+              <rect x="10" y="63" width="80" height="110" fill="none" stroke="var(--silver)" strokeWidth="0.7" opacity="0.55" />
+            </g>
+          ) : (
+            <g transform="translate(18 74) scale(0.64)">
+              <Motif a={card.accent} />
+            </g>
+          )}
 
           {/* 真名带 */}
           <g>
@@ -95,6 +113,14 @@ export function MajorCardArt({ card, style, className }: { card: MajorCardData }
             <circle r="2" fill={card.accent} opacity="0.85" />
           </g>
         </g>
+
+        {/* 台座增强（Polish 1）：台阶缘独立提亮，保证 96px 缩略图下「阶梯台座」可读 */}
+        <path
+          d={majorPedestalPath(card.shape.steps)}
+          fill="rgba(199,206,221,0.10)"
+          stroke="rgba(233,237,245,0.9)"
+          strokeWidth="0.9"
+        />
       </g>
     </svg>
   );
@@ -154,6 +180,7 @@ function courtEmblem(rank: 11 | 12 | 13 | 14, accent: string) {
 export function MinorCardArt({ card, style, className }: { card: MinorCardData } & Omit<CardArtProps, 'card'>) {
   const uid = `mn-${card.suit}-${card.rank}`;
   const path = minorOutlinePath(card.suit);
+  const art = artworkFor(card.id);
 
   return (
     <svg
@@ -178,46 +205,63 @@ export function MinorCardArt({ card, style, className }: { card: MinorCardData }
       <g clipPath={`url(#${uid}-clip)`}>
         {/* 花色底纹：右上淡色晕 */}
         <circle cx="78" cy="30" r="34" fill={card.accent} opacity="0.07" />
-        {card.suit === 'pentacles' && <path d={pentacleRingPath()} fill="none" stroke="var(--silver)" strokeWidth="0.7" opacity="0.4" />}
+        {card.suit === 'pentacles' && !art && <path d={pentacleRingPath()} fill="none" stroke="var(--silver)" strokeWidth="0.7" opacity="0.4" />}
 
         {/* 角标编号（宫廷为单字） */}
         <text x="21" y="60" fontSize="8" fill={card.accent} fontFamily="var(--font-serif)" fontWeight="600">
           {card.rank === 1 ? 'A' : card.rank <= 10 ? zhNum(card.rank) : ['侍', '骑', '后', '王'][card.rank - 11]}
         </text>
 
-        {/* 中央：数字牌星阵 / 王牌花色符 / 宫廷徽记 */}
-        {card.rank === 1 && (
-          <g transform="translate(50 82)">
-            <path d={suitSigil(card.suit)} fill="none" stroke={card.accent} strokeWidth="2" transform="scale(1.9)" />
+        {/* 中央：正式插画优先；否则数字牌星阵 / 王牌花色符 / 宫廷徽记 */}
+        {art ? (
+          <g>
+            <rect x="12" y="38" width="76" height="84" fill="#0c1126" />
+            <image
+              href={art}
+              x="12"
+              y="38"
+              width="76"
+              height="84"
+              preserveAspectRatio="xMidYMid slice"
+            />
+            <rect x="12" y="38" width="76" height="84" fill="none" stroke="var(--silver)" strokeWidth="0.6" opacity="0.5" />
           </g>
-        )}
-        {card.rank >= 2 && card.rank <= 10 && (
-          <g transform="translate(28 60) scale(0.44)">
-            {(() => {
-              const pts = pipLayout(card.rank);
-              const links: Array<[number, number]> = [];
-              for (let i = 0; i < pts.length - 1; i++) links.push([i, i + 1]);
-              if (card.rank === 3 || card.rank === 5 || card.rank === 7) links.push([1, 2]);
-              return (
-                <>
-                  {links.map(([a, b], i) => (
-                    <line key={i} x1={pts[a][0] * 100} y1={pts[a][1] * 88} x2={pts[b][0] * 100} y2={pts[b][1] * 88} stroke="var(--silver)" strokeWidth="1.4" opacity="0.5" />
-                  ))}
-                  {pts.map(([x, y], i) => (
-                    <g key={i}>
-                      <circle cx={x * 100} cy={y * 88} r="7.5" fill={card.accent} opacity="0.16" />
-                      <circle cx={x * 100} cy={y * 88} r="3.1" fill={card.accent} />
-                    </g>
-                  ))}
-                </>
-              );
-            })()}
-          </g>
-        )}
-        {card.rank >= 11 && (
-          <g transform="translate(0 14) scale(1)">
-            {courtEmblem(card.rank as 11 | 12 | 13 | 14, card.accent)}
-          </g>
+        ) : (
+          <>
+            {card.rank === 1 && (
+              <g transform="translate(50 82)">
+                <path d={suitSigil(card.suit)} fill="none" stroke={card.accent} strokeWidth="2" transform="scale(1.9)" />
+              </g>
+            )}
+            {card.rank >= 2 && card.rank <= 10 && (
+              <g transform="translate(28 60) scale(0.44)">
+                {(() => {
+                  const pts = pipLayout(card.rank);
+                  const links: Array<[number, number]> = [];
+                  for (let i = 0; i < pts.length - 1; i++) links.push([i, i + 1]);
+                  if (card.rank === 3 || card.rank === 5 || card.rank === 7) links.push([1, 2]);
+                  return (
+                    <>
+                      {links.map(([a, b], i) => (
+                        <line key={i} x1={pts[a][0] * 100} y1={pts[a][1] * 88} x2={pts[b][0] * 100} y2={pts[b][1] * 88} stroke="var(--silver)" strokeWidth="1.4" opacity="0.5" />
+                      ))}
+                      {pts.map(([x, y], i) => (
+                        <g key={i}>
+                          <circle cx={x * 100} cy={y * 88} r="7.5" fill={card.accent} opacity="0.16" />
+                          <circle cx={x * 100} cy={y * 88} r="3.1" fill={card.accent} />
+                        </g>
+                      ))}
+                    </>
+                  );
+                })()}
+              </g>
+            )}
+            {card.rank >= 11 && (
+              <g transform="translate(0 14) scale(1)">
+                {courtEmblem(card.rank as 11 | 12 | 13 | 14, card.accent)}
+              </g>
+            )}
+          </>
         )}
 
         {/* 真名带（小牌仅牌名，层级让给月章） */}

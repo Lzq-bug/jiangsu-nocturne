@@ -5,10 +5,19 @@ import {
 } from './save';
 import { useGame } from './store';
 import { ECONOMY } from './economy';
-
 beforeEach(() => {
   window.localStorage.clear();
 });
+
+/** 排除时间戳字段：defaultSave() 每次调用 createdAt/updatedAt 都取当前毫秒，直接深比较会跨毫秒抖动 */
+function likeDefault(data: ReturnType<typeof defaultSave>) {
+  const base = defaultSave();
+  const strip = (d: typeof base) => {
+    const { createdAt: _c, updatedAt: _u, ...rest } = d;
+    return rest;
+  };
+  expect(strip(data)).toEqual(strip(base));
+}
 
 describe('存档系统', () => {
   it('默认档与 roundtrip', () => {
@@ -21,9 +30,9 @@ describe('存档系统', () => {
   });
 
   it('损坏 JSON 回退默认档且不抛错', () => {
-    expect(parseSave('{{{not-json')).toEqual(defaultSave());
-    expect(parseSave(null)).toEqual(defaultSave());
-    expect(parseSave('42')).toEqual(defaultSave());
+    likeDefault(parseSave('{{{not-json'));
+    likeDefault(parseSave(null));
+    likeDefault(parseSave('42'));
   });
 
   it('字段非法时防御性修补（负星屑/坏集合）', () => {

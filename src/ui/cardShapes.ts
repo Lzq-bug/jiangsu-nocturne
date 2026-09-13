@@ -47,7 +47,7 @@ export function majorOutlinePath(s: MajorShapeSpec): string {
   // 左肩新月凹刻 → 主尖（月芒顶的不对称来源）
   const crest = `C ${X_L + 4} ${SHOULDER_Y - 9}, ${apexX - 14} ${APEX_Y + 6}, ${apexX - 7} ${APEX_Y + 3} C ${apexX - 3} ${APEX_Y + 1}, ${apexX - 1} ${APEX_Y}, ${apexX} ${APEX_Y}`;
 
-  const steps = s.steps === 2 ? twoSteps() : threeSteps();
+  const steps = majorPedestalPath(s.steps);
 
   return [
     `M ${apexX} ${APEX_Y}`,
@@ -61,12 +61,11 @@ export function majorOutlinePath(s: MajorShapeSpec): string {
   ].join(' ');
 }
 
-function threeSteps(): string {
-  return `L 66 206 L 69 213 L 73 219 L 27 219 L 31 213 L 34 206 L ${X_L} ${BASE_Y}`;
-}
-
-function twoSteps(): string {
-  return `L 64 206 L 68 214 L 32 214 L 36 206 L ${X_L} ${BASE_Y}`;
+/** 台座描边（供缩略图增强：单独的台阶边缘路径，右底 → 左底） */
+export function majorPedestalPath(steps: 2 | 3): string {
+  return steps === 2
+    ? `M ${X_R} ${BASE_Y} L 64 206 L 68 214 L 32 214 L 36 206 L ${X_L} ${BASE_Y}`
+    : `M ${X_R} ${BASE_Y} L 66 206 L 69 213 L 73 219 L 27 219 L 31 213 L 34 206 L ${X_L} ${BASE_Y}`;
 }
 
 /** 世界的腰间环带（若即若离的外环） */

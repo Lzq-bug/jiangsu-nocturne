@@ -1,0 +1,44 @@
+/**
+ * 正式卡面美术注册表（数据驱动 fallback）
+ *
+ * 约定：`src/assets/cards/{major,minor}/` 下的每个 SVG 文件，
+ * 以文件名（去扩展名）在 FILE_BY_CARD 中登记到对应 cardId。
+ * 有登记且文件存在 → CardArt 渲染正式插画；否则回退程序化纹章。
+ * 新增正式美术时：放入 SVG 文件 + 在 FILE_BY_CARD 增加一行，零组件改动。
+ */
+const files = import.meta.glob('../assets/cards/**/*.svg', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>;
+
+const URL_BY_FILE: Record<string, string> = {};
+for (const [path, url] of Object.entries(files)) {
+  const base = path.split('/').pop()?.replace(/\.svg$/, '');
+  if (base) URL_BY_FILE[base] = url;
+}
+
+/** cardId → 资产文件基名 */
+const FILE_BY_CARD: Record<string, string> = {
+  // —— 正式试制 8 张（视觉冻结基线 v1，见 docs/CARD_ART_STYLE_LOCK.md）——
+  'major-0': 'major-00-the-fool',
+  'major-6': 'major-06-the-lovers',
+  'major-13': 'major-13-death',
+  'major-21': 'major-21-the-world',
+  'minor-wands-1': 'minor-wands-1',
+  'minor-cups-2': 'minor-cups-2',
+  'minor-swords-3': 'minor-swords-3',
+  'minor-pentacles-14': 'minor-pentacles-14',
+};
+
+export const ARTWORK_BY_CARD: Readonly<Record<string, string | undefined>> = Object.fromEntries(
+  Object.entries(FILE_BY_CARD).map(([cardId, file]) => [cardId, URL_BY_FILE[file]]),
+);
+
+/** 有正式美术且资产存在 → 返回 URL；否则 undefined（走程序化 fallback） */
+export function artworkFor(cardId: string): string | undefined {
+  return ARTWORK_BY_CARD[cardId];
+}
+
+/** 当前正式美术数量（测试与文档用） */
+export const ARTWORK_COUNT = Object.values(ARTWORK_BY_CARD).filter(Boolean).length;

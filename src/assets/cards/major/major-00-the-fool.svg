@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" role="img" aria-label="愚者：晨光中的崖边旅人">
+  <defs>
+    <radialGradient id="fool-ground" cx="42%" cy="30%" r="85%">
+      <stop offset="0" stop-color="#1b2144"/><stop offset="0.6" stop-color="#131934"/><stop offset="1" stop-color="#0c1126"/>
+    </radialGradient>
+    <radialGradient id="fool-dawn" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#e3c27e" stop-opacity="0.5"/><stop offset="1" stop-color="#e3c27e" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="fool-hatchA" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(38)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#8a93ad" stroke-width="0.7" opacity="0.4"/>
+    </pattern>
+    <pattern id="fool-hatchB" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
+      <line x1="0" y1="0" x2="0" y2="9" stroke="#8a93ad" stroke-width="0.6" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <rect width="300" height="420" fill="url(#fool-ground)"/>
+
+  <!-- 高天：细云排线 -->
+  <g stroke="#c7cedd" fill="none" opacity="0.5">
+    <path d="M 34 74 C 58 64, 92 66, 112 76 C 96 82, 56 84, 34 74 Z" stroke-width="0.9"/>
+    <path d="M 178 52 C 206 44, 244 48, 262 58 C 238 64, 200 62, 178 52 Z" stroke-width="0.8" opacity="0.7"/>
+    <path d="M 96 120 C 122 112, 158 114, 176 122 C 152 128, 118 128, 96 120 Z" stroke-width="0.7" opacity="0.45"/>
+  </g>
+  <g fill="url(#fool-hatchB)" opacity="0.5">
+    <path d="M 34 74 C 58 64, 92 66, 112 76 C 96 82, 56 84, 34 74 Z"/>
+    <path d="M 96 120 C 122 112, 158 114, 176 122 C 152 128, 118 128, 96 120 Z"/>
+  </g>
+
+  <!-- 晨星（叙事光源之一） -->
+  <g transform="translate(64 44)">
+    <circle r="14" fill="#e3c27e" opacity="0.1"/>
+    <path d="M 0 -9 L 2.2 -2.2 L 9 0 L 2.2 2.2 L 0 9 L -2.2 2.2 L -9 0 L -2.2 -2.2 Z" fill="#e3c27e" opacity="0.95"/>
+    <g stroke="#e3c27e" stroke-width="0.8" opacity="0.5">
+      <line x1="0" y1="-14" x2="0" y2="-19"/><line x1="0" y1="14" x2="0" y2="19"/>
+      <line x1="-14" y1="0" x2="-19" y2="0"/><line x1="14" y1="0" x2="19" y2="0"/>
+    </g>
+  </g>
+  <g fill="#c7cedd" opacity="0.7">
+    <circle cx="146" cy="38" r="1.1"/><circle cx="228" cy="96" r="1.3"/><circle cx="258" cy="140" r="1"/>
+    <circle cx="38" cy="168" r="1"/><circle cx="120" cy="30" r="0.9"/>
+  </g>
+
+  <!-- 远山两叠 -->
+  <g stroke="#8a93ad" fill="none" opacity="0.55">
+    <path d="M 0 268 L 58 226 L 104 262 L 150 236 L 196 270" stroke-width="1"/>
+    <path d="M 120 276 L 176 244 L 224 274" stroke-width="0.8" opacity="0.7"/>
+  </g>
+
+  <!-- 崖体（右下） -->
+  <g>
+    <path d="M 300 420 L 300 296 C 268 292, 238 282, 216 268 C 206 288, 196 306, 178 322 C 204 336, 236 348, 268 352 C 246 368, 224 392, 214 420 Z"
+          fill="#0d1226" stroke="#c7cedd" stroke-width="1.6"/>
+    <path d="M 216 268 C 206 288, 196 306, 178 322 C 204 336, 236 348, 268 352 C 246 368, 224 392, 214 420 L 240 420 C 248 384, 266 350, 292 330 Z"
+          fill="url(#fool-hatchA)" opacity="0.8"/>
+    <path d="M 224 292 C 236 300, 250 306, 264 310" stroke="#8a93ad" stroke-width="0.7" fill="none" opacity="0.6"/>
+    <path d="M 212 330 C 228 338, 246 344, 262 346" stroke="#8a93ad" stroke-width="0.7" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- 旭日半悬（叙事光源之二：低角度暖金） -->
+  <g transform="translate(120 300)">
+    <circle r="46" fill="url(#fool-dawn)" opacity="0.7"/>
+    <path d="M -34 0 A 34 34 0 0 1 34 0" fill="none" stroke="#e3c27e" stroke-width="1.6" opacity="0.9"/>
+    <g stroke="#e3c27e" stroke-width="0.7" opacity="0.4">
+      <line x1="-44" y1="0" x2="-52" y2="0"/><line x1="44" y1="0" x2="52" y2="0"/>
+      <line x1="-31" y1="-22" x2="-37" y2="-27"/><line x1="31" y1="-22" x2="37" y2="-27"/>
+    </g>
+  </g>
+
+  <!-- 旅人剪影：跨出崖沿的一步 -->
+  <g>
+    <path d="M 232 262
+             C 238 258, 244 256, 248 250
+             L 252 236 C 254 230, 250 226, 246 228
+             C 240 216, 226 214, 218 222
+             C 210 230, 210 242, 216 250
+             L 206 262 C 196 274, 184 282, 172 286
+             L 168 296 L 178 296 L 192 286
+             C 202 280, 214 272, 224 264
+             C 226 268, 228 272, 226 278
+             L 216 296 L 226 296 L 236 280
+             C 240 272, 240 266, 232 262 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.4"/>
+    <!-- 行囊与杖 -->
+    <path d="M 252 236 L 276 210" stroke="#c7cedd" stroke-width="1.6"/>
+    <circle cx="278" cy="208" r="7" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.2"/>
+    <path d="M 274 204 L 282 212 M 282 204 L 274 212" stroke="#8a93ad" stroke-width="0.7" opacity="0.7"/>
+    <!-- 飘起的袍角 -->
+    <path d="M 224 264 C 214 276, 200 284, 188 288" stroke="#c7cedd" stroke-width="1" fill="none" opacity="0.7"/>
+  </g>
+
+  <!-- 小犬（先行的纯真） -->
+  <g>
+    <path d="M 150 296 C 156 292, 164 292, 170 294 C 176 290, 182 290, 184 294
+             C 190 294, 194 298, 192 302 L 186 302 L 184 310 L 178 310 L 178 304
+             C 170 306, 160 306, 154 304 L 152 310 L 146 310 L 148 300
+             C 144 298, 146 296, 150 296 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.1"/>
+    <path d="M 184 294 L 190 288" stroke="#c7cedd" stroke-width="1.1"/>
+  </g>
+
+  <!-- 白玫瑰（道旁） -->
+  <g transform="translate(96 306)">
+    <path d="M 0 16 C 2 8, 0 4, -2 0" stroke="#c7cedd" stroke-width="1" fill="none" opacity="0.8"/>
+    <circle cx="-2" cy="-4" r="4.6" fill="#0b0f20" stroke="#c7cedd" stroke-width="1.1"/>
+    <circle cx="-2" cy="-4" r="1.6" fill="#e3c27e" opacity="0.9"/>
+  </g>
+
+  <!-- 崖下雾带 -->
+  <g stroke="#8a93ad" opacity="0.4" fill="none">
+    <path d="M 20 344 C 60 338, 104 340, 142 346" stroke-width="0.8"/>
+    <path d="M 36 358 C 76 352, 118 354, 154 360" stroke-width="0.6"/>
+  </g>
+</svg>
