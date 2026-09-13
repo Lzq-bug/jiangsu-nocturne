@@ -41,7 +41,7 @@
   <rect x="60" y="304" width="180" height="3" fill="url(#dth-dawn)"/>
   <ellipse cx="150" cy="305" rx="120" ry="26" fill="url(#dth-glow)" opacity="0.6"/>
 
-  <!-- 白马：沿刃脊而行 -->
+  <!-- 白马：沿刃脊而行（深色描边环保证小尺寸可辨） -->
   <g>
     <path d="M 118 236
              C 124 230, 132 227, 141 227
@@ -53,8 +53,8 @@
              L 152 266 L 146 266 L 146 254
              C 138 252, 130 248, 126 243
              L 116 246 C 112 243, 114 238, 118 236 Z"
-          fill="#e9edf5" stroke="#c7cedd" stroke-width="1"/>
-    <path d="M 150 218 C 144 210, 146 202, 152 198 C 156 204, 155 212, 152 218 Z" fill="#e9edf5" stroke="#c7cedd" stroke-width="0.9"/>
+          fill="#e9edf5" stroke="#0a0814" stroke-width="1.8" paint-order="stroke"/>
+    <path d="M 150 218 C 144 210, 146 202, 152 198 C 156 204, 155 212, 152 218 Z" fill="#e9edf5" stroke="#0a0814" stroke-width="1.2" paint-order="stroke"/>
     <path d="M 210 240 C 220 234, 228 232, 234 234" fill="none" stroke="#e9edf5" stroke-width="2" opacity="0.85"/>
     <circle cx="152" cy="214" r="1.1" fill="#0b0f20"/>
   </g>
