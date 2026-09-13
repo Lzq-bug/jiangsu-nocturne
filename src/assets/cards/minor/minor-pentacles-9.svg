@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="星币九：打理了整季的果园一角，九枚环果各自成熟，墙隙的黄昏只照亮最熟的那一枚">
+  <defs>
+    <radialGradient id="p9-sky" cx="30%" cy="20%" r="130%">
+      <stop offset="0" stop-color="#1a1d15"/><stop offset="0.55" stop-color="#121409"/><stop offset="1" stop-color="#0b0c06"/>
+    </radialGradient>
+    <radialGradient id="p9-ripe" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#d9a95e" stop-opacity="0.5"/><stop offset="1" stop-color="#d9a95e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#p9-sky)"/>
+
+  <!-- 墙顶线（地平线：园墙） -->
+  <path d="M 0 96 C 90 92, 210 93, 300 96" stroke="#4a4f38" stroke-width="1" opacity="0.7"/>
+  <!-- 墙面（砖石暗纹） -->
+  <g stroke="#20241a" stroke-width="0.8" opacity="0.8" fill="none">
+    <path d="M 14 118 H 70 M 84 118 H 150 M 164 118 H 226 M 240 118 H 292"/>
+    <path d="M 20 142 H 66 M 96 142 H 158 M 178 142 H 240"/>
+    <path d="M 10 168 H 58 M 90 168 H 146 M 176 168 H 234 M 252 168 H 290"/>
+  </g>
+  <g fill="#1a1e12">
+    <rect x="0" y="96" width="300" height="244"/>
+  </g>
+  <g stroke="#2b3020" stroke-width="0.7" opacity="0.55" fill="none">
+    <path d="M 0 132 H 300 M 0 156 H 300 M 0 184 H 300"/>
+    <path d="M 46 96 V 132 M 122 132 V 156 M 206 156 V 184 M 60 156 V 184 M 262 132 V 156"/>
+  </g>
+
+  <!-- 墙隙（唯一叙事光源：黄昏西光自墙缺口漏入） -->
+  <g>
+    <path d="M 74 100 L 96 100 L 96 132 L 74 132 Z" fill="#241d10"/>
+    <path d="M 74 100 L 96 100 L 96 132 L 74 132" fill="none" stroke="#8a93ad" stroke-width="0.7" opacity="0.5"/>
+    <path d="M 96 102 L 150 118 L 150 126 L 96 130 Z" fill="url(#p9-ripe)" opacity="0.95"/>
+    <path d="M 96 102 L 148 117" stroke="#e8c078" stroke-width="1.3" opacity="0.9"/>
+    <path d="M 96 130 L 148 124" stroke="#d9a95e" stroke-width="0.7" opacity="0.5"/>
+  </g>
+
+  <!-- 老树（垂直主干 + 贴墙整枝的水平果枝） -->
+  <g>
+    <path d="M 244 340 C 240 300, 242 240, 238 196 C 236 174, 238 150, 242 132" stroke="#2a2517" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <path d="M 240 320 C 238 290, 240 250, 239 220" stroke="#c7cedd" stroke-width="0.7" fill="none" opacity="0.25"/>
+    <!-- 主枝贴墙水平展开 -->
+    <g stroke="#241f14" fill="none" stroke-linecap="round">
+      <path d="M 240 148 C 200 140, 150 140, 108 148" stroke-width="5"/>
+      <path d="M 238 186 C 196 178, 148 178, 112 186" stroke-width="4.4"/>
+      <path d="M 236 224 C 200 217, 160 217, 128 223" stroke-width="3.8"/>
+    </g>
+    <g stroke="#4a4230" stroke-width="0.7" fill="none" opacity="0.7">
+      <path d="M 236 150 C 198 143, 152 143, 112 150"/>
+      <path d="M 234 188 C 196 181, 150 181, 116 188"/>
+    </g>
+    <!-- 叶簇 -->
+    <g fill="#2c331d" opacity="0.9">
+      <ellipse cx="130" cy="142" rx="12" ry="5"/><ellipse cx="180" cy="138" rx="13" ry="5.4"/><ellipse cx="222" cy="144" rx="11" ry="4.6"/>
+      <ellipse cx="140" cy="180" rx="12" ry="5"/><ellipse cx="196" cy="176" rx="13" ry="5.2"/><ellipse cx="118" cy="184" rx="9" ry="4"/>
+      <ellipse cx="160" cy="218" rx="11" ry="4.6"/><ellipse cx="206" cy="221" rx="10" ry="4.2"/>
+    </g>
+    <g fill="#39422a" opacity="0.8">
+      <ellipse cx="156" cy="144" rx="8" ry="3.4"/><ellipse cx="204" cy="182" rx="8" ry="3.2"/><ellipse cx="128" cy="220" rx="7" ry="3"/>
+    </g>
+
+    <!-- 九枚环果：不同成熟阶段（青硬→转色→半熟→受光熟果），垂直散布 -->
+    <g>
+      <!-- 1 青小果 -->
+      <circle cx="112" cy="160" r="3.4" fill="#4a5636" stroke="#8a93ad" stroke-width="0.5"/>
+      <!-- 2 青果 -->
+      <circle cx="166" cy="158" r="4" fill="#54643c" stroke="#8a93ad" stroke-width="0.5"/>
+      <!-- 3 青果（高位枝端） -->
+      <circle cx="236" cy="164" r="4.2" fill="#54643c" stroke="#8a93ad" stroke-width="0.5"/>
+      <!-- 4 转色 -->
+      <circle cx="92" cy="196" r="4.4" fill="#6d7444" stroke="#8a93ad" stroke-width="0.6"/>
+      <!-- 5 转色 -->
+      <circle cx="148" cy="192" r="4.6" fill="#7d7c48" stroke="#8a93ad" stroke-width="0.6"/>
+      <!-- 6 半熟 -->
+      <circle cx="222" cy="196" r="5" fill="#96854c" stroke="#8a93ad" stroke-width="0.6"/>
+      <!-- 7 半熟（低枝） -->
+      <circle cx="120" cy="234" r="5" fill="#a08a50" stroke="#8a93ad" stroke-width="0.6"/>
+      <!-- 8 近熟 -->
+      <circle cx="182" cy="232" r="5.4" fill="#b09454" stroke="#c7cedd" stroke-width="0.7"/>
+      <!-- 9 熟果（受光：全牌唯一亮部） -->
+      <circle cx="120" cy="130" r="7.2" fill="#d9b166" stroke="#f0d494" stroke-width="1.1"/>
+      <circle cx="120" cy="130" r="14" fill="url(#p9-ripe)"/>
+      <path d="M 117 127 A 3.8 3.8 0 0 1 122.8 126.6" stroke="#f8e8b8" stroke-width="1.1" fill="none" opacity="0.95"/>
+    </g>
+    <!-- 果柄 -->
+    <g stroke="#39422a" stroke-width="0.7" fill="none">
+      <path d="M 112 156.6 L 112 152 M 166 154 L 166 150 M 236 160 L 236 155 M 92 191.6 L 92 188 M 148 187.4 L 148 184 M 222 191 L 222 187 M 120 229 L 120 226 M 182 226.6 L 182 223 M 120 123.6 L 120 121"/>
+    </g>
+  </g>
+
+  <!-- 打理痕迹：墙边吊篮水罐与落地收篮（独享成果的人不在画里） -->
+  <g>
+    <!-- 收篮（半满，几枚环果已入篮） -->
+    <path d="M 58 312 C 60 296, 92 296, 94 312 L 90 318 L 62 318 Z" fill="#1e2013" stroke="#6d5137" stroke-width="1.1"/>
+    <path d="M 60 304 C 70 300, 84 300, 92 304" stroke="#6d5137" stroke-width="0.8" fill="none" opacity="0.8"/>
+    <circle cx="70" cy="298" r="4" fill="#7d7c48" stroke="#8a93ad" stroke-width="0.5"/>
+    <circle cx="80" cy="296" r="4.4" fill="#96854c" stroke="#8a93ad" stroke-width="0.5"/>
+    <!-- 水罐 -->
+    <path d="M 208 318 C 206 304, 210 296, 218 296 C 226 296, 230 304, 228 318 Z" fill="#20241a" stroke="#8a93ad" stroke-width="0.9"/>
+    <path d="M 227 302 C 234 302, 236 308, 230 310" stroke="#8a93ad" stroke-width="1.4" fill="none"/>
+    <path d="M 212 297 C 212 292, 216 290, 218 292" stroke="#8a93ad" stroke-width="1.2" fill="none"/>
+    <!-- 修枝剪挂墙（次级象征） -->
+    <g transform="translate(254 128) rotate(24)" stroke="#8a93ad" stroke-width="1" fill="none">
+      <path d="M -7 0 C -3 -5, 3 -5, 7 0 M -7 0 C -3 3, 3 3, 7 0" opacity="0.75"/>
+    </g>
+  </g>
+
+  <!-- 地面（园土） -->
+  <path d="M 0 300 C 100 296, 200 296, 300 300 L 300 340 L 0 340 Z" fill="#101208"/>
+  <g stroke="#2c301c" stroke-width="0.8" opacity="0.7" fill="none">
+    <path d="M 30 322 C 110 316, 210 317, 280 322"/>
+  </g>
+  <!-- 熟果落在地面的受光反射（极弱） -->
+  <path d="M 104 322 C 112 320, 128 320, 136 322" stroke="#d9a95e" stroke-width="0.7" fill="none" opacity="0.3"/>
+</svg>
