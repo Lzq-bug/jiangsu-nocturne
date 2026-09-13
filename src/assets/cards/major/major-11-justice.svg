@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" role="img" aria-label="正义：对角台阶上的侧身裁决者与悬下的秤">
+  <defs>
+    <radialGradient id="ju-ground" cx="60%" cy="24%" r="95%">
+      <stop offset="0" stop-color="#18202e"/><stop offset="0.6" stop-color="#121826"/><stop offset="1" stop-color="#0a0e18"/>
+    </radialGradient>
+    <radialGradient id="ju-scale" cx="50%" cy="42%" r="55%">
+      <stop offset="0" stop-color="#9fb6d9" stop-opacity="0.4"/><stop offset="1" stop-color="#9fb6d9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="420" fill="url(#ju-ground)"/>
+
+  <!-- 对角台阶：左上走向右下（构图骨架） -->
+  <g>
+    <path d="M 0 96 L 120 96 L 120 122 L 190 122 L 190 152 L 254 152 L 254 186 L 300 186 L 300 420 L 0 420 Z"
+          fill="#0d1226" stroke="#c7cedd" stroke-width="1.4"/>
+    <path d="M 0 96 L 120 96 M 120 122 L 190 122 M 190 152 L 254 152 M 254 186 L 300 186"
+          fill="none" stroke="#e9edf5" stroke-width="1" opacity="0.7"/>
+    <g stroke="#8a93ad" stroke-width="0.6" opacity="0.45">
+      <line x1="16" y1="142" x2="104" y2="142"/><line x1="136" y1="168" x2="182" y2="168"/>
+      <line x1="200" y1="200" x2="248" y2="200"/><line x1="90" y1="196" x2="150" y2="196"/>
+    </g>
+  </g>
+
+  <!-- 侧身裁决者：立于上段台阶，右臂平伸垂下长链秤 -->
+  <g>
+    <path d="M 44 96
+             C 46 74, 56 60, 74 56
+             L 76 46 A 8.4 8.4 0 0 1 91 49
+             L 88 62
+             C 100 70, 106 84, 106 98
+             L 108 96 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.6"/>
+    <!-- 身袍沿台阶下行 -->
+    <path d="M 60 92 C 66 120, 74 150, 86 176 L 96 172 C 88 146, 82 118, 80 94 Z"
+          fill="#0b0f20" stroke="#c7cedd" stroke-width="1.4"/>
+    <!-- 伸出的臂与垂链 -->
+    <path d="M 88 74 C 108 82, 132 90, 158 96" fill="none" stroke="#c7cedd" stroke-width="1.7"/>
+    <path d="M 158 96 L 176 140" fill="none" stroke="#8a93ad" stroke-width="0.9" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- 长链之秤（主体光源落点）：悬于中下偏右 -->
+  <g transform="translate(178 168)">
+    <circle r="30" fill="url(#ju-scale)"/>
+    <path d="M -30 -6 C -30 2, -18 2, -18 -6 M 30 -6 C 30 2, 18 2, 18 -6" fill="none" stroke="#c7cedd" stroke-width="1.3"/>
+    <path d="M -30 -6 L 30 -6" stroke="#c7cedd" stroke-width="1.2"/>
+    <path d="M -30 -6 C -32 4, -22 10, -14 4" fill="none" stroke="#8a93ad" stroke-width="1"/>
+    <path d="M 30 -6 C 32 4, 22 10, 14 4" fill="none" stroke="#8a93ad" stroke-width="1"/>
+    <circle cx="-22" cy="8" r="1.6" fill="#e9edf5"/>
+    <circle cx="22" cy="8" r="1.6" fill="#e9edf5"/>
+  </g>
+
+  <!-- 空的审判席（右下，台面尽头） -->
+  <g>
+    <path d="M 216 300 L 216 246 C 216 238, 222 234, 230 234 L 258 234 C 266 234, 272 238, 272 246 L 272 300 Z"
+          fill="#0b0f20" stroke="#8a93ad" stroke-width="1.3"/>
+    <path d="M 208 300 L 280 300 L 284 312 L 204 312 Z" fill="#0b0f20" stroke="#8a93ad" stroke-width="1.1"/>
+  </g>
+
+  <!-- 台面上摊开的证物卷轴（次级） -->
+  <g transform="translate(160 336)">
+    <path d="M -34 -5 C -18 -9, 18 -9, 34 -5 C 18 -1, -18 -1, -34 -5 Z" fill="#0b0f20" stroke="#8a93ad" stroke-width="1"/>
+    <path d="M -26 -4 L 26 -4" stroke="#8a93ad" stroke-width="0.5" opacity="0.7"/>
+  </g>
+
+  <!-- 一颗垂直的剑影（投在台阶上的第二秤杆意象） -->
+  <path d="M 108 122 L 108 210" stroke="#8a93ad" stroke-width="2.4" opacity="0.35"/>
+  <path d="M 104 122 L 112 122" stroke="#8a93ad" stroke-width="1" opacity="0.5"/>
+</svg>
