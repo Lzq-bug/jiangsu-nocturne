@@ -29,6 +29,11 @@ const FILE_BY_CARD: Record<string, string> = {
   'minor-cups-2': 'minor-cups-2',
   'minor-swords-3': 'minor-swords-3',
   'minor-pentacles-14': 'minor-pentacles-14',
+  // —— Batch 01（正式量产）——
+  'major-1': 'major-01-the-magician',
+  'major-2': 'major-02-the-high-priestess',
+  'minor-wands-2': 'minor-wands-2',
+  'minor-cups-3': 'minor-cups-3',
 };
 
 export const ARTWORK_BY_CARD: Readonly<Record<string, string | undefined>> = Object.fromEntries(
