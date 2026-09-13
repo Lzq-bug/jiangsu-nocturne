@@ -1,6 +1,6 @@
 # REMAINING_70_CARD_ART_PLAN · 剩余 70 张正式美术量产设计清单（v1）
 
-> **状态更新（窗口 #2 结束）**：Batch 01–08 已全部完成，正式美术累计 **40/78**。本清单中 Batch 01–08 对应的 32 张已生产（视觉锚点与实施记录见 `ART_PRODUCTION_SESSION_01/02_REPORT.md` 与 `CARD_ART_COMPOSITION_LEDGER.md`），**剩余 38 张**继续以本清单为设计基线。
+> **状态更新（窗口 #3 结束）**：Batch 01–12 已全部完成，正式美术累计 **56/78（71.8%）**，其中月章 **22/22 全部完成**（`MAJOR_ARCANA_ART_COMPLETE = TRUE`）。**本清单的 major-19 太阳与 major-20 审判两行 v1 设计已按窗口 #3 任务书专项规则替换实施**（太阳=静物晨光转译，规避日轮/骑马孩童；审判=崩封名册垂直上升，规避号角天使/坟起群像），实施记录见 `CARD_ART_COMPOSITION_LEDGER.md` 与 `ART_PRODUCTION_SESSION_03_REPORT.md`。**剩余 22 张全部为星签**（含 16 张宫廷牌），继续以本清单为设计基线；高频母题配额约束见 `CARD_ART_MOTIF_BUDGET.md`。
 >
 > 依据 `CARD_ART_STYLE_LOCK.md` v1 制定。每张一行为"可生产"级设计记录。
 > 已完成 8 张不在本表（见 ART_PILOT_8_CARDS.md）。生产顺序按 batch 建议（§末）执行，允许按一致性微调。
