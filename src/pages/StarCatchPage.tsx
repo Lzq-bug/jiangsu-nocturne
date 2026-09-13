@@ -30,10 +30,14 @@ export default function StarCatchPage() {
   const roundRef = useRef<RoundState | null>(null);
   const elMap = useRef(new Map<number, HTMLButtonElement>());
   const rafRef = useRef(0);
+  const heartbeatRef = useRef(0);
   const rngRef = useRef(mulberry32(1));
   const [caughtIds, setCaughtIds] = useState<Set<number>>(new Set());
 
-  useEffect(() => () => window.cancelAnimationFrame(rafRef.current), []);
+  useEffect(() => () => {
+    window.cancelAnimationFrame(rafRef.current);
+    window.clearInterval(heartbeatRef.current);
+  }, []);
 
   function start() {
     rngRef.current = mulberry32((Date.now() ^ 0x9e3779b9) >>> 0);
@@ -47,33 +51,51 @@ export default function StarCatchPage() {
     loop();
   }
 
-  function loop() {
+  /** 模拟推进（生成/过期/结束判定/HUD）——独立于渲染，后台标签页也能正确结算 */
+  function simulate(): boolean {
+    const round = roundRef.current;
+    if (!round) return false;
+    const now = performance.now();
+    if (isRoundOver(round, now)) {
+      end();
+      return false;
+    }
+    const rng = rngRef.current;
+    if (round.stars.length < STAR_CATCH.maxOnScreen && rng() < 0.5) {
+      spawnStar(round, rng, now);
+    }
+    tick(round, now);
+    setHud({ time: remainingSec(round, now), score: round.caught.stars + round.caught.golds });
+    return true;
+  }
+
+  /** 渲染推进（写星星位置）——仅前台 rAF；reducedMotion 时用静立星阵 */
+  function renderPositions() {
     const round = roundRef.current;
     if (!round) return;
-    const rng = rngRef.current;
+    const now = performance.now();
+    const staticMode = useGame.getState().settings.reducedMotion;
+    for (const s of round.stars) {
+      const el = elMap.current.get(s.id);
+      if (!el) continue;
+      const pos = staticMode
+        ? { x: 10 + ((s.id * 37) % 80), y: 12 + ((s.id * 53) % 64) }
+        : starPos(s, now);
+      el.style.left = '0';
+      el.style.top = '0';
+      el.style.transform = `translate(${pos.x.toFixed(2)}%, ${pos.y.toFixed(2)}%) translate(-50%,-50%)`;
+    }
+  }
 
+  function loop() {
+    window.clearInterval(heartbeatRef.current);
+    // 心跳兜底：rAF 被暂停（切标签页/省电）时仍保证计时与结算正确
+    heartbeatRef.current = window.setInterval(() => {
+      if (simulate()) renderPositions();
+    }, 300);
     const step = () => {
-      const now = performance.now();
-      if (isRoundOver(round, now)) return end();
-
-      // 生成
-      const visible = round.stars.length;
-      if (visible < STAR_CATCH.maxOnScreen && rng() < 0.5) {
-        spawnStar(round, rng, now);
-      }
-      tick(round, now);
-
-      // 写位置
-      for (const s of round.stars) {
-        const el = elMap.current.get(s.id);
-        if (!el) continue;
-        const { x, y } = starPos(s, now);
-        el.style.transform = `translate(${(x * 100).toFixed(2)}%, ${(y * 100).toFixed(2)}%) translate(-50%,-50%)`;
-        el.style.left = '0';
-        el.style.top = '0';
-      }
-
-      setHud((h) => ({ ...h, time: remainingSec(round, now), score: round.caught.stars + round.caught.golds }));
+      if (!simulate()) return;
+      renderPositions();
       rafRef.current = window.requestAnimationFrame(step);
     };
     rafRef.current = window.requestAnimationFrame(step);
@@ -81,6 +103,7 @@ export default function StarCatchPage() {
 
   function end() {
     window.cancelAnimationFrame(rafRef.current);
+    window.clearInterval(heartbeatRef.current);
     const round = roundRef.current;
     if (!round) return;
     const r = settle(round);

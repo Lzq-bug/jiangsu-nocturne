@@ -22,7 +22,11 @@ export function localReading(question: string, cards: CardData[]): string {
   const lines: string[] = [];
   lines.push(`你问：「${question.trim()}」——魔女听见了。`);
   cards.forEach((c, i) => {
-    lines.push(`${['一', '二', '三'][i]}曰 ${c.nameZh}：${c.oracle} ${c.keywords.join('、')}——${c.arcana === 'major' ? c.meaning : c.keywords.join('、')}。`);
+    lines.push(
+      c.arcana === 'major'
+        ? `${['一', '二', '三'][i]}曰 ${c.nameZh}：「${c.oracle}」——${c.meaning}`
+        : `${['一', '二', '三'][i]}曰 ${c.nameZh}：「${c.oracle}」（${c.keywords.slice(0, 2).join('、')}）`,
+    );
   });
   lines.push('三张牌连起来看：问题不在远方，而在你此刻愿意先迈出的那一步。把牌面留给夜，把行动留给白天。');
   lines.push('——魔女手记 · 本地星语');

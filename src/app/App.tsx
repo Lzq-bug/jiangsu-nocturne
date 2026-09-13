@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Link, NavLink, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { useGame } from '@/game/store';
-import { ownedCount } from '@/game/collection';
 import { audio } from '@/audio/AudioService';
 import HomePage from '@/pages/HomePage';
 import StarCatchPage from '@/pages/StarCatchPage';
@@ -105,5 +104,3 @@ export default function App() {
     </Routes>
   );
 }
-
-export { ownedCount };

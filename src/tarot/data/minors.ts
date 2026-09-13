@@ -31,7 +31,7 @@ function buildMinor(suit: SuitKey, rank: MinorRank): MinorCardData {
     note = `${COURT_NOTES[suit][rank as 11 | 12 | 13 | 14]}——魔女手记·星签`;
   } else {
     oracle = `星图排到第 ${rank} 位——${kw.split('、')[0]}。`;
-    note = SUIT_NOTE_TEMPLATE[suit].replace('{k}', kw) + '';
+    note = `${SUIT_NOTE_TEMPLATE[suit].replace('{k}', kw)}——魔女手记·星签`;
   }
 
   return {

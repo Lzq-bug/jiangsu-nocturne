@@ -27,6 +27,9 @@ export default function CardDetailPage() {
 
   const owned = Boolean(entry);
   const suitMeta = card.arcana === 'minor' ? SUITS.find((s) => s.key === card.suit) : undefined;
+  const signIdx = card.note.lastIndexOf('——');
+  const noteBody = signIdx > 0 ? card.note.slice(0, signIdx) : card.note;
+  const noteSign = signIdx > 0 ? card.note.slice(signIdx + 2) : '魔女手记';
 
   return (
     <div className="detail fade-in">
@@ -70,7 +73,7 @@ export default function CardDetailPage() {
             {isMajor(card) ? card.interpretation : card.meaning}
           </p>
           <div className="witch-note">
-            <span>{card.note.split('——')[0]}</span>
+            <span>{noteBody}</span>
             <span style={{ whiteSpace: 'nowrap' }}>
               <span className="wax-seal" style={{ width: 34, height: 34, fontSize: 12 }} aria-hidden="true">
                 {card.arcana === 'major' ? '月' : '星'}
@@ -78,7 +81,7 @@ export default function CardDetailPage() {
             </span>
           </div>
           <div style={{ textAlign: 'right', fontSize: 11, color: '#7a6a48', marginTop: 6 }}>
-            ——{card.note.split('——')[1] ?? '魔女手记'}
+            ——{noteSign}
           </div>
         </div>
 
