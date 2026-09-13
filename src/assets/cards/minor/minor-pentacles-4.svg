@@ -6,6 +6,9 @@
     <radialGradient id="p4-slit" cx="50%" cy="50%" r="50%">
       <stop offset="0" stop-color="#c7cedd" stop-opacity="0.35"/><stop offset="1" stop-color="#c7cedd" stop-opacity="0"/>
     </radialGradient>
+    <radialGradient id="p4-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#a8b87a" stop-opacity="0.3"/><stop offset="1" stop-color="#a8b87a" stop-opacity="0"/>
+    </radialGradient>
     <pattern id="p4-stone" width="20" height="12" patternUnits="userSpaceOnUse">
       <path d="M 0 6 L 20 6 M 10 0 L 10 6 M 5 6 L 5 12 M 15 6 L 15 12" fill="none" stroke="#8a93ad" stroke-width="0.5" opacity="0.45"/>
     </pattern>
@@ -17,7 +20,7 @@
   <g>
     <path d="M 128 340 L 128 88 C 128 62, 146 46, 172 46 L 300 46 L 300 340 Z"
           fill="#0d1226" stroke="#c7cedd" stroke-width="1.6"/>
-    <path d="M 128 340 L 128 88 C 128 62, 146 46, 172 46 L 300 46" fill="url(#p4-stone)" opacity="0.7"/>
+    <path d="M 128 340 L 128 88 C 128 62, 146 46, 172 46 L 300 46" fill="url(#p4-stone)" opacity="0.42"/>
     <path d="M 122 340 L 122 84" stroke="#8a93ad" stroke-width="0.8" opacity="0.6"/>
   </g>
 
@@ -30,10 +33,11 @@
 
   <!-- 缝内：架上被铁链十字缠绕的环璧（守持的核心物） -->
   <g transform="translate(240 190)">
-    <circle r="20" fill="#0b0f20" stroke="#a8b87a" stroke-width="2"/>
-    <circle r="13.4" fill="none" stroke="#a8b87a" stroke-width="0.9" opacity="0.85"/>
-    <path d="M -13 0 L 13 0 M 0 -13 L 0 13" stroke="#8a93ad" stroke-width="2.2"/>
-    <circle cx="0" cy="0" r="3" fill="#a8b87a" opacity="0.9"/>
+    <circle r="27" fill="url(#p4-halo)"/>
+    <circle r="20" fill="#0b0f20" stroke="#a8b87a" stroke-width="2.6"/>
+    <circle r="13.4" fill="none" stroke="#a8b87a" stroke-width="1" opacity="0.9"/>
+    <path d="M -13 0 L 13 0 M 0 -13 L 0 13" stroke="#c7cedd" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3" fill="#a8b87a" opacity="0.95"/>
   </g>
   <!-- 架 -->
   <path d="M 222 214 L 258 214" stroke="#8a93ad" stroke-width="1.4"/>

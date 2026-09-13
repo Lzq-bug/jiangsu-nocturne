@@ -10,25 +10,25 @@
 
   <rect width="300" height="340" fill="url(#c5-ground)"/>
 
-  <!-- 岸线：从左下向右中缓升（视觉引导的基础） -->
-  <path d="M 0 252 C 70 262, 150 250, 224 236 C 252 231, 278 228, 300 228" fill="none" stroke="#8a93ad" stroke-width="1" opacity="0.6"/>
+  <!-- 岸线：从左下向右中缓升（视觉引导的基础；压暗避免与倒杯轮廓相混） -->
+  <path d="M 0 252 C 70 262, 150 250, 224 236 C 252 231, 278 228, 300 228" fill="none" stroke="#6b7590" stroke-width="1" opacity="0.5"/>
 
   <!-- 左近景：三只倾覆的杯（失落） -->
   <g>
     <g transform="translate(58 268) rotate(-118)">
       <path d="M -12 -10 L 12 -10 C 12 -3, 8 1, 3 3 L 3 8 L 8 11 L -8 11 L -3 8 L -3 3 C -8 1, -12 -3, -12 -10 Z"
-            fill="#0b0f20" stroke="#8a93ad" stroke-width="1.2"/>
+            fill="#0b0f20" stroke="#c7cedd" stroke-width="1.3"/>
     </g>
     <g transform="translate(96 276) rotate(96)">
       <path d="M -12 -10 L 12 -10 C 12 -3, 8 1, 3 3 L 3 8 L 8 11 L -8 11 L -3 8 L -3 3 C -8 1, -12 -3, -12 -10 Z"
-            fill="#0b0f20" stroke="#8a93ad" stroke-width="1.2"/>
+            fill="#0b0f20" stroke="#c7cedd" stroke-width="1.3"/>
     </g>
     <g transform="translate(80 296) rotate(-38)">
       <path d="M -12 -10 L 12 -10 C 12 -3, 8 1, 3 3 L 3 8 L 8 11 L -8 11 L -3 8 L -3 3 C -8 1, -12 -3, -12 -10 Z"
-            fill="#0b0f20" stroke="#8a93ad" stroke-width="1.2"/>
+            fill="#0b0f20" stroke="#c7cedd" stroke-width="1.3"/>
     </g>
-    <!-- 洒落的水渍（静置，不流向失落侧） -->
-    <path d="M 44 292 C 60 296, 84 296, 104 292" fill="none" stroke="#8a93ad" stroke-width="0.6" opacity="0.5"/>
+    <!-- 洒落的水渍（静置，不流向失落侧；压暗让杯体轮廓浮出） -->
+    <path d="M 44 292 C 60 296, 84 296, 104 292" fill="none" stroke="#5d6780" stroke-width="0.6" opacity="0.4"/>
   </g>
 
   <!-- 披巾身影（左侧背影，低首不看观者） -->
