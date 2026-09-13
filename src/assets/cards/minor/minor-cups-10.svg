@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="圣杯十：宴后未撤的长桌，十盏杯各自留痕，归位却空着的椅，一线月光扫过">
+  <defs>
+    <radialGradient id="c10-ground" cx="46%" cy="30%" r="115%">
+      <stop offset="0" stop-color="#101c26"/><stop offset="0.6" stop-color="#0c141d"/><stop offset="1" stop-color="#060c13"/>
+    </radialGradient>
+    <radialGradient id="c10-sheen" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#6fc2c9" stop-opacity="0.4"/><stop offset="1" stop-color="#6fc2c9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#c10-ground)"/>
+
+  <!-- 后窗的一线夜光（唯一叙事光源：大家散去后仍亮着的那点清辉） -->
+  <path d="M 118 34 L 152 30 L 128 258 L 106 258 Z" fill="#6fc2c9" opacity="0.09"/>
+  <g stroke="#c7d8e8" stroke-width="0.7" opacity="0.55" stroke-linecap="round">
+    <line x1="120" y1="36" x2="112" y2="256"/>
+  </g>
+  <!-- 光带在桌面的落带 -->
+  <path d="M 96 224 L 140 222 L 134 234 L 92 236 Z" fill="#6fc2c9" opacity="0.08"/>
+
+  <!-- 长桌（横贯中下，木纹犹温） -->
+  <g>
+    <path d="M 0 216 L 300 210 L 300 232 L 0 238 Z" fill="#161d2c" stroke="#c7cedd" stroke-width="1.5"/>
+    <path d="M 0 222 L 300 216" stroke="#8a93ad" stroke-width="0.6" opacity="0.5"/>
+    <g stroke="#8a93ad" stroke-width="0.5" opacity="0.4">
+      <path d="M 30 230 L 96 229 M 140 228 L 214 227 M 250 226 L 290 225"/>
+    </g>
+    <!-- 桌沿垂布 -->
+    <path d="M 0 238 L 300 232 L 300 240 C 220 246, 90 248, 0 246 Z" fill="#0d1320" stroke="#8a93ad" stroke-width="0.7" opacity="0.9"/>
+  </g>
+
+  <!-- 十盏杯：宴后各自留痕（高低错落，非整齐排开） -->
+  <g fill="#0e1620" stroke="#c7cedd">
+    <!-- 1 空杯倒扣 -->
+    <g transform="translate(34 208)">
+      <path d="M -11 6 C -11 -6, -5 -12, 0 -12 C 5 -12, 11 -6, 11 6 Z" stroke-width="1.2"/>
+    </g>
+    <!-- 2 残一口的爵 -->
+    <g transform="translate(66 204)">
+      <path d="M -11 -13 L 11 -13 C 11 -5, 7 -1, 3 1 L 3 8 L 8 12 L -8 12 L -3 8 L -3 1 C -7 -1, -11 -5, -11 -13 Z" stroke-width="1.3"/>
+      <path d="M -7 -11 C -4 -9.6, 4 -9.6, 7 -11 L 6 -8.6 C 3 -7.4, -3 -7.4, -6 -8.6 Z" fill="#6fc2c9" opacity="0.5" stroke="none"/>
+    </g>
+    <!-- 3 还剩半盏的高杯（光在此） -->
+    <g transform="translate(102 200)">
+      <circle r="15" fill="url(#c10-sheen)"/>
+      <path d="M -12 -16 L 12 -16 C 12 -7, 8 -3, 4 -1 L 4 7 L 9 11 L -9 11 L -4 7 L -4 -1 C -8 -3, -12 -7, -12 -16 Z" stroke-width="1.4"/>
+      <ellipse cx="0" cy="-16" rx="12" ry="2.4" fill="none" stroke-width="1"/>
+      <path d="M -9 -14 C -5 -10.6, 5 -10.6, 9 -14 L 8 -10 C 4 -7.6, -4 -7.6, -8 -10 Z" fill="#8ed8de" opacity="0.85" stroke="none"/>
+    </g>
+    <!-- 4 小孩的矮盏（放在搁脚凳上） -->
+    <g transform="translate(136 226)">
+      <path d="M -16 8 L 16 8 L 14 20 L -14 20 Z" fill="#12182a" stroke="#8a93ad" stroke-width="1.1"/>
+      <path d="M -7 0 L 7 0 C 7 5, 4 8, 2 9 L 2 13 L 5 16 L -5 16 L -2 13 L -2 9 C -4 8, -7 5, -7 0 Z" stroke-width="1.2"/>
+    </g>
+    <!-- 5 倾斜未倒的盏 -->
+    <g transform="translate(170 206) rotate(-12)">
+      <path d="M -10 -11 L 10 -11 C 10 -5, 6 -1, 3 1 L 3 8 L 7 11 L -7 11 L -3 8 L -3 1 C -6 -1, -10 -5, -10 -11 Z" stroke-width="1.2"/>
+    </g>
+    <!-- 6 见底的碗 -->
+    <g transform="translate(202 210)">
+      <path d="M -14 -5 L 14 -5 C 14 3, 8 9, 0 9 C -8 9, -14 3, -14 -5 Z" stroke-width="1.2"/>
+      <path d="M -8 -5 C -4 -3.4, 4 -3.4, 8 -5" stroke="#8a93ad" stroke-width="0.7" fill="none" opacity="0.7"/>
+    </g>
+    <!-- 7 双柄欢盏（还立着） -->
+    <g transform="translate(236 202)">
+      <path d="M -10 -10 L 10 -10 L 8 10 L -8 10 Z" stroke-width="1.2"/>
+      <path d="M -10 -10 C -14 -10, -14 -4, -10 -5 M 10 -10 C 14 -10, 14 -4, 10 -5" fill="none" stroke-width="1.1"/>
+      <path d="M -6 -6 L 6 -6" stroke="#6fc2c9" stroke-width="0.9" stroke-opacity="0.6" fill="none"/>
+    </g>
+    <!-- 8 修长细颈瓶（花未取出） -->
+    <g transform="translate(268 194)">
+      <path d="M -2.6 -20 L 2.6 -20 L 2.6 -8 C 7 -4, 9 2, 7 10 L -7 10 C -9 2, -7 -4, -2.6 -8 Z" stroke-width="1.2"/>
+      <path d="M 0 -20 C 2 -26, 6 -28, 9 -27" fill="none" stroke="#7d8f63" stroke-width="1"/>
+    </g>
+    <!-- 9 搁在椅背后的杯（未收） -->
+    <g transform="translate(88 232)">
+      <path d="M -14 6 L 14 6 L 12 24 L -12 24 Z" fill="#12182a" stroke="#8a93ad" stroke-width="1.1"/>
+      <path d="M 14 6 C 20 4, 24 6, 26 12" fill="none" stroke="#8a93ad" stroke-width="1.2"/>
+      <path d="M -8 -6 L 8 -6 C 8 -1, 5 2, 2 3 L 2 7 L 5 10 L -5 10 L -2 7 L -2 3 C -5 2, -8 -1, -8 -6 Z" stroke="#c7cedd" stroke-width="1.1"/>
+    </g>
+    <!-- 10 桌尾的小盏（最末位，仍在） -->
+    <g transform="translate(288 216) rotate(6)">
+      <path d="M -8 -8 L 8 -8 C 8 -3, 5 0, 2 2 L 2 7 L 6 10 L -6 10 L -2 7 L -2 2 C -5 0, -8 -3, -8 -8 Z" stroke-width="1.1"/>
+    </g>
+  </g>
+
+  <!-- 未收的餐巾与面包屑（生活痕迹） -->
+  <g stroke="#8a93ad" stroke-width="0.9" fill="#10182a">
+    <path d="M 152 226 C 158 222, 168 222, 174 226 C 170 232, 158 232, 152 226 Z"/>
+  </g>
+  <g fill="#8a93ad" opacity="0.6">
+    <circle cx="190" cy="228" r="0.8"/><circle cx="196" cy="230" r="0.7"/><circle cx="120" cy="234" r="0.7"/>
+  </g>
+
+  <!-- 两把推开的空椅（人才离去） -->
+  <g stroke="#8a93ad" fill="none" opacity="0.85">
+    <path d="M 42 238 L 42 286 M 42 258 L 14 258 M 14 258 L 16 292 M 42 286 L 44 292" stroke-width="1.3"/>
+    <path d="M 244 236 L 246 284 M 246 256 L 276 254 M 276 254 L 278 290 M 246 284 L 248 290" stroke-width="1.3"/>
+  </g>
+
+  <!-- 地面 -->
+  <g stroke="#8a93ad" stroke-width="0.5" opacity="0.35" fill="none">
+    <path d="M 60 312 L 140 312 M 200 320 L 270 320"/>
+  </g>
+  <path d="M 96 268 L 210 262 L 206 272 L 100 278 Z" fill="#6fc2c9" opacity="0.05"/>
+</svg>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="宝剑九：未熄的夜灯把九柄斜倚之剑的影子投成长墙，写坏的信摊在桌上">
+  <defs>
+    <radialGradient id="s9-ground" cx="34%" cy="60%" r="115%">
+      <stop offset="0" stop-color="#131a2a"/><stop offset="0.6" stop-color="#0e1522"/><stop offset="1" stop-color="#080d16"/>
+    </radialGradient>
+    <radialGradient id="s9-lamp" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#c7d8e8" stop-opacity="0.4"/><stop offset="1" stop-color="#c7d8e8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="300" height="340" fill="url(#s9-ground)"/>
+
+  <!-- 后墙（影子幕布） -->
+  <path d="M 0 0 L 300 0 L 300 208 L 0 208 Z" fill="#0b101c" opacity="0.65"/>
+
+  <!-- 九道剑影：自灯位向墙右上放射（主视觉：焦虑的形状） -->
+  <g stroke="#aebdd6" stroke-linecap="round" opacity="0.85">
+    <line x1="98" y1="150" x2="252" y2="26" stroke-width="3.4"/>
+    <line x1="100" y1="158" x2="262" y2="44" stroke-width="3"/>
+    <line x1="102" y1="166" x2="270" y2="62" stroke-width="3.2"/>
+    <line x1="104" y1="174" x2="276" y2="82" stroke-width="2.8"/>
+    <line x1="106" y1="182" x2="280" y2="102" stroke-width="3.1"/>
+    <line x1="108" y1="190" x2="284" y2="122" stroke-width="2.7"/>
+    <line x1="110" y1="198" x2="287" y2="142" stroke-width="2.9"/>
+    <line x1="112" y1="206" x2="289" y2="162" stroke-width="2.5"/>
+    <line x1="114" y1="212" x2="290" y2="182" stroke-width="2.2"/>
+  </g>
+  <!-- 影子的护手分叉（证明那是剑） -->
+  <g stroke="#aebdd6" stroke-width="1.6" opacity="0.8">
+    <path d="M 232 48 L 242 58 M 244 68 L 254 78 M 256 88 L 266 98 M 266 108 L 275 118"/>
+  </g>
+
+  <!-- 桌（左下） -->
+  <g>
+    <path d="M 0 252 L 196 246 L 200 266 L 0 272 Z" fill="#141a28" stroke="#c7cedd" stroke-width="1.4"/>
+    <path d="M 0 258 L 196 252" stroke="#8a93ad" stroke-width="0.6" opacity="0.5"/>
+    <path d="M 0 272 L 200 266 L 200 278 L 0 284 Z" fill="#0d1320" stroke="#8a93ad" stroke-width="0.7" opacity="0.9"/>
+  </g>
+
+  <!-- 未熄的夜灯（唯一叙事光源：冷白，睡不着的颜色） -->
+  <g transform="translate(66 226)">
+    <circle r="20" fill="url(#s9-lamp)"/>
+    <path d="M -5 8 C -5 4, 5 4, 5 8 L 4 13 L -4 13 Z" fill="#0e1522" stroke="#8a93ad" stroke-width="1"/>
+    <path d="M 0 3 C 2.2 0, 1.4 -4, 0 -6 C -1.4 -4, -2.2 0, 0 3 Z" fill="#c7d8e8"/>
+  </g>
+
+  <!-- 斜倚墙角的九柄剑（影子在墙上的来源：本体暗、影亮） -->
+  <g stroke-linecap="round">
+    <path d="M 214 268 L 246 148" stroke="#1a2236" stroke-width="4.6"/>
+    <path d="M 226 270 L 252 156" stroke="#1c2438" stroke-width="4.6"/>
+    <path d="M 238 272 L 258 164" stroke="#1a2236" stroke-width="4.4"/>
+    <path d="M 250 272 L 264 172" stroke="#1c2438" stroke-width="4.4"/>
+    <path d="M 262 272 L 270 180" stroke="#1a2236" stroke-width="4.2"/>
+    <path d="M 274 270 L 276 188" stroke="#1c2438" stroke-width="4.2"/>
+    <path d="M 286 268 L 282 196" stroke="#1a2236" stroke-width="4"/>
+    <path d="M 206 264 L 240 142" stroke="#1c2438" stroke-width="4.4"/>
+    <path d="M 296 264 L 288 204" stroke="#1a2236" stroke-width="4"/>
+  </g>
+  <g stroke="#8fa2c4" stroke-width="0.8" opacity="0.6">
+    <path d="M 216 262 L 245 154 M 228 264 L 251 162 M 240 266 L 257 170 M 252 266 L 263 178"/>
+  </g>
+  <g stroke="#a9b1c7" stroke-width="1.3">
+    <path d="M 236 236 L 250 232 M 246 226 L 260 222"/>
+  </g>
+
+  <!-- 写坏的信：写满又划掉（桌上的心事） -->
+  <g transform="translate(140 244) rotate(-2)">
+    <rect x="-30" y="-11" width="60" height="22" fill="#1c2440" stroke="#a9b1c7" stroke-width="1"/>
+    <g stroke="#8a93ad" stroke-width="0.7" opacity="0.8">
+      <path d="M -24 -5 L 22 -6 M -24 0 L 14 -1 M -24 5 L 18 4"/>
+    </g>
+    <g stroke="#5d6780" stroke-width="1.1" opacity="0.95">
+      <path d="M -26 -6 L 24 -4 M -26 1 L 16 3 M -25 6 L 20 4"/>
+    </g>
+    <circle cx="24" cy="-4" r="1.4" fill="#8a93ad"/>
+  </g>
+  <!-- 滴了蜡的封信（写好却未寄出） -->
+  <circle cx="164" cy="238" r="2.6" fill="#6e2c27" stroke="#8a4a42" stroke-width="0.7"/>
+
+  <!-- 地面 -->
+  <path d="M 0 284 L 300 278" stroke="#8a93ad" stroke-width="0.7" opacity="0.4"/>
+  <g stroke="#8a93ad" stroke-width="0.5" opacity="0.35" fill="none">
+    <path d="M 60 306 L 140 306 M 200 316 L 270 316"/>
+  </g>
+  <!-- 灯在桌面的冷光池 -->
+  <path d="M 46 252 L 90 250 L 84 262 L 40 264 Z" fill="#c7d8e8" opacity="0.06"/>
+</svg>
