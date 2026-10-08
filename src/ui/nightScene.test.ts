@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { nightCardSVG, nightPanoSVG, svgToURI, hashSeed } from '@/ui/nightScene';
 import { nightArtFor, nightPanoFor } from '@/ui/nightArt';
+import { photoFor, PHOTO_COUNT } from '@/ui/photoArt';
 import { ALL_CARDS, getCardById } from '@/tarot/data';
 
 describe('程序化夜景生成器', () => {
@@ -42,6 +43,25 @@ describe('程序化夜景生成器', () => {
     for (const card of ALL_CARDS) {
       expect(nightArtFor(card)).toBe(nightArtFor(card));
       expect(nightPanoFor(card)).toBeTruthy();
+    }
+  });
+});
+
+describe('实景照片注册表', () => {
+  it('已收录照片数量达标且可按卡取用', () => {
+    expect(PHOTO_COUNT).toBeGreaterThanOrEqual(22);
+    expect(photoFor(getCardById('major-0')!)).toBeTruthy();
+    expect(photoFor(getCardById('minor-wands-1')!)).toBeTruthy();
+    expect(photoFor(getCardById('minor-cups-1')!)).toBeTruthy();
+    // 未收录的卡返回 undefined（走程序化兜底）
+    const noPhoto = ALL_CARDS.find((c) => !photoFor(c));
+    if (noPhoto) expect(photoFor(noPhoto)).toBeUndefined();
+  });
+
+  it('每张已收录照片的 key 都对应合法卡牌', () => {
+    for (const card of ALL_CARDS) {
+      const p = photoFor(card);
+      if (p) expect(p.startsWith('/') || p.startsWith('data:') || p.startsWith('http')).toBe(true);
     }
   });
 });

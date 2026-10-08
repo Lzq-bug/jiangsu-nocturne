@@ -1086,3 +1086,99 @@ input[type='range'] {
   .pano-btn { padding: 5px 10px; font-size: 11px; }
   .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 10px; }
 }
+
+/* ---------- VrCard 投影层（真 3D 深度） ---------- */
+
+.vr-shadow {
+  position: absolute;
+  inset: 4% 2% 0;
+  z-index: 0;
+  border-radius: 18%;
+  background: radial-gradient(closest-side, rgba(2, 4, 10, 0.85), rgba(2, 4, 10, 0.35) 62%, transparent 78%);
+  filter: blur(10px);
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+/* ---------- 详情页 · 3D 翻面卡 ---------- */
+
+.flip-scene {
+  perspective: 1100px;
+  width: min(64vw, 250px);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.flip-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.72s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.flip-inner.flipped { transform: rotateY(180deg); }
+
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-front { transform: translateZ(0.5px); }
+
+.flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  border-radius: 14px;
+  border: 1px solid rgba(230, 198, 135, 0.4);
+  background:
+    linear-gradient(160deg, rgba(232, 221, 196, 0.96), rgba(203, 189, 157, 0.94)),
+    var(--parchment);
+  color: #4a3d28;
+  display: grid;
+  gap: 8px;
+  align-content: center;
+  justify-items: center;
+  padding: 18px 14px;
+  text-align: center;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+}
+
+.flip-back .fb-kicker {
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  color: #8a7346;
+}
+
+.flip-back .fb-oracle {
+  font-family: var(--font-kai);
+  font-size: 15px;
+  line-height: 1.9;
+  margin: 0;
+  padding: 0 4px;
+}
+
+.flip-back .fb-meaning {
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: #6d5c3c;
+  margin: 0;
+  padding: 0 6px;
+}
+
+.flip-back .fb-city {
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  color: #8a7346;
+}
+
+.flip-hint {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-low);
+  letter-spacing: 0.22em;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner { transition: none; }
+}

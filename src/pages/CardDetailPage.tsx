@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useGame } from '@/game/store';
 import { getCardById, isMajor } from '@/tarot/data';
@@ -15,6 +16,7 @@ function fmtTime(ts: number): string {
 export default function CardDetailPage() {
   const { id } = useParams<{ id: string }>();
   const collection = useGame((s) => s.collection);
+  const [flipped, setFlipped] = useState(false);
   const card = id ? getCardById(id) : undefined;
   const entry = card ? collection[card.id] : undefined;
 
@@ -37,18 +39,42 @@ export default function CardDetailPage() {
     <div className="fade-in">
       <div className="detail">
         <div className="detail-art">
-          <div style={{ width: 'min(64vw, 250px)' }}>
-            {owned ? (
-              <VrCard accent={card.accent}>
-                <CardArt card={card} style={{ width: '100%', filter: 'drop-shadow(0 22px 46px rgba(0,0,0,0.55))' }} />
-              </VrCard>
-            ) : (
+          {owned ? (
+            <div
+              className="flip-scene"
+              role="button"
+              tabIndex={0}
+              aria-label={`${card.nameZh}卡牌，点按翻面查看夜航手记`}
+              aria-pressed={flipped}
+              onClick={() => setFlipped((f) => !f)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setFlipped((f) => !f); } }}
+            >
+              <div className={`flip-inner${flipped ? ' flipped' : ''}`}>
+                <div className="flip-face flip-front">
+                  <VrCard accent={card.accent} disabled={flipped}>
+                    <CardArt card={card} style={{ width: '100%', filter: 'drop-shadow(0 22px 46px rgba(0,0,0,0.55))' }} />
+                  </VrCard>
+                </div>
+                <div className="flip-face flip-back">
+                  <span className="fb-kicker">· 夜航手记 ·</span>
+                  <p className="fb-oracle">「{card.oracle}」</p>
+                  <p className="fb-meaning">{card.meaning}</p>
+                  <span className="fb-city">{card.city} · {card.nameEn}</span>
+                  <span className="wax-seal" style={{ width: 34, height: 34, fontSize: 12 }} aria-hidden="true">
+                    {card.arcana === 'major' ? '城' : '夜'}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div style={{ width: 'min(64vw, 250px)' }}>
               <SealedCard arcana={card.arcana} suit={card.arcana === 'minor' ? card.suit : undefined} style={{ width: '100%' }} />
-            )}
-          </div>
+            </div>
+          )}
           <div style={{ fontSize: 12, color: 'var(--text-low)', letterSpacing: '0.14em' }}>
             {owned ? (entry!.count > 1 ? `已启封 ${entry!.count} 次` : '已启封') : '封缄中 · 尚未启封'}
           </div>
+          {owned && <div className="flip-hint" aria-hidden="true">点按卡牌 · 3D 翻面看手记</div>}
           <Link to="/unseal" className="btn btn-primary" style={{ fontSize: 12.5, padding: '8px 16px' }}>
             去启封这一帧夜色
           </Link>

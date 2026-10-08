@@ -6,6 +6,7 @@ import type { CSSProperties } from 'react';
 import type { CardData, MajorCardData, MinorCardData } from '@/tarot/types';
 import { SUIT_ZH } from '@/tarot/types';
 import { nightArtFor } from './nightArt';
+import { photoFor } from './photoArt';
 import { majorOutlinePath, majorPedestalPath, minorOutlinePath } from './cardShapes';
 
 export interface CardArtProps {
@@ -20,7 +21,8 @@ export interface CardArtProps {
 export function MajorCardArt({ card, style, className }: { card: MajorCardData } & Omit<CardArtProps, 'card'>) {
   const uid = `mj-${card.num}`;
   const path = majorOutlinePath(card.shape);
-  const art = nightArtFor(card);
+  const photo = photoFor(card);
+  const art = photo ?? nightArtFor(card);
 
   return (
     <svg
@@ -40,6 +42,11 @@ export function MajorCardArt({ card, style, className }: { card: MajorCardData }
           <stop offset="0" stopColor={card.accent} stopOpacity="0.16" />
           <stop offset="1" stopColor={card.accent} stopOpacity="0" />
         </radialGradient>
+        <linearGradient id={`${uid}-ph`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#0b1026" stopOpacity="0.5" />
+          <stop offset="0.45" stopColor={card.accent} stopOpacity="0.10" />
+          <stop offset="1" stopColor="#0d1226" stopOpacity="0.55" />
+        </linearGradient>
         <clipPath id={`${uid}-clip`}>
           <path d={path} transform={card.shape.inverted ? 'rotate(180 50 116)' : undefined} />
         </clipPath>
@@ -68,7 +75,7 @@ export function MajorCardArt({ card, style, className }: { card: MajorCardData }
             return <circle key={i} cx={x} cy={y} r="0.9" fill="var(--cyan)" opacity="0.9" />;
           })}
 
-          {/* 秘仪窗：程序化生成的景点夜景 */}
+          {/* 秘仪窗：实景夜景照片优先，程序化夜景兜底（照片加夜色调和层） */}
           <g>
             <rect x="10" y="63" width="80" height="110" fill="#0c1126" />
             <image
@@ -79,6 +86,13 @@ export function MajorCardArt({ card, style, className }: { card: MajorCardData }
               height="110"
               preserveAspectRatio="xMidYMid slice"
             />
+            {photo && (
+              <>
+                <rect x="10" y="63" width="80" height="110" fill={`url(#${uid}-ph)`} />
+                <rect x="10" y="63" width="80" height="6" fill="#0b1026" opacity="0.55" />
+                <rect x="10" y="167" width="80" height="6" fill="#0b1026" opacity="0.6" />
+              </>
+            )}
             <rect x="10" y="63" width="80" height="110" fill="none" stroke="var(--silver)" strokeWidth="0.7" opacity="0.55" />
           </g>
 
@@ -118,7 +132,8 @@ export function MajorCardArt({ card, style, className }: { card: MajorCardData }
 export function MinorCardArt({ card, style, className }: { card: MinorCardData } & Omit<CardArtProps, 'card'>) {
   const uid = `mn-${card.suit}-${card.rank}`;
   const path = minorOutlinePath(card.suit);
-  const art = nightArtFor(card);
+  const photo = photoFor(card);
+  const art = photo ?? nightArtFor(card);
   const suitChar = SUIT_ZH[card.suit].slice(0, 1);
 
   return (
@@ -133,6 +148,11 @@ export function MinorCardArt({ card, style, className }: { card: MinorCardData }
         <linearGradient id={`${uid}-bg`} x1="0" y1="0" x2="0.5" y2="1">
           <stop offset="0" stopColor="#161f38" />
           <stop offset="1" stopColor="#0e1428" />
+        </linearGradient>
+        <linearGradient id={`${uid}-ph`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#0b1026" stopOpacity="0.5" />
+          <stop offset="0.45" stopColor={card.accent} stopOpacity="0.10" />
+          <stop offset="1" stopColor="#0e1428" stopOpacity="0.55" />
         </linearGradient>
         <clipPath id={`${uid}-clip`}>
           <path d={path} />
@@ -151,7 +171,7 @@ export function MinorCardArt({ card, style, className }: { card: MinorCardData }
           {card.rank} / 14
         </text>
 
-        {/* 画窗：程序化生成的景点夜景 */}
+        {/* 画窗：实景夜景照片优先，程序化夜景兜底 */}
         <g>
           <rect x="12" y="38" width="76" height="84" fill="#0c1126" />
           <image
@@ -162,6 +182,13 @@ export function MinorCardArt({ card, style, className }: { card: MinorCardData }
             height="84"
             preserveAspectRatio="xMidYMid slice"
           />
+          {photo && (
+            <>
+              <rect x="12" y="38" width="76" height="84" fill={`url(#${uid}-ph)`} />
+              <rect x="12" y="38" width="76" height="5" fill="#0b1026" opacity="0.55" />
+              <rect x="12" y="117" width="76" height="5" fill="#0b1026" opacity="0.6" />
+            </>
+          )}
           <rect x="12" y="38" width="76" height="84" fill="none" stroke="var(--silver)" strokeWidth="0.6" opacity="0.5" />
         </g>
 
