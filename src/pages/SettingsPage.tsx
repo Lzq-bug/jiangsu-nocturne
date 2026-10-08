@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { useGame } from '@/game/store';
 import { audio } from '@/audio/AudioService';
-import { web3Capability } from '@/services/capabilities';
 
 export default function SettingsPage() {
   const settings = useGame((s) => s.settings);
@@ -24,7 +23,7 @@ export default function SettingsPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `veiled-moon-save-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `jiangsu-nocturne-save-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
     flash('存档已导出为 JSON 文件。');
@@ -77,50 +76,21 @@ export default function SettingsPage() {
           />
           全部静音
         </label>
-        <label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13, color: 'var(--text-mid)', marginTop: 8 }}>
+      </div>
+
+      <div>
+        <div className="panel-title">动效与全景</div>
+        <label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13, color: 'var(--text-mid)', marginBottom: 10 }}>
           <input
             type="checkbox" checked={settings.reducedMotion}
             onChange={(e) => update({ reducedMotion: e.target.checked })}
           />
-          减少动效（观星台将使用静立星阵）
+          减少动效（关闭卡牌视差与自动环游）
         </label>
-      </div>
-
-      <div>
-        <div className="panel-title">星语 AI（可选）</div>
-        <p style={{ color: 'var(--text-mid)', fontSize: 12.5, lineHeight: 1.9, margin: '0 0 12px' }}>
-          核心游戏完全不依赖 AI。配置 DeepSeek 兼容接口后，「星语」页可获得个性化解读。
-          Key 仅保存在本机浏览器（localStorage），不会上传到任何第三方。
-        </p>
-        <div className="field">
-          <label htmlFor="cfg-key">API Key（DeepSeek 兼容，sk-…）</label>
-          <input
-            id="cfg-key" type="password" autoComplete="off"
-            value={settings.apiKey}
-            placeholder="留空 = 使用本地星语"
-            onChange={(e) => update({ apiKey: e.target.value })}
-          />
-        </div>
-        <div className="field">
-          <label htmlFor="cfg-url">API 地址</label>
-          <input
-            id="cfg-url" type="text" value={settings.apiBaseUrl}
-            onChange={(e) => update({ apiBaseUrl: e.target.value })}
-          />
-        </div>
-        <div className="field">
-          <label htmlFor="cfg-model">模型</label>
-          <input
-            id="cfg-model" type="text" value={settings.modelId}
-            onChange={(e) => update({ modelId: e.target.value })}
-          />
-        </div>
-      </div>
-
-      <div>
-        <div className="panel-title">链上收藏（实验性 · 可选）</div>
         <p style={{ color: 'var(--text-mid)', fontSize: 12.5, lineHeight: 1.9, margin: 0 }}>
-          {web3Capability.reason}
+          3D 视差卡牌与 360° 全景夜游均为本地实时渲染，不依赖任何外部服务。
+          手机端在全景画面中可开启「陀螺仪」，倾斜设备即可环顾四周；
+          系统或浏览器开启「减少动态效果」时，作品会自动退化为静态展示。
         </p>
       </div>
 
@@ -145,7 +115,7 @@ export default function SettingsPage() {
             <>
               <button
                 className="btn" style={{ color: '#c2453a', borderColor: 'rgba(194,69,58,0.6)' }}
-                onClick={() => { reset(); setConfirmReset(false); flash('存档已重置为全新手记。'); }}
+                onClick={() => { reset(); setConfirmReset(false); flash('存档已重置为全新夜航。'); }}
               >
                 确认清空全部进度
               </button>

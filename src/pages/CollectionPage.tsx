@@ -5,6 +5,7 @@ import { ALL_CARDS, isMajor } from '@/tarot/data';
 import { SUITS } from '@/tarot/data/minorSource';
 import type { SuitKey } from '@/tarot/types';
 import { CardArt, SealedCard } from '@/ui/CardArt';
+import { VrCard } from '@/ui/VrCard';
 
 type Filter =
   | { kind: 'all' } | { kind: 'major' } | { kind: 'minor' }
@@ -13,8 +14,8 @@ type Filter =
 
 const FILTERS: Array<{ key: string; label: string; filter: Filter }> = [
   { key: 'all', label: '全部', filter: { kind: 'all' } },
-  { key: 'major', label: '月章', filter: { kind: 'major' } },
-  { key: 'minor', label: '星签', filter: { kind: 'minor' } },
+  { key: 'major', label: '城章', filter: { kind: 'major' } },
+  { key: 'minor', label: '夜签', filter: { kind: 'minor' } },
   ...SUITS.map((s) => ({ key: `suit-${s.key}`, label: s.zh, filter: { kind: 'suit', suit: s.key } as Filter })),
   { key: 'owned', label: '已启封', filter: { kind: 'owned' } },
   { key: 'sealed', label: '封缄', filter: { kind: 'sealed' } },
@@ -40,10 +41,10 @@ export default function CollectionPage() {
 
   return (
     <div className="fade-in">
-      <div className="panel-title">魔女阁 · 七十八封星之遗言</div>
+      <div className="panel-title">夜泊阁 · 七十八帧江苏夜色</div>
       <p style={{ color: 'var(--text-mid)', fontSize: 13, margin: '4px 0 0' }}>
         已启封 <b style={{ color: 'var(--gold)' }}>{owned.size}</b> / {total} ——
-        火漆未破的牌位，正在等它自己的时刻。
+        火漆未破的牌位，正在等它自己的时刻。已启封的帧可进详情页 360° 全景夜游。
       </p>
 
       <div className="filters" role="group" aria-label="筛选牌组">
@@ -71,7 +72,9 @@ export default function CollectionPage() {
               style={{ position: 'relative', display: 'block' }}
             >
               {isOwned ? (
-                <CardArt card={c} style={{ width: '100%' }} />
+                <VrCard accent={c.accent} ariaLabel={c.nameZh}>
+                  <CardArt card={c} style={{ width: '100%' }} />
+                </VrCard>
               ) : (
                 <SealedCard
                   arcana={c.arcana}
@@ -97,7 +100,7 @@ export default function CollectionPage() {
       )}
 
       <p style={{ textAlign: 'center', marginTop: 26, fontSize: 12, color: 'var(--text-low)' }}>
-        {isMajor(ALL_CARDS[0]) ? '月章稀有而庄重，星签轻盈而繁多 —— 每一封都只被完整收录一次。' : ''}
+        {isMajor(ALL_CARDS[0]) ? '城章庄重而稀有，夜签轻盈而繁多 —— 每一帧夜色都只被完整收录一次。' : ''}
       </p>
     </div>
   );

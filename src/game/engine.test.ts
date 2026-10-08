@@ -23,7 +23,7 @@ describe('启封抽牌', () => {
     }
   });
 
-  it('月章权重约为 25%（统计意义）', () => {
+  it('城章权重约为 25%（统计意义）', () => {
     let majors = 0;
     const N = 4000;
     const owned = new Set<string>();

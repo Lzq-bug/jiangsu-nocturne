@@ -1,54 +1,40 @@
 /**
- * 星签 · 56 张小阿卡纳（4 花色 × 14）
- * 名称沿用传统塔罗体系，由素材源数据生成。
+ * 夜签 · 56 张小牌（四大夜色系列 × 14）
+ * 由「夜签景点源数据」（src/spots/minorSpots.ts）组装为完整卡牌数据。
  */
-import type { MinorCardData, MinorRank, SuitKey } from '../types';
-import { minorNameEn, minorNameZh, SUIT_ZH } from '../types';
+import type { MinorCardData, SuitKey } from '../types';
+import { MINOR_SPOTS } from '@/spots/minorSpots';
 import {
-  ACE_ORACLE, COURT_NOTES, COURT_ORACLE, SUITS, SUIT_KEYWORDS, SUIT_NOTE_TEMPLATE,
+  CLOSING_NOTE_TEMPLATE, SERIES_NOTE_TEMPLATE, SUITS,
 } from './minorSource';
 
-function rankMeaning(suit: SuitKey, rank: MinorRank): string {
-  const kw = SUIT_KEYWORDS[suit][rank - 1];
-  const zh = SUIT_ZH[suit];
-  return rank === 1
-    ? `${zh}的开端之力：${kw}。`
-    : `${zh}之${rank <= 10 ? '数' : ''}义：${kw}。`;
-}
+const RANKS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] as const;
 
-function buildMinor(suit: SuitKey, rank: MinorRank): MinorCardData {
+function buildMinor(suit: SuitKey, index: number): MinorCardData {
+  const spot = MINOR_SPOTS[suit][index];
   const meta = SUITS.find((s) => s.key === suit)!;
-  const kw = SUIT_KEYWORDS[suit][rank - 1];
-  const nameZh = minorNameZh(suit, rank);
-
-  let oracle: string;
-  let note: string;
-  if (rank === 1) {
-    oracle = ACE_ORACLE[suit];
-    note = `魔女将这枚${meta.sigil}单独封存——「${kw}」。万物有了第一粒，才有后来的一切。——魔女手记·星签`;
-  } else if (rank >= 11) {
-    oracle = COURT_ORACLE[suit][rank as 11 | 12 | 13 | 14];
-    note = `${COURT_NOTES[suit][rank as 11 | 12 | 13 | 14]}——魔女手记·星签`;
-  } else {
-    oracle = `星图排到第 ${rank} 位——${kw.split('、')[0]}。`;
-    note = `${SUIT_NOTE_TEMPLATE[suit].replace('{k}', kw)}——魔女手记·星签`;
-  }
+  const kw = spot.keywords[0];
+  const noteBody = spot.rank >= 11
+    ? CLOSING_NOTE_TEMPLATE[suit].replace('{k}', kw)
+    : SERIES_NOTE_TEMPLATE[suit].replace('{k}', kw);
 
   return {
-    id: `minor-${suit}-${rank}`,
+    id: `minor-${suit}-${spot.rank}`,
     arcana: 'minor',
     suit,
-    rank,
-    nameZh,
-    nameEn: minorNameEn(suit, rank),
-    keywords: kw.split('、'),
-    accent: meta.accent,
-    meaning: rankMeaning(suit, rank),
-    oracle,
-    note,
+    rank: spot.rank,
+    nameZh: spot.nameZh,
+    nameEn: spot.nameEn,
+    city: spot.city,
+    keywords: spot.keywords,
+    accent: spot.accent ?? meta.accent,
+    meaning: spot.meaning,
+    oracle: spot.oracle,
+    note: `${noteBody}——夜航手记·夜签`,
+    art: spot.art,
   };
 }
 
 export const MINORS: MinorCardData[] = SUITS.flatMap((s) =>
-  ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] as MinorRank[]).map((r) => buildMinor(s.key, r)),
+  RANKS.map((_, i) => buildMinor(s.key, i)),
 );

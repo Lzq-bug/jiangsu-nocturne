@@ -5,6 +5,7 @@ import { useGame } from '@/game/store';
 import { ECONOMY } from '@/game/economy';
 import { getCardById, isMajor } from '@/tarot/data';
 import { CardArt, SealedCard } from '@/ui/CardArt';
+import { VrCard } from '@/ui/VrCard';
 
 const FAN: number = 12;
 const FAN_IDX = Array.from({ length: FAN }, (_, i) => i);
@@ -150,27 +151,29 @@ export default function UnsealPage() {
       {stage === 'result' && result && resultCard && (
         <div className="ritual-stage reveal-card-wrap">
           {result.isNew ? (
-            <span className="new-badge">✦ 新牌入阁</span>
+            <span className="new-badge">✦ 新帧入阁</span>
           ) : (
             <span className="new-badge" style={{ borderColor: 'rgba(230,198,135,0.4)', color: 'var(--gold)' }}>
-              重复的遗言 · 补偿 +{result.refund} ✦
+              重复的夜色 · 补偿 +{result.refund} ✦
             </span>
           )}
           <div style={{ width: 'min(46vw, 190px)' }}>
-            <CardArt card={resultCard} style={{ width: '100%', filter: 'drop-shadow(0 18px 40px rgba(0,0,0,0.6))' }} />
+            <VrCard accent={resultCard.accent}>
+              <CardArt card={resultCard} style={{ width: '100%', filter: 'drop-shadow(0 18px 40px rgba(0,0,0,0.6))' }} />
+            </VrCard>
           </div>
           <div style={{ display: 'grid', gap: 4 }}>
             <div style={{ fontSize: 19, letterSpacing: '0.22em' }}>{resultCard.nameZh}</div>
             <div style={{ fontSize: 12, color: 'var(--text-mid)', letterSpacing: '0.12em' }}>
-              {isMajor(resultCard) ? `月章 · ${resultCard.roman}` : `星签 · ${resultCard.nameEn}`}
+              {isMajor(resultCard) ? `城章 · ${resultCard.roman}` : `夜签 · ${resultCard.nameEn}`}
             </div>
             <div style={{ fontSize: 13, color: 'var(--silver)', marginTop: 6, fontFamily: 'var(--font-kai)' }}>
               「{resultCard.oracle}」
             </div>
           </div>
           <div style={{ display: 'flex', gap: 10, marginTop: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <Link className="btn" to={`/card/${resultCard.id}`}>翻阅这一页手记 →</Link>
-            <Link className="btn" to="/collection">前往魔女阁</Link>
+            <Link className="btn" to={`/card/${resultCard.id}`}>夜游这一帧 →</Link>
+            <Link className="btn" to="/collection">前往夜泊阁</Link>
             <button className="btn btn-primary" onClick={begin} disabled={!canUnseal()}>
               再启一封（{ECONOMY.unsealCost} ✦）
             </button>

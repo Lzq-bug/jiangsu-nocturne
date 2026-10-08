@@ -1,13 +1,13 @@
-/** 宵月秘藏 · 卡牌数据类型定义 */
+/** 夜泊江苏 · 卡牌数据类型定义 */
 
 export type Arcana = 'major' | 'minor';
 
 export type SuitKey = 'wands' | 'cups' | 'swords' | 'pentacles';
 
-/** 小牌等级：1=王牌(A) 2-10=数字牌 11=侍从 12=骑士 13=王后 14=国王 */
+/** 小牌等级：1=首卷 2-10=数字卷 11-14=收官四卷 */
 export type MinorRank = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
-/** 大牌轮廓变奏参数（月芒尖碑骨架上的单牌个性，见《宵月秘藏》视觉规范 3.2） */
+/** 大牌轮廓变奏参数（月芒尖碑骨架上的单牌个性） */
 export interface MajorShapeSpec {
   /** 顶主尖横向偏移（-20 ~ 20），负值向左后掠 */
   tilt: number;
@@ -25,25 +25,57 @@ export interface MajorShapeSpec {
   inverted?: boolean;
 }
 
+/** 夜景剪影母题（程序化夜景生成器的取件） */
+export type MotifKind =
+  | 'ferry'          // 画舫灯船
+  | 'gate'           // 城门瓮城
+  | 'garden'         // 园林月洞门
+  | 'street'         // 水乡街巷
+  | 'skyscraper'     // 现代天际线
+  | 'pagoda'         // 宝塔
+  | 'pavilion'       // 亭榭
+  | 'bridge'         // 拱桥（含桥亭）
+  | 'lighthouse'     // 灯塔
+  | 'temple'         // 寺庙大殿
+  | 'wall'           // 城墙垛口
+  | 'lake'           // 开阔湖面
+  | 'sea'            // 海平线
+  | 'buddha'         // 大佛
+  | 'hill'           // 山形塔影
+  | 'banner';        // 门楼旌旗（故里）
+
+export interface SpotArt {
+  /** 剪影母题（1-2 个，横向排布） */
+  motifs: MotifKind[];
+  /** 月亮横向位置（0-1，默认 0.72） */
+  moon?: number;
+  /** 月相（'waxing' | 'full'，默认 'waxing'） */
+  phase?: 'waxing' | 'full';
+}
+
 interface CardBase {
   id: string;
   arcana: Arcana;
   nameZh: string;
   nameEn: string;
+  /** 所属城市 */
+  city: string;
   keywords: string[];
-  /** 主光色（牌面叙事光源色） */
+  /** 主光色（夜色的光源色） */
   accent: string;
+  /** 夜景剪影参数 */
+  art: SpotArt;
 }
 
 export interface MajorCardData extends CardBase {
   arcana: 'major';
   num: number;
   roman: string;
-  /** 一句话核心象征 */
+  /** 一句话意境 */
   meaning: string;
-  /** 神谕句（魔女手记第一层） */
+  /** 灯语短句（夜航手记第一层） */
   oracle: string;
-  /** 象征解读（第二层） */
+  /** 夜话解读（第二层） */
   interpretation: string;
   /** 收藏者批注（第三层，含落款） */
   note: string;
@@ -54,11 +86,11 @@ export interface MinorCardData extends CardBase {
   arcana: 'minor';
   suit: SuitKey;
   rank: MinorRank;
-  /** 一句话含义 */
+  /** 一句话意境 */
   meaning: string;
-  /** 神谕句（短） */
+  /** 灯语短句 */
   oracle: string;
-  /** 魔女短注（简洁版） */
+  /** 夜航短注 */
   note: string;
 }
 
@@ -69,25 +101,17 @@ export const ROMAN = [
   'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI',
 ] as const;
 
+/** 四大夜色系列 */
 export const SUIT_ZH: Record<SuitKey, string> = {
-  wands: '权杖', cups: '圣杯', swords: '宝剑', pentacles: '星币',
+  wands: '灯影', cups: '水岸', swords: '山寺', pentacles: '城垣',
 };
 
+export const SUIT_EN: Record<SuitKey, string> = {
+  wands: 'Lantern Glow', cups: 'Waterfront', swords: 'Hill & Temple', pentacles: 'Old City',
+};
+
+/** 系列内卷序（第 1 卷 ~ 第 14 卷） */
 export const RANK_ZH: Record<MinorRank, string> = {
-  1: '王牌', 2: '二', 3: '三', 4: '四', 5: '五', 6: '六',
-  7: '七', 8: '八', 9: '九', 10: '十', 11: '侍从', 12: '骑士', 13: '王后', 14: '国王',
+  1: '卷一', 2: '卷二', 3: '卷三', 4: '卷四', 5: '卷五', 6: '卷六',
+  7: '卷七', 8: '卷八', 9: '卷九', 10: '卷十', 11: '卷十一', 12: '卷十二', 13: '卷十三', 14: '卷十四',
 };
-
-export const RANK_EN: Record<MinorRank, string> = {
-  1: 'Ace', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six',
-  7: 'Seven', 8: 'Eight', 9: 'Nine', 10: 'Ten', 11: 'Page', 12: 'Knight', 13: 'Queen', 14: 'King',
-};
-
-export function minorNameZh(suit: SuitKey, rank: MinorRank): string {
-  return `${SUIT_ZH[suit]}${RANK_ZH[rank]}`;
-}
-
-export function minorNameEn(suit: SuitKey, rank: MinorRank): string {
-  const suitEn: Record<SuitKey, string> = { wands: 'Wands', cups: 'Cups', swords: 'Swords', pentacles: 'Pentacles' };
-  return `${RANK_EN[rank]} of ${suitEn[suit]}`;
-}

@@ -8,9 +8,9 @@ import StarCatchPage from '@/pages/StarCatchPage';
 import UnsealPage from '@/pages/UnsealPage';
 import CollectionPage from '@/pages/CollectionPage';
 import CardDetailPage from '@/pages/CardDetailPage';
+import GalleryPage from '@/pages/GalleryPage';
 import SettingsPage from '@/pages/SettingsPage';
 import AboutPage from '@/pages/AboutPage';
-import StarWhisperPage from '@/pages/StarWhisperPage';
 
 function ScrollTop() {
   const { pathname } = useLocation();
@@ -26,6 +26,7 @@ function sceneFor(pathname: string): SceneKey {
   if (pathname.startsWith('/starcatch')) return 'observatory';
   if (pathname.startsWith('/unseal')) return 'unseal';
   if (pathname.startsWith('/collection')) return 'archive';
+  if (pathname.startsWith('/gallery')) return 'archive';
   if (pathname.startsWith('/card/')) return 'detail';
   return 'quiet';
 }
@@ -70,16 +71,16 @@ function Shell() {
       <div className="shell">
       <header className="topbar">
         <div className="topbar-inner">
-          <Link to="/" className="brand" aria-label="宵月秘藏 · 回到主厅">
-            <b>宵月秘藏</b>
-            <span>VEILED MOON RELIQUARY</span>
+          <Link to="/" className="brand" aria-label="夜泊江苏 · 回到主厅">
+            <b>夜泊江苏</b>
+            <span>JIANGSU NOCTURNE</span>
           </Link>
           <nav className="nav" aria-label="主导航">
             <NavLink to="/" end>主厅</NavLink>
             <NavLink to="/starcatch">观星台</NavLink>
             <NavLink to="/unseal">启封</NavLink>
-            <NavLink to="/collection">魔女阁</NavLink>
-            <NavLink to="/starwhisper">星语</NavLink>
+            <NavLink to="/collection">夜泊阁</NavLink>
+            <NavLink to="/gallery">画廊</NavLink>
             <NavLink to="/settings">设置</NavLink>
           </nav>
           <span className="stardust-chip" title="星屑 · 启封仪式的燃料" aria-live="polite">
@@ -94,7 +95,7 @@ function Shell() {
       </main>
 
       <footer className="footer">
-        宵月秘藏 · The Veiled Moon Reliquary — 78 封星之遗言的魔女档案
+        夜泊江苏 · Jiangsu Nocturne — 七十八帧水韵江苏的夜色收藏
         {' · '}
         <Link to="/about" style={{ color: 'inherit' }}>关于本项目</Link>
       </footer>
@@ -112,7 +113,7 @@ export default function App() {
         <Route path="/unseal" element={<UnsealPage />} />
         <Route path="/collection" element={<CollectionPage />} />
         <Route path="/card/:id" element={<CardDetailPage />} />
-        <Route path="/starwhisper" element={<StarWhisperPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<HomePage />} />

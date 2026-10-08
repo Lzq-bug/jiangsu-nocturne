@@ -55,7 +55,7 @@ describe('存档系统', () => {
     expect(data.version).toBe(SAVE_VERSION);
     expect(data.stardust).toBe(120);
     expect(data.collection['minor-wands-1'].count).toBe(1);
-    expect(data.settings.apiKey).toBe('');
+    expect(data.settings.reducedMotion).toBe(false);
   });
 
   it('persist + load roundtrip', () => {

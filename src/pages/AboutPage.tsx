@@ -6,31 +6,34 @@ export default function AboutPage() {
   return (
     <div className="fade-in" style={{ maxWidth: 680, margin: '0 auto', display: 'grid', gap: 18 }}>
       <div className="panel">
-        <div className="panel-title">宵月秘藏 · The Veiled Moon Reliquary</div>
+        <div className="panel-title">夜泊江苏 · Jiangsu Nocturne</div>
         <p style={{ color: 'var(--text-mid)', fontSize: 13.5, lineHeight: 2.1, margin: 0 }}>
-          这是一册可以玩的魔女档案：{ALL_CARDS.length} 封「星之遗言」被封存在旧银圣物匣中——
-          22 张「月章」庄重如夜祷，56 张「星签」轻盈如星屑。
-          在观星台攒下星屑，在启封仪式上亲手破开火漆，
-          让每一张牌带着它的神谕、象征与魔女的批注，住进只属于你的魔女阁。
+          这是一册可以玩的江苏夜色收藏：{ALL_CARDS.length} 帧水韵江苏的夜被泊在同一片水域——
+          22 张「城章」收录全省最具代表性的夜景地标，56 张「夜签」按
+          灯影、水岸、山寺、城垣四大夜色系列铺开。
+          在观星台攒下星屑，在启封仪式上亲手点亮一帧夜色，
+          然后走进 360° 全景，云夜游这方「月落乌啼霜满天」的土地。
         </p>
       </div>
       <div className="panel">
         <div className="panel-title">玩法一页纸</div>
         <ol style={{ color: 'var(--text-mid)', fontSize: 13, lineHeight: 2.2, margin: 0, paddingLeft: 20 }}>
           <li>观星台捕星 → 攒「星屑」。</li>
-          <li>启封仪式消耗 {ECONOMY.unsealCost} 星屑 → 从十二枚封缄中亲手翻开一枚。</li>
-          <li>新牌永久入阁；重复的牌化作 {ECONOMY.duplicateRefund} 星屑补偿。</li>
-          <li>连续 {ECONOMY.pityThreshold} 次无新牌，下一封必为新牌（收集保护）。</li>
-          <li>月章掉落权重约 25%，星签约 75%；未拥有的牌享有额外权重。</li>
+          <li>启封仪式消耗 {ECONOMY.unsealCost} 星屑 → 从十二枚封缄中亲手翻开一帧。</li>
+          <li>新帧永久入阁；重复的帧化作 {ECONOMY.duplicateRefund} 星屑补偿。</li>
+          <li>连续 {ECONOMY.pityThreshold} 次无新帧，下一封必为新帧（收集保护）。</li>
+          <li>城章掉落权重约 25%，夜签约 75%；未拥有的帧享有额外权重。</li>
+          <li>夜泊画廊免费开放 22 张城章的 360° 全景夜游，随时可以先睹为快。</li>
         </ol>
       </div>
       <div className="panel">
         <div className="panel-title">独立原创声明</div>
         <p style={{ color: 'var(--text-mid)', fontSize: 13, lineHeight: 2, margin: 0 }}>
-          本项目的卡牌名称沿用公共领域的传统塔罗体系；轮廓系统（月芒尖碑/火熜/圣爵/剑锋/环璧）、
-          边框与装饰语言、全部卡面图形（程序化 SVG）、说明文案、配色体系与界面均为原创设计，
-          不包含任何第三方游戏的可视资产。AI、语音与链上铸造均为可选能力，
-          缺席时游戏完整可玩。
+          本项目的景点夜景画面全部由程序化 SVG 生成器实时绘制（夜空、月相、星野、
+          剪影母题、水面倒影均为原创算法与构图），轮廓系统（月芒尖碑等异形骨架）、
+          边框与装饰语言、说明文案、配色体系与界面均为原创设计，
+          不包含任何第三方游戏或素材库的可视资产。核心玩法、全景夜游完全本地运行，
+          不依赖任何在线服务或 API Key。
         </p>
       </div>
       <div style={{ textAlign: 'center' }}>

@@ -14,10 +14,6 @@ export interface GameSettings {
   sfx: number;
   muted: boolean;
   reducedMotion: boolean;
-  /** 可选星语 AI：DeepSeek 兼容 Key（仅存本地） */
-  apiKey: string;
-  apiBaseUrl: string;
-  modelId: string;
 }
 
 export interface SaveData {
@@ -40,7 +36,6 @@ export interface SaveData {
 export function defaultSettings(): GameSettings {
   return {
     master: 0.8, bgm: 0.5, sfx: 0.8, muted: false, reducedMotion: false,
-    apiKey: '', apiBaseUrl: '/__api', modelId: 'deepseek-chat',
   };
 }
 
@@ -96,7 +91,6 @@ function sanitize(data: SaveData): SaveData {
   const base = defaultSave();
   const num = (v: unknown, d: number) => (typeof v === 'number' && Number.isFinite(v) ? v : d);
   const bool = (v: unknown, d: boolean) => (typeof v === 'boolean' ? v : d);
-  const str = (v: unknown, d: string) => (typeof v === 'string' ? v : d);
   const collection: CollectionMap = {};
   if (data.collection && typeof data.collection === 'object') {
     for (const [id, entry] of Object.entries(data.collection)) {
@@ -130,9 +124,6 @@ function sanitize(data: SaveData): SaveData {
       sfx: clamp01(s.sfx, def.sfx),
       muted: bool(s.muted, def.muted),
       reducedMotion: bool(s.reducedMotion, def.reducedMotion),
-      apiKey: str(s.apiKey, ''),
-      apiBaseUrl: str(s.apiBaseUrl, def.apiBaseUrl),
-      modelId: str(s.modelId, def.modelId),
     },
   };
 }

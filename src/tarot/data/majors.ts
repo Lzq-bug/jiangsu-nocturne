@@ -1,251 +1,51 @@
 /**
- * 月章 · 22 张大阿卡纳
- * 名称沿用传统塔罗体系；视觉与文案为《宵月秘藏》原创
- * （文案三层结构：神谕句 / 象征解读 / 收藏者批注，见视觉规范 3.6）
+ * 城章 · 22 张大牌
+ * 由「城章景点源数据」（src/spots/majorSpots.ts）组装为完整卡牌数据。
+ * 轮廓沿用「月芒尖碑」异形卡牌骨架，为每席分配独立形制。
  */
-import { ROMAN, type MajorCardData } from '../types';
+import { ROMAN, type MajorCardData, type MajorShapeSpec } from '../types';
+import { MAJOR_SPOTS } from '@/spots/majorSpots';
 
-export const MAJORS: MajorCardData[] = [
-  {
-    id: 'major-0', arcana: 'major', num: 0, roman: ROMAN[0],
-    nameZh: '愚者', nameEn: 'The Fool',
-    keywords: ['开端', '纯真', '冒险', '未知'],
-    meaning: '跃入未知的纯真开端。',
-    oracle: '第一步不需要桥。',
-    interpretation: '深渊与坦途在落下之前并无分别——愚者把行囊抛给风，把名字留给来路，只用一双尚未学会害怕的眼睛丈量晨光。你手中的这封星之遗言写于某个起点：所有后来被称作命运的路，起初都只是他不肯回头的理由。',
-    note: '这是我唯一没有锁进匣子的一张。——魔女手记·第零页',
-    accent: '#E3C27E',
-    shape: { tilt: 8, steps: 2, wing: 'standard', top: 'apex', side: 'straight' },
-  },
-  {
-    id: 'major-1', arcana: 'major', num: 1, roman: ROMAN[1],
-    nameZh: '魔术师', nameEn: 'The Magician',
-    keywords: ['意志', '显化', '资源', '行动'],
-    meaning: '以意志把可能落成现实。',
-    oracle: '星火落进掌心，就成了器物。',
-    interpretation: '他说显化并非无中生有——只是把天上已有的排列，借自己的手抄录到地上。四件器物围成的环没有起点，正如意志从不问「能不能」，只问「何时」。',
-    note: '小心向他许愿的人，他真的会当真。——魔女手记·第一页',
-    accent: '#7FD6D0',
-    shape: { tilt: 0, steps: 3, wing: 'raised', top: 'twin', side: 'straight' },
-  },
-  {
-    id: 'major-2', arcana: 'major', num: 2, roman: ROMAN[2],
-    nameZh: '女祭司', nameEn: 'The High Priestess',
-    keywords: ['直觉', '潜意识', '秘仪', '静观'],
-    meaning: '帷幕之后的直觉与隐知。',
-    oracle: '答案不在缝外，在你阖眼的深处。',
-    interpretation: '她从不给谶语，只把帷幕掀开一线——看见多少，取决于你敢往暗处走多远。石榴在她袖中裂开，籽粒数着尚未发生的梦。持牌人啊，当你抽到她，请先沉默三息再提问。',
-    note: '她知道的，比我教过她的多得多。——魔女手记·第二页',
-    accent: '#C7CEDD',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'apex', side: 'straight', cut: 'crescent' },
-  },
-  {
-    id: 'major-3', arcana: 'major', num: 3, roman: ROMAN[3],
-    nameZh: '女皇', nameEn: 'The Empress',
-    keywords: ['丰饶', '滋养', '美感', '生长'],
-    meaning: '丰饶与感官的滋养之力。',
-    oracle: '万物借你的名字生长。',
-    interpretation: '麦子在门内熟了七次，蔷薇便开了七次——她从不催促任何东西，包括命运。丰饶不是拥有很多，是允许很多从你身上经过。把你搁置的念头交给她，她会让它自己开花。',
-    note: '匣子放在她牌旁的种子，来年春天真的发了芽。——魔女手记·第三页',
-    accent: '#D98A9C',
-    shape: { tilt: 0, steps: 3, wing: 'leaf', top: 'apex', side: 'wave' },
-  },
-  {
-    id: 'major-4', arcana: 'major', num: 4, roman: ROMAN[4],
-    nameZh: '皇帝', nameEn: 'The Emperor',
-    keywords: ['秩序', '权威', '结构', '守护'],
-    meaning: '以秩序立起的稳固疆界。',
-    oracle: '秩序是他亲手砌起的墙。',
-    interpretation: '墙内的每一寸土地都有名字，墙外的一切都暂不属于任何人。有人笑他把王座留在旷野——可疆界从不长在土地上，长在敢画线的那只手里。',
-    note: '向他的疆界借过三次路，三次都被要求立字据。——魔女手记·第四页',
-    accent: '#C06A52',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'flat', side: 'straight' },
-  },
-  {
-    id: 'major-5', arcana: 'major', num: 5, roman: ROMAN[5],
-    nameZh: '教皇', nameEn: 'The Hierophant',
-    keywords: ['传统', '传承', '信念', '导引'],
-    meaning: '传统与信仰的传承之钥。',
-    oracle: '传统的门，只向叩问者打开。',
-    interpretation: '他保管着所有已被验证的祷告，也保管着所有尚未被推翻的答案。钥匙有两把：一把开往前的门，一把开来时的路——多数人只记得第一把。',
-    note: '我入门那日，他把第二把钥匙也给了我，说：「记得回来时用。」——魔女手记·第五页',
-    accent: '#C9A25C',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'triple', side: 'straight' },
-  },
-  {
-    id: 'major-6', arcana: 'major', num: 6, roman: ROMAN[6],
-    nameZh: '恋人', nameEn: 'The Lovers',
-    keywords: ['结合', '选择', '价值', '共振'],
-    meaning: '爱与价值一致的选择。',
-    oracle: '牵住的手，就是选定的路。',
-    interpretation: '两张牌背在匣中相贴了那么久，以至于启封时谁也不肯先离开。爱在秘仪里不是巧合，是两个自由意志在星图上彼此指认。选择一个人，就是选择一种此后解释世界的方式。',
-    note: '合启这一张时，匣子轻得像被祝福过。——魔女手记·第六页',
-    accent: '#C4526A',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'apex', side: 'straight' },
-  },
-  {
-    id: 'major-7', arcana: 'major', num: 7, roman: ROMAN[7],
-    nameZh: '战车', nameEn: 'The Chariot',
-    keywords: ['意志', '前进', '驾驭', '胜利'],
-    meaning: '驾驭对立力量的前行意志。',
-    oracle: '方向由不肯回头的人来定。',
-    interpretation: '两匹兽向两处挣，缰绳却在同一双手里——他把「想走的路」和「该走的路」套上了同一辆车。星流向后退得越急，车辕便显得越静。',
-    note: '他从不停下问路，所以我只好把路修在他要去的方向上。——魔女手记·第七页',
-    accent: '#B9C4DE',
-    shape: { tilt: -15, steps: 2, wing: 'ribbon', top: 'apex', side: 'straight' },
-  },
-  {
-    id: 'major-8', arcana: 'major', num: 8, roman: ROMAN[8],
-    nameZh: '力量', nameEn: 'Strength',
-    keywords: ['勇气', '柔韧', '耐心', '驯服'],
-    meaning: '以温柔驯服内在的兽。',
-    oracle: '最深的驯服，是温柔都不必出声。',
-    interpretation: '狮子见过一千种降服它的方式：鞭、网、更强壮的爪。它唯独没见过有人向它摊开手掌。你心里的那头兽也一样——它要的从来不是被战胜，是被认领。',
-    note: '她驯狮那晚，我的猫在旁边看得直打哈欠。——魔女手记·第八页',
-    accent: '#D99C5B',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'apex', side: 'wave' },
-  },
-  {
-    id: 'major-9', arcana: 'major', num: 9, roman: ROMAN[9],
-    nameZh: '隐士', nameEn: 'The Hermit',
-    keywords: ['内省', '独处', '寻道', '灯'],
-    meaning: '向内独行的寻道之灯。',
-    oracle: '走了很远才发现，自己是自己的路标。',
-    interpretation: '他把人群还给人群，把喧哗还给喧哗，只带走一盏灯。灯里不是火，是他攒了半生的那些问题——问题亮着，路就不算黑。',
-    note: '每年冬至我去还书，顺路带一壶热酒。他从不开门，但酒总会空。——魔女手记·第九页',
-    accent: '#E6C687',
-    shape: { tilt: -10, steps: 3, wing: 'standard', top: 'apex', side: 'straight', cut: 'lightHole' },
-  },
-  {
-    id: 'major-10', arcana: 'major', num: 10, roman: ROMAN[10],
-    nameZh: '命运之轮', nameEn: 'Wheel of Fortune',
-    keywords: ['周期', '转折', '机运', '流转'],
-    meaning: '不可抗的周期与转折。',
-    oracle: '轮子不问好坏，只问你是否愿意上车。',
-    interpretation: '有人在低处咒骂，有人在高处睡去，而斯芬克斯只是看着——谜底她早说过：转上去的时候记得抓紧，转下来的时候记得松手。',
-    note: '我占卜从不收金币，只收「下一次轮转的座位」。——魔女手记·第十页',
-    accent: '#C08A4A',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'apex', side: 'straight', cut: 'ringCut' },
-  },
-  {
-    id: 'major-11', arcana: 'major', num: 11, roman: ROMAN[11],
-    nameZh: '正义', nameEn: 'Justice',
-    keywords: ['因果', '公正', '责任', '真相'],
-    meaning: '因果分明的不偏之秤。',
-    oracle: '因果记得每一笔账。',
-    interpretation: '她不愤怒，也不安慰——秤盘倾斜的那侧，总有人以为自己藏得很好。可剑悬得越高，落得越直。你若求她，先把自己的账目摊开。',
-    note: '别在她牌前撒谎。那次火漆印烫了我整整一季。——魔女手记·第十一页',
-    accent: '#8FA9D6',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'apex', side: 'straight' },
-  },
-  {
-    id: 'major-12', arcana: 'major', num: 12, roman: ROMAN[12],
-    nameZh: '倒吊人', nameEn: 'The Hanged Man',
-    keywords: ['臣服', '换位', '暂停', '觉悟'],
-    meaning: '倒悬中的换位与觉悟。',
-    oracle: '世界颠倒了，他才第一次看清它。',
-    interpretation: '绳子系住的是脚，不是念头。在他停下的这一刻，跑着的人都成了倒影——有时必须悬在两种看法之间，真相才会浮出水面。',
-    note: '这张牌我倒着收了三年，直到明白它从来不需要被放正。——魔女手记·第十二页',
-    accent: '#9DB48A',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'apex', side: 'straight', inverted: true },
-  },
-  {
-    id: 'major-13', arcana: 'major', num: 13, roman: ROMAN[13],
-    nameZh: '死神', nameEn: 'Death',
-    keywords: ['终结', '转化', '放手', '新生'],
-    meaning: '终结之后的转化与新生。',
-    oracle: '结束是一扇门，不是一堵墙。',
-    interpretation: '他收割的从来不是人，是时效——过期的誓言、过期的身份、过期的不甘。白马走过之后，地平线上那线光才会显形：原来门后一直有早晨。',
-    note: '我最怕的一张，也是我最常抽给自己的一张。——魔女手记·第十三页',
-    accent: '#E08A4C',
-    shape: { tilt: 0, steps: 2, wing: 'none', top: 'apex', side: 'scythe' },
-  },
-  {
-    id: 'major-14', arcana: 'major', num: 14, roman: ROMAN[14],
-    nameZh: '节制', nameEn: 'Temperance',
-    keywords: ['调和', '中道', '耐心', '流动'],
-    meaning: '极端之间的调和之术。',
-    oracle: '把极端调成人能饮下的酒。',
-    interpretation: '火太烈，冰太沉默，她便做那个来回倒水的人——不是各取一半，而是让火知道冷、让冰记得暖。命运浓时兑一点光，命运淡时兑一点火。',
-    note: '教我调药的人说过，手稳不如心稳。——魔女手记·第十四页',
-    accent: '#6FC2C9',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'wave', side: 'straight' },
-  },
-  {
-    id: 'major-15', arcana: 'major', num: 15, roman: ROMAN[15],
-    nameZh: '恶魔', nameEn: 'The Devil',
-    keywords: ['束缚', '欲望', '阴影', '自觉'],
-    meaning: '欲望锁链的阴影一课。',
-    oracle: '拴住你的链子，其实没有上锁。',
-    interpretation: '他从不强迫谁——他只是把欲望摆在伸手可及的地方，然后耐心地等你自己握紧。看清这一点的瞬间，暗影的翅膀会先于你塌下去。',
-    note: '他牌前的火漆从不凝固，我至今不知道为什么。——魔女手记·第十五页',
-    accent: '#C2453A',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'horn', side: 'straight' },
-  },
-  {
-    id: 'major-16', arcana: 'major', num: 16, roman: ROMAN[16],
-    nameZh: '高塔', nameEn: 'The Tower',
-    keywords: ['剧变', '崩塌', '真相', '重建'],
-    meaning: '幻象崩塌后的骤然真相。',
-    oracle: '塌下来的，本来就不该是你的屋顶。',
-    interpretation: '雷没有摧毁任何真的东西——它只是提前撕掉了布景。坠落的两位握着的王冠正在脱手：他们很快会学会，人不需要王冠也能站在地上。',
-    note: '塔倒那夜我刚好不在。后来我总在想，这是眷顾还是失职。——魔女手记·第十六页',
-    accent: '#EDE3C8',
-    shape: { tilt: 6, steps: 2, wing: 'standard', top: 'broken', side: 'straight' },
-  },
-  {
-    id: 'major-17', arcana: 'major', num: 17, roman: ROMAN[17],
-    nameZh: '星星', nameEn: 'The Star',
-    keywords: ['希望', '疗愈', '灵感', '指引'],
-    meaning: '暗夜之后希望的低语。',
-    oracle: '夜越透，星越像针脚。',
-    interpretation: '她把打翻的水一半还给大地、一半还给天上——原来失去和馈赠可以是同一个动作。伤口在这里不被遮掩，被绣进夜色里，成为后来者认路的标记。',
-    note: '我教占星，她教我认星星治好的那种病。——魔女手记·第十七页',
-    accent: '#A5E1E8',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'ray', side: 'straight' },
-  },
-  {
-    id: 'major-18', arcana: 'major', num: 18, roman: ROMAN[18],
-    nameZh: '月亮', nameEn: 'The Moon',
-    keywords: ['幻象', '潜意识', '不安', '迷雾'],
-    meaning: '迷雾中半明的潜意识。',
-    oracle: '迷雾也在为你引路，只是它不说话。',
-    interpretation: '白日里分得清的东西——路与非路、友与兽——在这里全都软成一片。别急着擦亮眼睛；月亮教你走夜路的办法是：先承认自己也有一半看不清。',
-    note: '夜里收牌时，这张总比早上凉一些。——魔女手记·第十八页',
-    accent: '#AFC4DE',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'apex', side: 'straight', cut: 'crescent' },
-  },
-  {
-    id: 'major-19', arcana: 'major', num: 19, roman: ROMAN[19],
-    nameZh: '太阳', nameEn: 'The Sun',
-    keywords: ['喜悦', '成功', '活力', '光明'],
-    meaning: '无需阴影的坦荡喜悦。',
-    oracle: '把窗全部推开吧。',
-    interpretation: '这张牌不许诺奇迹——它只保证：今天的东西不会在阴影里变质。孩童的幡上没有字，因为快乐不需要书写，只需要挥舞。',
-    note: '占出这张牌的日子，我允许来访者碰我的收藏。——魔女手记·第十九页',
-    accent: '#F0D48A',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'ripple', side: 'straight' },
-  },
-  {
-    id: 'major-20', arcana: 'major', num: 20, roman: ROMAN[20],
-    nameZh: '审判', nameEn: 'Judgement',
-    keywords: ['觉醒', '召唤', '重生', '清点'],
-    meaning: '唤醒往昔的最终召唤。',
-    oracle: '那一声呼唤，只叫你的名字。',
-    interpretation: '不是所有人都会应答——有人装睡，有人讨价还价，有人先问「换个时间行不行」。但号音只响一次，它带来的不是审判席，是清点：哪些部分的你还愿意活着。',
-    note: '那年我应得晚了些。它居然等了。——魔女手记·第二十页',
-    accent: '#D9B36C',
-    shape: { tilt: 0, steps: 3, wing: 'standard', top: 'split', side: 'straight' },
-  },
-  {
-    id: 'major-21', arcana: 'major', num: 21, roman: ROMAN[21],
-    nameZh: '世界', nameEn: 'The World',
-    keywords: ['完成', '整合', '圆满', '启程'],
-    meaning: '周期闭合的圆满之环。',
-    oracle: '终点，是另一个起点给自己起的名字。',
-    interpretation: '她跳完最后一圈时，花环并未落地——而是松开，散成漫天星屑，落在下一张愚者的崖边。你手里的这封遗言其实没有结束句：它只是把笔，郑重地递还给你。',
-    note: '匣子空了。明天记得去捡那些星屑。——魔女手记·最后一页',
-    accent: '#E9D9A8',
-    shape: { tilt: 0, steps: 3, wing: 'ring', top: 'apex', side: 'straight' },
-  },
+/** 22 席轮廓形制表（每席独立，保持收集时的辨识度） */
+const SHAPES: MajorShapeSpec[] = [
+  { tilt: 8, steps: 2, wing: 'standard', top: 'apex', side: 'straight' },          // 0 秦淮画舫
+  { tilt: 0, steps: 3, wing: 'standard', top: 'flat', side: 'straight' },          // 1 中华门
+  { tilt: -6, steps: 3, wing: 'leaf', top: 'apex', side: 'wave' },                 // 2 拙政园
+  { tilt: 4, steps: 2, wing: 'ribbon', top: 'wave', side: 'wave' },                // 3 平江路
+  { tilt: 0, steps: 3, wing: 'raised', top: 'twin', side: 'straight' },            // 4 金鸡湖
+  { tilt: -8, steps: 3, wing: 'standard', top: 'apex', side: 'straight', cut: 'crescent' }, // 5 寒山寺
+  { tilt: 0, steps: 3, wing: 'standard', top: 'triple', side: 'straight' },        // 6 五亭桥
+  { tilt: 6, steps: 2, wing: 'standard', top: 'ripple', side: 'straight' },        // 7 东关街
+  { tilt: -4, steps: 3, wing: 'ring', top: 'apex', side: 'straight', cut: 'ringCut' }, // 8 清名桥
+  { tilt: 10, steps: 2, wing: 'raised', top: 'ray', side: 'straight' },            // 9 鼋头渚
+  { tilt: 0, steps: 3, wing: 'standard', top: 'broken', side: 'scythe' },          // 10 西津渡
+  { tilt: -10, steps: 3, wing: 'standard', top: 'triple', side: 'straight' },      // 11 金山寺
+  { tilt: 0, steps: 3, wing: 'raised', top: 'apex', side: 'straight', cut: 'lightHole' }, // 12 天宁宝塔
+  { tilt: 6, steps: 2, wing: 'leaf', top: 'wave', side: 'straight' },              // 13 青果巷
+  { tilt: -6, steps: 3, wing: 'ribbon', top: 'ripple', side: 'wave' },             // 14 濠河
+  { tilt: 8, steps: 2, wing: 'standard', top: 'split', side: 'straight' },         // 15 连岛
+  { tilt: 0, steps: 3, wing: 'ring', top: 'twin', side: 'straight' },              // 16 云龙湖
+  { tilt: -4, steps: 2, wing: 'standard', top: 'apex', side: 'straight' },         // 17 望海楼
+  { tilt: 4, steps: 3, wing: 'standard', top: 'flat', side: 'straight' },          // 18 清江浦
+  { tilt: -8, steps: 3, wing: 'standard', top: 'horn', side: 'straight' },         // 19 东晋水城
+  { tilt: 0, steps: 2, wing: 'raised', top: 'horn', side: 'straight' },            // 20 项王故里
+  { tilt: 0, steps: 3, wing: 'ring', top: 'ray', side: 'straight', cut: 'ringCut' }, // 21 江海夜潮
 ];
+
+export const MAJORS: MajorCardData[] = MAJOR_SPOTS.map((s) => ({
+  id: `major-${s.slot}`,
+  arcana: 'major' as const,
+  num: s.slot,
+  roman: ROMAN[s.slot],
+  nameZh: s.nameZh,
+  nameEn: s.nameEn,
+  city: s.city,
+  keywords: s.keywords,
+  accent: s.accent,
+  meaning: s.meaning,
+  oracle: s.oracle,
+  interpretation: s.interpretation,
+  note: s.note,
+  shape: SHAPES[s.slot],
+  art: s.art,
+}));

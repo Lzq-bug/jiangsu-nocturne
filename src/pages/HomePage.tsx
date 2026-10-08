@@ -14,18 +14,18 @@ export default function HomePage() {
     <div className="home fade-in">
       <section className="desk-hero">
         <div className="hero-copy">
-          <p className="eyebrow">· THE VEILED MOON RELIQUARY ·</p>
-          <h1>宵月秘藏</h1>
+          <p className="eyebrow">· JIANGSU NOCTURNE ·</p>
+          <h1>夜泊江苏</h1>
           <p>
-            夜之魔女会世代封存着七十八封「星之遗言」。<br />
-            在观星台攒下星屑，于启封仪式上亲手破开封缄——<br />
-            每一张被启明的牌，都会永远留在你的魔女阁里。
+            月落乌啼，江枫渔火——江苏的夜色，值得被一帧帧收藏。<br />
+            在观星台攒下星屑，于启封仪式上亲手点亮一帧夜色，<br />
+            收藏到的每一帧，都能进入 360° 全景，云夜游水韵江苏。
           </p>
           <div className="hero-how" aria-label="玩法速览">
             <b>① 玩观星小游戏</b><i>→</i>
             <b>② 获得星屑</b><i>→</i>
-            <b>③ 启封卡牌</b><i>→</i>
-            <b>④ 收藏 78 张</b>
+            <b>③ 启封夜景卡</b><i>→</i>
+            <b>④ 收藏 78 帧夜色</b>
           </div>
           <div className="hero-actions">
             <Link to="/starcatch" className="btn">🔭 前往观星台 · 攒星屑</Link>
@@ -33,7 +33,7 @@ export default function HomePage() {
           </div>
           <div className="progress-wrap" style={{ marginTop: 18 }}>
             <div className="progress-label">
-              <span>魔女阁收集进度</span>
+              <span>夜泊阁收集进度</span>
               <span>{owned} / {ALL_CARDS.length} · {pct}%</span>
             </div>
             <div className="progress-track" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
@@ -55,28 +55,29 @@ export default function HomePage() {
         <Link to="/unseal" className="entry-card">
           <div className="ico">✦</div>
           <h3>启封仪式</h3>
-          <span className="sub">消耗星屑 · 开启秘仪牌</span>
-          <p>从扇形的封缄牌阵中亲手翻开一封星之遗言。新卡入阁，重复化作补偿。</p>
+          <span className="sub">消耗星屑 · 点亮一帧夜色</span>
+          <p>从扇形的封缄牌阵中亲手翻开一帧江苏夜景。新帧入阁，重复化作补偿。</p>
         </Link>
         <Link to="/collection" className="entry-card">
           <div className="ico">📖</div>
-          <h3>魔女阁</h3>
-          <span className="sub">查看已收藏的 78 张牌</span>
-          <p>七十八个牌位的档案库。已启封的牌可见真容，封缄的位子静静等它到来。</p>
+          <h3>夜泊阁</h3>
+          <span className="sub">查看已收藏的 78 帧夜色</span>
+          <p>七十八个牌位的夜景档案库。已启封的帧可见真容、可入全景夜游，封缄的位子静静等它到来。</p>
         </Link>
-        <Link to="/starwhisper" className="entry-card">
-          <div className="ico">🌙</div>
-          <h3>星语占卜</h3>
-          <p>向魔女提问，抽三张牌听一段本地解读；若配置了 AI，还能得到更贴心的私语。完全可选。</p>
+        <Link to="/gallery" className="entry-card">
+          <div className="ico">🌆</div>
+          <h3>夜泊画廊</h3>
+          <span className="sub">22 张城章 · 免费开放</span>
+          <p>二十二处江苏地标夜景先睹为快。点触任意一帧，即刻 360° 全景夜游。</p>
         </Link>
       </section>
 
       <section className="panel">
-        <div className="panel-title">今日手记</div>
+        <div className="panel-title">今日夜航手记</div>
         <p style={{ margin: 0, color: 'var(--text-mid)', fontSize: 13.5, lineHeight: 1.9 }}>
           星屑余量 <b style={{ color: 'var(--cyan)' }}>{stardust}</b> ——
           {stardust >= ECONOMY.unsealCost
-            ? '够一次启封了。去仪式上亲手破开一枚火漆吧。'
+            ? '够一次启封了。去仪式上亲手点亮一帧江苏的夜吧。'
             : `还差 ${ECONOMY.unsealCost - stardust} 枚就能启封。观星台今晚的天色不错。`}
         </p>
       </section>
