@@ -1182,3 +1182,50 @@ input[type='range'] {
 @media (prefers-reduced-motion: reduce) {
   .flip-inner { transition: none; }
 }
+
+/* 实拍全景角标 */
+
+.pano-badge {
+  position: absolute;
+  z-index: 4;
+  left: 16px;
+  bottom: 16px;
+  background: rgba(6, 10, 24, 0.6);
+  border: 1px solid rgba(230, 198, 135, 0.45);
+  color: var(--gold);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
+/* WebGL 全景画布与实拍角标 */
+
+.pano-gl {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+}
+
+.pano-stage.locked .pano-gl {
+  filter: blur(9px) brightness(0.62);
+}
+
+.pano-badge {
+  position: absolute;
+  z-index: 4;
+  left: 16px;
+  bottom: 16px;
+  background: rgba(6, 10, 24, 0.6);
+  border: 1px solid rgba(230, 198, 135, 0.45);
+  color: var(--gold);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}

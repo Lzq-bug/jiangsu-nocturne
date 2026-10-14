@@ -1,17 +1,14 @@
 /**
- * PanoView · 360° 全景夜游查看器（VR 效果·场景层）
- * 把景点全景画幅贴在 CSS 3D 圆柱内壁上，拖动/自动环游/陀螺仪改变视角，
- * 实现免插件的 Web 全景环顾。未启封的卡以虚化锁定态展示。
+ * PanoView · 360° 全景夜游查看器(Three.js 3D 建模场景)
+ * 依据卡牌的景点母题与主光色,实时建模一座可环顾的夜景微城:
+ * 建筑体块与地标构筑物、轮廓灯与灯笼、水面实时倒影、星空月色与雾气。
+ * 透视相机立于场景中心,拖动/陀螺仪转动视角,惯性衰减,可自动环游与全屏。
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
+import * as THREE from 'three';
 import type { CardData } from '@/tarot/types';
 import { SUIT_ZH } from '@/tarot/types';
-import { nightPanoFor } from './nightArt';
-
-const SLICES = 18;
-const SLICE_W = 132;
-const RADIUS = Math.round(SLICE_W / 2 / Math.tan(Math.PI / SLICES));
-const DEG_PER_PX = 360 / (SLICES * SLICE_W);
+import { buildNightScene3D } from './scene3D';
 
 export interface PanoViewProps {
   card: CardData;
@@ -22,9 +19,7 @@ export interface PanoViewProps {
 }
 
 export function PanoView({ card, locked = false, compact = true }: PanoViewProps) {
-  const panoURI = useMemo(() => nightPanoFor(card), [card]);
   const stageRef = useRef<HTMLDivElement>(null);
-  const worldRef = useRef<HTMLDivElement>(null);
   const state = useRef({ yaw: 0, pitch: 0, vy: 0, dragging: false, lastX: 0, lastY: 0, auto: true, raf: 0 });
   const [auto, setAuto] = useState(true);
   const [gyro, setGyro] = useState(false);
@@ -35,42 +30,83 @@ export function PanoView({ card, locked = false, compact = true }: PanoViewProps
   );
   const isTouch = useMemo(() => typeof window !== 'undefined' && 'ontouchstart' in window, []);
 
-  // 渲染循环：惯性 + 自动环游
+  /* ---------- Three.js 场景 ---------- */
   useEffect(() => {
-    if (reduced || locked) return;
+    const stage = stageRef.current;
+    if (!stage) return;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(stage.clientWidth, stage.clientHeight);
+    renderer.domElement.className = 'pano-gl';
+    stage.insertBefore(renderer.domElement, stage.firstChild);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#060a18');
+    scene.fog = new THREE.FogExp2('#0a0f22', 0.012);
+    const camera = new THREE.PerspectiveCamera(72, stage.clientWidth / stage.clientHeight, 0.1, 200);
+    camera.rotation.order = 'YXZ';
+    camera.position.set(0, 1.7, 0);
+
+    let scene3d: ReturnType<typeof buildNightScene3D> | null = null;
+    try {
+      scene3d = buildNightScene3D(card);
+      scene.add(scene3d.group);
+    } catch { /* 建模失败时保留星空底色场景 */ }
+
+    const applyCam = () => {
+      camera.rotation.y = state.current.yaw;
+      camera.rotation.x = state.current.pitch;
+    };
+    applyCam();
+
+    const onResize = () => {
+      camera.aspect = stage.clientWidth / stage.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(stage.clientWidth, stage.clientHeight);
+    };
+    const ro = new ResizeObserver(onResize);
+    ro.observe(stage);
+
     const tick = () => {
       const s = state.current;
       if (!s.dragging) {
         s.yaw += s.vy;
         s.vy *= 0.94;
-        if (Math.abs(s.vy) < 0.001) s.vy = 0;
-        if (s.auto && s.vy === 0) s.yaw += 0.032;
-        if (s.yaw >= 360 || s.yaw <= -360) s.yaw = s.yaw % 360;
-        if (worldRef.current) {
-          worldRef.current.style.transform = `rotateX(${s.pitch.toFixed(2)}deg) rotateY(${s.yaw.toFixed(2)}deg)`;
-        }
+        if (Math.abs(s.vy) < 0.0004) s.vy = 0;
+        if (s.auto && s.vy === 0 && !gyroOn.current) s.yaw += 0.0011;
+        applyCam();
       }
+      renderer.render(scene, camera);
       s.raf = requestAnimationFrame(tick);
     };
     state.current.raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(state.current.raf);
-  }, [reduced, locked]);
+
+    return () => {
+      cancelAnimationFrame(state.current.raf);
+      ro.disconnect();
+      scene3d?.dispose();
+      renderer.dispose();
+      renderer.domElement.remove();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [card]);
+
+  const gyroOn = useRef(false);
 
   // 陀螺仪
   useEffect(() => {
     if (!gyro) return;
+    gyroOn.current = true;
     const onOrient = (e: DeviceOrientationEvent) => {
       const s = state.current;
       const g = e.gamma ?? 0;
       const b = e.beta ?? 45;
-      s.yaw = -g * 1.4;
-      s.pitch = Math.max(-10, Math.min(10, (b - 48) * -0.25));
-      if (worldRef.current) {
-        worldRef.current.style.transform = `rotateX(${s.pitch.toFixed(2)}deg) rotateY(${s.yaw.toFixed(2)}deg)`;
-      }
+      s.yaw = (-g * 1.4 * Math.PI) / 180;
+      s.pitch = Math.max(-0.45, Math.min(0.45, ((b - 48) * -0.25 * Math.PI) / 180));
     };
     window.addEventListener('deviceorientation', onOrient);
-    return () => window.removeEventListener('deviceorientation', onOrient);
+    return () => { gyroOn.current = false; window.removeEventListener('deviceorientation', onOrient); };
   }, [gyro]);
 
   async function toggleGyro() {
@@ -101,12 +137,9 @@ export function PanoView({ card, locked = false, compact = true }: PanoViewProps
     const dx = e.clientX - s.lastX;
     const dy = e.clientY - s.lastY;
     s.lastX = e.clientX; s.lastY = e.clientY;
-    s.vy = dx * DEG_PER_PX;
+    s.vy = dx * 0.0026;
     s.yaw += s.vy;
-    s.pitch = Math.max(-10, Math.min(10, s.pitch - dy * 0.06));
-    if (worldRef.current) {
-      worldRef.current.style.transform = `rotateX(${s.pitch.toFixed(2)}deg) rotateY(${s.yaw.toFixed(2)}deg)`;
-    }
+    s.pitch = Math.max(-0.45, Math.min(0.45, s.pitch - dy * 0.001));
   }
   function onPointerUp() {
     const s = state.current;
@@ -134,24 +167,9 @@ export function PanoView({ card, locked = false, compact = true }: PanoViewProps
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
     >
-      <div ref={worldRef} className="pano-world" style={locked ? undefined : { transform: 'rotateX(0deg) rotateY(0deg)' }}>
-        {Array.from({ length: SLICES }, (_, i) => (
-          <div
-            key={i}
-            className="pano-slice"
-            style={{
-              width: SLICE_W,
-              marginLeft: -SLICE_W / 2,
-              transform: `rotateY(${(i * 360) / SLICES}deg) translateZ(-${RADIUS}px)`,
-              backgroundImage: `url("${panoURI}")`,
-              backgroundSize: `${SLICES * SLICE_W}px 100%`,
-              backgroundPosition: `${-i * SLICE_W}px center`,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="pano-vignette" aria-hidden="true" />
+
+      {!locked && <span className="pano-badge" aria-hidden="true">3D 建模 · 夜游</span>}
 
       {/* HUD */}
       <div className="pano-hud">
