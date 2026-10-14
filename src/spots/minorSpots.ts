@@ -264,10 +264,10 @@ export const MINOR_SPOTS: Record<SuitKey, MinorSpotSeed[]> = {
       art: { motifs: ['hill'], moon: 0.56 },
     },
     {
-      rank: 12, nameZh: '海上云台山', nameEn: 'Yuntai by the Sea', city: '连云港',
-      keywords: ['云台', '山海', '灯火'], meaning: '山与海交接处的灯火，一半给山，一半给浪。',
-      oracle: '站在山肩，左看灯，右看潮。',
-      art: { motifs: ['hill', 'sea'], moon: 0.5 },
+      rank: 12, nameZh: '大报恩寺', nameEn: 'Dabaoen Temple Ruins', city: '南京',
+      keywords: ['琉璃塔', '灯彩', '遗址'], meaning: '琉璃塔亮起，遗址公园把六百年的灯火接续。',
+      oracle: '塔亮了，夜就有了报恩的形状。',
+      art: { motifs: ['pagoda', 'temple'], moon: 0.6 },
     },
     {
       rank: 13, nameZh: '三台山', nameEn: 'Santai Mountain', city: '宿迁',
@@ -292,10 +292,10 @@ export const MINOR_SPOTS: Record<SuitKey, MinorSpotSeed[]> = {
       art: { motifs: ['wall'], moon: 0.7 },
     },
     {
-      rank: 2, nameZh: '颐和路', nameEn: 'Yihe Road', city: '南京',
-      keywords: ['民国', '洋楼', '路灯'], meaning: '民国洋楼在路灯下排成一册旧杂志。',
-      oracle: '一条路，把历史调到暖光档。',
-      art: { motifs: ['street'], moon: 0.74 },
+      rank: 2, nameZh: '惠山古镇', nameEn: 'Huishan Ancient Town', city: '无锡',
+      keywords: ['祠堂', '老街', '灯影'], meaning: '祠堂老街的夜，灯火把千年肌理照得温润。',
+      oracle: '一街祠堂，半街灯火。',
+      art: { motifs: ['street'], moon: 0.7 },
     },
     {
       rank: 3, nameZh: '朝天宫', nameEn: 'Chaotian Palace', city: '南京',
@@ -346,10 +346,10 @@ export const MINOR_SPOTS: Record<SuitKey, MinorSpotSeed[]> = {
       art: { motifs: ['pavilion'], moon: 0.34, phase: 'full' },
     },
     {
-      rank: 11, nameZh: '乔园', nameEn: 'Qiao Garden', city: '泰州',
-      keywords: ['古园', '亭堂', '灯影'], meaning: '淮左第一园的夜里，山响草堂只响虫鸣与灯花。',
-      oracle: '园小，装得下整夜的静。',
-      art: { motifs: ['garden'], moon: 0.7 },
+      rank: 11, nameZh: '网师园', nameEn: 'Master of Nets Garden', city: '苏州',
+      keywords: ['夜花园', '曲廊', '灯月'], meaning: '夜花园里，曲廊灯月把宋时意境演到今夜。',
+      oracle: '园小，夜长，戏正好。',
+      art: { motifs: ['garden'], moon: 0.66 },
     },
     {
       rank: 12, nameZh: '南通博物苑', nameEn: 'Nantong Museum', city: '南通',
