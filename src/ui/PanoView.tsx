@@ -24,6 +24,7 @@ const EMBEDS: Record<string, string> = {
   'major-3': '/pano/pingjianglu.html', // 平江路·灯河夜巷——灯河夜巷 3D 全景
   'major-4': '/pano/jinjihu.html', // 金鸡湖·东方之门——湖光门影 3D 夜景
   'major-5': '/pano/hanshan.html', // 寒山寺·枫桥夜泊——全功能枫桥夜泊 3D 场景
+  'major-9': '/pano/taihu.html', // 鼋头渚·太湖灯塔——太湖灯塔 3D 全景
 };
 
 const EMBED_LABELS: Record<string, string> = {
@@ -31,6 +32,7 @@ const EMBED_LABELS: Record<string, string> = {
   'major-3': '3D 建模 · 灯河夜巷',
   'major-4': '3D 建模 · 湖光门影',
   'major-5': '3D 建模 · 枫桥夜泊',
+  'major-9': '3D 建模 · 太湖灯塔',
 };
 
 export function PanoView({ card, locked = false, compact = true }: PanoViewProps) {
