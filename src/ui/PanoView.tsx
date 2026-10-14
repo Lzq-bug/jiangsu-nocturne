@@ -18,7 +18,13 @@ export interface PanoViewProps {
   compact?: boolean;
 }
 
+/** 重点卡牌：嵌入完整的独立 3D 场景（自带机位解说/热点导航/敲钟等交互） */
+const EMBEDS: Record<string, string> = {
+  'major-5': '/pano/hanshan.html', // 寒山寺·枫桥夜泊——全功能枫桥夜泊 3D 场景
+};
+
 export function PanoView({ card, locked = false, compact = true }: PanoViewProps) {
+  const embed = EMBEDS[card.id];
   const stageRef = useRef<HTMLDivElement>(null);
   const state = useRef({ yaw: 0, pitch: 0, vy: 0, dragging: false, lastX: 0, lastY: 0, auto: true, raf: 0 });
   const [auto, setAuto] = useState(true);
@@ -34,6 +40,7 @@ export function PanoView({ card, locked = false, compact = true }: PanoViewProps
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
+    if (embed) return; // 嵌入场景自带渲染,无需微城
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -167,17 +174,30 @@ export function PanoView({ card, locked = false, compact = true }: PanoViewProps
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
     >
-      <div className="pano-vignette" aria-hidden="true" />
+      {embed ? (
+        <iframe
+          className="pano-iframe"
+          src={embed}
+          title={`${card.nameZh} 3D 全景夜游`}
+          allow="fullscreen"
+        />
+      ) : (
+        <div className="pano-vignette" aria-hidden="true" />
+      )}
 
-      {!locked && <span className="pano-badge" aria-hidden="true">3D 建模 · 夜游</span>}
+      {!locked && (
+        <span className="pano-badge" aria-hidden="true">
+          {embed ? '3D 建模 · 枫桥夜泊' : '3D 建模 · 夜游'}
+        </span>
+      )}
 
-      {/* HUD */}
+      {/* HUD（嵌入场景自带交互界面,只保留标题与全屏入口） */}
       <div className="pano-hud">
         <div className="pano-title">
           <b>{card.nameZh}</b>
           <span>{card.city} · {seriesLabel}</span>
         </div>
-        {!locked && (
+        {!locked && !embed && (
           <div className="pano-tools">
             {!reduced && (
               <button
@@ -191,6 +211,11 @@ export function PanoView({ card, locked = false, compact = true }: PanoViewProps
             <button className="pano-btn" onClick={fullscreen}>⛶ 全景</button>
           </div>
         )}
+        {!locked && embed && (
+          <div className="pano-tools">
+            <button className="pano-btn" onClick={fullscreen}>⛶ 全景</button>
+          </div>
+        )}
       </div>
 
       {locked ? (
@@ -199,7 +224,7 @@ export function PanoView({ card, locked = false, compact = true }: PanoViewProps
           <p>尚未启封这一帧夜色<br /><small>去观星台攒星屑，启封后即可 360° 夜游</small></p>
         </div>
       ) : (
-        hint && <div className="pano-hint">按住拖动 · 环顾四周</div>
+        !embed && hint && <div className="pano-hint">按住拖动 · 环顾四周</div>
       )}
     </div>
   );
