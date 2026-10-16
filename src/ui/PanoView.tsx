@@ -30,6 +30,7 @@ const EMBEDS: Record<string, string> = {
   'major-8': '/pano/qingmingqiao.html', // 清名桥·运河灯河——运河灯河 3D 夜景
   'major-9': '/pano/taihu.html', // 鼋头渚·太湖灯塔——太湖灯塔 3D 全景
   'minor-pentacles-1': '/pano/taicheng.html', // 台城明城墙——湖山入城 3D 夜景
+  'minor-pentacles-4': '/pano/panmen.html', // 盘门三景——运河夜阑 3D 夜景
   'minor-pentacles-3': '/pano/chaotian.html', // 朝天宫——金陵文庙 3D 夜景
   'minor-pentacles-10': '/pano/erfenmingyue.html', // 二分明月楼——一园明月 3D 夜景
   'minor-pentacles-11': '/pano/wangshiyuan.html', // 网师园——网师夜花园 3D 全景
@@ -47,6 +48,7 @@ const EMBED_LABELS: Record<string, string> = {
   'major-8': '3D 建模 · 运河灯河',
   'major-9': '3D 建模 · 太湖灯塔',
   'minor-pentacles-1': '3D 建模 · 湖山入城',
+  'minor-pentacles-4': '3D 建模 · 运河夜阑',
   'minor-pentacles-3': '3D 建模 · 金陵文庙',
   'minor-pentacles-10': '3D 建模 · 一园明月',
   'minor-pentacles-11': '3D 建模 · 夜花园',
