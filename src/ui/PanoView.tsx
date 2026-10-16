@@ -27,6 +27,7 @@ const EMBEDS: Record<string, string> = {
   'major-5': '/pano/hanshan.html', // 寒山寺·枫桥夜泊——全功能枫桥夜泊 3D 场景
   'major-6': '/pano/shouxihu.html', // 瘦西湖·五亭桥月——五亭桥月 3D 夜景
   'major-9': '/pano/taihu.html', // 鼋头渚·太湖灯塔——太湖灯塔 3D 全景
+  'minor-pentacles-3': '/pano/chaotian.html', // 朝天宫——金陵文庙 3D 夜景
   'minor-pentacles-11': '/pano/wangshiyuan.html', // 网师园——网师夜花园 3D 全景
   'minor-pentacles-13': '/pano/zhenhuailou.html', // 镇淮楼——谯楼更鼓 3D 夜景
 };
@@ -39,6 +40,7 @@ const EMBED_LABELS: Record<string, string> = {
   'major-5': '3D 建模 · 枫桥夜泊',
   'major-6': '3D 建模 · 五亭桥月',
   'major-9': '3D 建模 · 太湖灯塔',
+  'minor-pentacles-3': '3D 建模 · 金陵文庙',
   'minor-pentacles-11': '3D 建模 · 夜花园',
   'minor-pentacles-13': '3D 建模 · 谯楼更鼓',
 };
