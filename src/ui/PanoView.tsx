@@ -31,6 +31,7 @@ const EMBEDS: Record<string, string> = {
   'major-9': '/pano/taihu.html', // 鼋头渚·太湖灯塔——太湖灯塔 3D 全景
   'minor-pentacles-1': '/pano/taicheng.html', // 台城明城墙——湖山入城 3D 夜景
   'minor-pentacles-3': '/pano/chaotian.html', // 朝天宫——金陵文庙 3D 夜景
+  'minor-pentacles-10': '/pano/erfenmingyue.html', // 二分明月楼——一园明月 3D 夜景
   'minor-pentacles-11': '/pano/wangshiyuan.html', // 网师园——网师夜花园 3D 全景
   'minor-pentacles-13': '/pano/zhenhuailou.html', // 镇淮楼——谯楼更鼓 3D 夜景
 };
@@ -47,6 +48,7 @@ const EMBED_LABELS: Record<string, string> = {
   'major-9': '3D 建模 · 太湖灯塔',
   'minor-pentacles-1': '3D 建模 · 湖山入城',
   'minor-pentacles-3': '3D 建模 · 金陵文庙',
+  'minor-pentacles-10': '3D 建模 · 一园明月',
   'minor-pentacles-11': '3D 建模 · 夜花园',
   'minor-pentacles-13': '3D 建模 · 谯楼更鼓',
 };
