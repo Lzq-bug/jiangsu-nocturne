@@ -23,6 +23,7 @@ const EMBEDS: Record<string, string> = {
   'major-0': '/pano/fuzimiao.html', // 夫子庙·秦淮画舫——秦淮画廊 3D 全景
   'major-2': '/pano/zhuozheng.html', // 拙政园·拙政问雅——拙政问雅 3D 夜景
   'major-3': '/pano/pingjianglu.html', // 平江路·灯河夜巷——灯河夜巷 3D 全景
+  'major-7': '/pano/dongguan.html', // 东关街·灯火长街——灯火长街 3D 夜景
   'major-4': '/pano/jinjihu.html', // 金鸡湖·东方之门——湖光门影 3D 夜景
   'major-5': '/pano/hanshan.html', // 寒山寺·枫桥夜泊——全功能枫桥夜泊 3D 场景
   'major-6': '/pano/shouxihu.html', // 瘦西湖·五亭桥月——五亭桥月 3D 夜景
@@ -36,6 +37,7 @@ const EMBED_LABELS: Record<string, string> = {
   'major-0': '3D 建模 · 秦淮画廊',
   'major-2': '3D 建模 · 拙政问雅',
   'major-3': '3D 建模 · 灯河夜巷',
+  'major-7': '3D 建模 · 灯火长街',
   'major-4': '3D 建模 · 湖光门影',
   'major-5': '3D 建模 · 枫桥夜泊',
   'major-6': '3D 建模 · 五亭桥月',
