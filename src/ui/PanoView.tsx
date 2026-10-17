@@ -43,6 +43,8 @@ const EMBEDS: Record<string, string> = {
   'minor-pentacles-6': '/pano/xiaolou.html', // 小娄巷——一巷明月 3D 夜景
   'minor-pentacles-2': '/pano/huishan.html', // 惠山古镇——二泉灯影 3D 夜景
   'minor-pentacles-7': '/pano/biji.html', // 篦箕巷——运河灯巷 3D 夜景
+  'minor-pentacles-9': '/pano/geyuan.html', // 个园——一园四季 3D 夜景
+  'minor-pentacles-12': '/pano/nantong.html', // 南通博物苑——濠河夜月 3D 夜景
 };
 
 const EMBED_LABELS: Record<string, string> = {
@@ -69,6 +71,7 @@ const EMBED_LABELS: Record<string, string> = {
   'minor-pentacles-6': '3D 建模 · 一巷明月',
   'minor-pentacles-2': '3D 建模 · 二泉灯影',
   'minor-pentacles-7': '3D 建模 · 运河灯巷',
+  'minor-pentacles-9': '3D 建模 · 一园四季',
 };
 
 export function PanoView({ card, locked = false, compact = true }: PanoViewProps) {
