@@ -72,6 +72,7 @@ const EMBED_LABELS: Record<string, string> = {
   'minor-pentacles-2': '3D 建模 · 二泉灯影',
   'minor-pentacles-7': '3D 建模 · 运河灯巷',
   'minor-pentacles-9': '3D 建模 · 一园四季',
+  'minor-pentacles-12': '3D 建模 · 濠河夜月',
 };
 
 export function PanoView({ card, locked = false, compact = true }: PanoViewProps) {
