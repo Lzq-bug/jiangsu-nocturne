@@ -29,6 +29,7 @@ const EMBEDS: Record<string, string> = {
   'major-6': '/pano/shouxihu.html', // 瘦西湖·五亭桥月——五亭桥月 3D 夜景
   'major-8': '/pano/qingmingqiao.html', // 清名桥·运河灯河——运河灯河 3D 夜景
   'major-9': '/pano/taihu.html', // 鼋头渚·太湖灯塔——太湖灯塔 3D 全景
+  'major-15': '/pano/liandao.html', // 连岛·在海一方——开渔夏夜 3D 夜景
   'minor-pentacles-1': '/pano/taicheng.html', // 台城明城墙——湖山入城 3D 夜景
   'minor-pentacles-4': '/pano/panmen.html', // 盘门三景——运河夜阑 3D 夜景
   'minor-pentacles-5': '/pano/canglang.html', // 沧浪亭——清风明月 3D 夜景
@@ -58,6 +59,7 @@ const EMBED_LABELS: Record<string, string> = {
   'major-6': '3D 建模 · 五亭桥月',
   'major-8': '3D 建模 · 运河灯河',
   'major-9': '3D 建模 · 太湖灯塔',
+  'major-15': '3D 建模 · 开渔夏夜',
   'minor-pentacles-1': '3D 建模 · 湖山入城',
   'minor-pentacles-4': '3D 建模 · 运河夜阑',
   'minor-pentacles-5': '3D 建模 · 清风明月',
