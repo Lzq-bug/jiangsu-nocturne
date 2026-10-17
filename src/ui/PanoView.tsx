@@ -46,6 +46,7 @@ const EMBEDS: Record<string, string> = {
   'minor-pentacles-2': '/pano/huishan.html', // 惠山古镇——二泉灯影 3D 夜景
   'minor-pentacles-7': '/pano/biji.html', // 篦箕巷——运河灯巷 3D 夜景
   'minor-pentacles-9': '/pano/geyuan.html', // 个园——一园四季 3D 夜景
+  'major-11': '/pano/jinshan.html', // 金山寺·江天禅夜——江天灯火 3D 夜景
   'minor-pentacles-12': '/pano/nantong.html', // 南通博物苑——濠河夜月 3D 夜景
 };
 
@@ -76,6 +77,7 @@ const EMBED_LABELS: Record<string, string> = {
   'minor-pentacles-2': '3D 建模 · 二泉灯影',
   'minor-pentacles-7': '3D 建模 · 运河灯巷',
   'minor-pentacles-9': '3D 建模 · 一园四季',
+  'major-11': '3D 建模 · 江天灯火',
   'minor-pentacles-12': '3D 建模 · 濠河夜月',
 };
 
