@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>拙政园 · 拙政问雅 3D 夜景全景</title>
+<link rel="stylesheet" href="./styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.js",
+    "three/addons/": "./vendor/addons/"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="stage"></canvas>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hud hud-top">
+  <div class="brand">
+    <div class="seal">雅</div>
+    <div class="brand-text">
+      <h1>拙政园 · 拙政问雅</h1>
+      <p>苏州园林夜游 三维全景漫游 &nbsp;/&nbsp; 粉墙黛瓦荷风灯影程序化重建</p>
+    </div>
+  </div>
+  <div class="top-right">
+    <div class="modes" role="tablist" aria-label="视角模式">
+      <button id="mode-pano" class="mode active" role="tab">全景 360°</button>
+      <button id="mode-free" class="mode" role="tab">自由环绕</button>
+    </div>
+    <div class="chips">
+      <span id="fps" class="chip">— fps</span>
+      <button id="btn-help" class="chip btn" title="操作说明">操作</button>
+      <button id="btn-shot" class="chip btn" title="保存当前画面">截图</button>
+      <button id="btn-full" class="chip btn" title="全屏">全屏</button>
+    </div>
+  </div>
+</header>
+
+<aside class="panel" id="panel" aria-label="参数面板">
+  <button id="panel-toggle" class="panel-toggle" title="折叠/展开">参数</button>
+  <div class="panel-body" id="panel-body">
+    <div class="panel-row">
+      <label for="s-lantern">园灯疏密 <b id="v-lantern">100%</b></label>
+      <input type="range" id="s-lantern" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-lotus">荷叶满池 <b id="v-lotus">1.0</b></label>
+      <input type="range" id="s-lotus" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-firefly">流萤明灭 <b id="v-firefly">1.0</b></label>
+      <input type="range" id="s-firefly" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-ripple">水面波纹 <b id="v-ripple">1.0</b></label>
+      <input type="range" id="s-ripple" min="0" max="250" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-window">漏窗透光 <b id="v-window">1.0</b></label>
+      <input type="range" id="s-window" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-bloom">灯光辉光 <b id="v-bloom">0.6</b></label>
+      <input type="range" id="s-bloom" min="0" max="180" step="5" value="60">
+    </div>
+    <div class="switches">
+      <label class="sw"><input type="checkbox" id="c-reflect" checked><span></span>水中灯影</label>
+      <label class="sw"><input type="checkbox" id="c-labels" checked><span></span>热点标签</label>
+      <label class="sw"><input type="checkbox" id="c-mist" checked><span></span>池上夜雾</label>
+      <label class="sw"><input type="checkbox" id="c-lamp" checked><span></span>提灯引路</label>
+      <label class="sw"><input type="checkbox" id="c-tour"><span></span>自动巡览</label>
+      <label class="sw"><input type="checkbox" id="c-quality" checked><span></span>画质自适应</label>
+    </div>
+    <div class="panel-foot">
+      <button id="btn-reset" class="ghost">视角复位</button>
+      <button id="btn-defaults" class="ghost">恢复默认</button>
+    </div>
+    <p class="hint" id="perf-hint"></p>
+  </div>
+</aside>
+
+<section class="kun" id="kun" aria-label="昆曲引">
+  <div class="kun-head">
+    <span class="kun-title">昆曲引</span>
+    <span class="kun-count"><b id="kun-beat">0</b><i>板</i></span>
+  </div>
+  <p class="kun-air" id="kun-air">—</p>
+  <div class="kun-bar"><i id="kun-fill"></i></div>
+  <div class="kun-btns">
+    <button id="btn-kun-ban" class="ghost">击板</button>
+    <button id="btn-kun-sing" class="ghost primary">起腔</button>
+    <button id="btn-kun-stop" class="ghost" hidden>止</button>
+  </div>
+  <p class="kun-note" id="kun-note">笛声自香洲起，贴水面掠过荷丛。</p>
+</section>
+
+<section class="show" id="show" aria-label="光影">
+  <div class="show-head">
+    <span class="show-title">问雅光影</span>
+    <span class="show-name" id="show-name">未起</span>
+  </div>
+  <div class="show-btns">
+    <button id="btn-show-run" class="ghost primary">起光影</button>
+    <button id="btn-show-off" class="ghost">收</button>
+  </div>
+  <p class="show-note" id="show-note">芭蕉、月升、水波——灯随影走。</p>
+</section>
+
+<nav class="stations" id="stations" aria-label="景点导航"></nav>
+
+<section class="info" id="info" hidden>
+  <button class="info-close" id="info-close" title="关闭">×</button>
+  <div class="info-head">
+    <h2 id="info-title">—</h2>
+    <span class="era" id="info-era"></span>
+  </div>
+  <p class="lead" id="info-lead"></p>
+  <p class="body" id="info-body"></p>
+  <ul class="tags" id="info-tags"></ul>
+</section>
+
+<div class="compass" id="compass" aria-hidden="true">
+  <svg viewBox="-50 -50 100 100">
+    <circle class="ring" r="44"></circle>
+    <circle class="ring inner" r="33"></circle>
+    <g id="compass-rose">
+      <line class="tick" x1="0" y1="-44" x2="0" y2="-37"></line>
+      <line class="tick" x1="44" y1="0" x2="37" y2="0"></line>
+      <line class="tick" x1="0" y1="44" x2="-0" y2="37"></line>
+      <line class="tick" x1="-44" y1="0" x2="-37" y2="0"></line>
+      <text class="rose" x="0" y="-26">北</text>
+      <text class="rose" x="28" y="4">东</text>
+      <text class="rose" x="0" y="34">南</text>
+      <text class="rose" x="-28" y="4">西</text>
+    </g>
+    <path class="needle" d="M0,-30 L7,6 L0,1 L-7,6 Z"></path>
+  </svg>
+</div>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-lamp"></div>
+    <h2>拙政问雅</h2>
+    <p class="loader-verse">荷塘月色 · 粉墙竹影 · 一步一景</p>
+    <p id="loader-step">正在铺开园中夜色…</p>
+    <div class="bar"><i id="loader-bar"></i></div>
+  </div>
+</div>
+
+<div class="help" id="help" hidden>
+  <div class="help-card">
+    <button class="info-close" id="help-close">×</button>
+    <h2>操作说明</h2>
+    <dl>
+      <dt>左键拖动</dt><dd>全景模式转头环视 360°；自由模式环绕场景</dd>
+      <dt>右键 / 两指拖动</dt><dd>全景模式沿地面挪步；自由模式平移视点</dd>
+      <dt>滚轮 / 双指捏合</dt><dd>全景模式调节视野角；自由模式推拉镜头</dd>
+      <dt>点击发光热点</dt><dd>移动到该景点机位、打开解说并重放本站光影</dd>
+      <dt>底部景点条</dt><dd>按夜游顺序切换 11 处机位 + 一处俯瞰</dd>
+      <dt>问雅光影</dt><dd>到站自动起一段；<kbd>G</kbd> 重放本站、<kbd>L</kbd> 单看提灯引路、<kbd>Esc</kbd> 收影</dd>
+      <dt>昆曲引</dt><dd><kbd>B</kbd> 击一板 · <kbd>N</kbd> 起一段腔 · <kbd>Esc</kbd> 收腔（香洲、鸳鸯馆两站有腔）</dd>
+      <dt>键盘</dt><dd><kbd>A</kbd>/<kbd>D</kbd> 上一/下一景点 · <kbd>Space</kbd> 自动巡览 · <kbd>P</kbd> 切换模式</dd>
+    </dl>
+    <p class="help-note">《拙政问雅》为苏州拙政园的夜游项目，2020 年 11 月由拙政园管理处推出，结构为"李宅八景 + 心园十五景"，周二至周日 18:30–21:00 开放、周一闭园；被媒体点名的段落包括李宅会客厅的山水投影（月升、水波）、听雨轩的芭蕉投影与雨打芭蕉声效，以及昆曲《牡丹亭》、评弹、古琴等。本场景只借这些手法做三维示意，节目内容与顺序均为编排，不代表实际演出。</p>
+    <p class="help-note">场景为程序化三维重建的写意园林夜景：以拙政园东、中、西三部的已知格局（明正德初年御史王献臣所筑，园名取潘岳《闲居赋》"此亦拙者之为政也"；1951 年整修、1952 年开放；1961 年第一批全国重点文物保护单位；1997 年列入《世界遗产名录》；全园约 78 亩）为骨架，堂、亭、桥、舫的尺寸与相对方位经过压缩与改动，非测绘模型。远香堂四面厅、小飞虹廊桥、香洲石舫、与谁同坐轩扇形平面、留听阁与卅六鸳鸯馆隔水相对等形制可考；"光影长廊"是夜游动线上的投影游廊，不是园林正式景点名；匾联与文徵明的关联旧说不一，园外借景的报恩寺塔（北寺塔）不属园林本体。昆曲唱腔由 Web Audio 实时合成，只是板眼与腔形的示意，不含任何演员录音。</p>
+  </div>
+</div>
+
+<script>
+// 模块解析期就出错时，boot 的 catch 来不及接，这里兜一层给看的人一句话
+window.addEventListener('error', (e) => {
+  const l = document.getElementById('loader');
+  const p = l && l.querySelector('p');
+  if (p && !l.classList.contains('done')) p.textContent = `场景加载失败：${e.message || e.filename}`;
+});
+</script>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

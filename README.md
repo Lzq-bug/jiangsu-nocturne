@@ -82,11 +82,13 @@ npm run test       # vitest 单元测试
 | 个园 · 一园四季 | `scenes/geyuan/` | minor-pentacles-9 |
 | 南通博物苑 · 濠河夜月 | `scenes/nantong/` | minor-pentacles-12 |
 | 三台山 · 衲田花信 | `scenes/santai/` | minor-swords-13 |
+| 拙政园 · 拙政问雅 | `scenes/zhuozheng/` | major-2 |
 | 安丰古镇 · 串场河夜潮 | `scenes/anfeng/` | minor-pentacles-14 |
+| 鼋头渚 · 太湖灯塔 | `scenes/taihu-lighthouse/` | major-9 |
+| 网师园 · 夜花园 | `scenes/wangshi-yuan/` | minor-pentacles-11 |
+| 镇淮楼 · 谯楼更鼓 | `scenes/zhenhuai-lou/` | minor-pentacles-13 |
 
-**仅随主应用分发构建产物、源码暂缺**：镇淮楼 · 谯楼更鼓（`public/pano/zhenhuailou.html`，minor-pentacles-13）、网师园 · 夜花园（`wangshiyuan.html`，minor-pentacles-11）、鼋头渚 · 太湖灯塔（`taihu.html`，major-9）。
-
-**持续接入中**（源码已就绪，尚未挂入卡牌）：北固山 `scenes/beigu/`、花果山 `scenes/huaguo/`、狼山 `scenes/langshan/`、甪直 `scenes/luzhi/`、周庄 `scenes/zhouzhuang/`、同里 `scenes/tongli/`、茅山 `scenes/maoshan/`、云龙山 `scenes/yunlong/`、文笔塔 `scenes/wenbi/`、南京长江大桥 `scenes/njbridge/`。
+**持续接入中**（源码已就绪，尚未挂入卡牌）：北固山 `scenes/beigu/`、花果山 `scenes/huaguo/`、狼山 `scenes/langshan/`、甪直 `scenes/luzhi/`、周庄 `scenes/zhouzhuang/`、同里 `scenes/tongli/`、茅山 `scenes/maoshan/`、云龙山 `scenes/yunlong/`、文笔塔 `scenes/wenbi/`、南京长江大桥 `scenes/njbridge/`；另有海春轩塔的姊妹版场景「西溪夜泊」`scenes/haichunxuan-tower/`（已挂卡牌的是「一塔两朝」`scenes/haichun/`）。
 
 ### 场景构建
 
