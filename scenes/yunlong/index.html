@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>云龙山 · 冈岭四合 3D 夜景全景</title>
+<link rel="stylesheet" href="./styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "../vendor/three.module.js",
+    "three/addons/": "../vendor/addons/"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="stage"></canvas>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hud hud-top">
+  <div class="brand">
+    <div class="seal">云</div>
+    <div class="brand-text">
+      <h1>云龙山 · 冈岭四合</h1>
+      <p>彭城低岭写意 三维全景漫游 &nbsp;/&nbsp; 云龙山·云龙湖程序化夜景重建</p>
+    </div>
+  </div>
+  <div class="top-right">
+    <div class="modes" role="tablist" aria-label="视角模式">
+      <button id="mode-pano" class="mode active" role="tab">全景 360°</button>
+      <button id="mode-free" class="mode" role="tab">自由环绕</button>
+    </div>
+    <div class="chips">
+      <span id="fps" class="chip">— fps</span>
+      <button id="btn-help" class="chip btn" title="操作说明">操作</button>
+      <button id="btn-shot" class="chip btn" title="保存当前画面">截图</button>
+      <button id="btn-full" class="chip btn" title="全屏">全屏</button>
+    </div>
+  </div>
+</header>
+
+<aside class="panel" id="panel" aria-label="参数面板">
+  <button id="panel-toggle" class="panel-toggle" title="折叠/展开">参数</button>
+  <div class="panel-body" id="panel-body">
+    <div class="panel-row">
+      <label for="s-lamp">寺观灯火 <b id="v-lamp">100%</b></label>
+      <input type="range" id="s-lamp" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-niche">摩崖显影 <b id="v-niche">0.55</b></label>
+      <input type="range" id="s-niche" min="0" max="150" step="5" value="55">
+    </div>
+    <div class="panel-row">
+      <label for="s-pine">松风摇动 <b id="v-pine">1.00</b></label>
+      <input type="range" id="s-pine" min="0" max="250" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-ripple">湖面波纹 <b id="v-ripple">1.00</b></label>
+      <input type="range" id="s-ripple" min="0" max="250" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-bloom">灯影辉光 <b id="v-bloom">0.30</b></label>
+      <input type="range" id="s-bloom" min="0" max="150" step="5" value="30">
+    </div>
+    <div class="switches">
+      <label class="sw"><input type="checkbox" id="c-crane"><span></span>放鹤（九节次第）</label>
+      <label class="sw"><input type="checkbox" id="c-reflect" checked><span></span>湖中灯影</label>
+      <label class="sw"><input type="checkbox" id="c-labels" checked><span></span>热点标签</label>
+      <label class="sw"><input type="checkbox" id="c-tour"><span></span>自动巡览</label>
+      <label class="sw"><input type="checkbox" id="c-quality" checked><span></span>画质自适应</label>
+    </div>
+    <div class="panel-foot">
+      <button id="btn-reset" class="ghost">视角复位</button>
+      <button id="btn-defaults" class="ghost">恢复默认</button>
+    </div>
+    <p class="hint" id="perf-hint"></p>
+  </div>
+</aside>
+
+<nav class="stations" id="stations" aria-label="机位导航"></nav>
+
+<section class="info" id="info" hidden>
+  <button class="info-close" id="info-close" title="关闭">×</button>
+  <div class="info-head">
+    <h2 id="info-title">—</h2>
+    <span class="era" id="info-era"></span>
+  </div>
+  <p class="lead" id="info-lead"></p>
+  <p class="body" id="info-body"></p>
+  <ul class="tags" id="info-tags"></ul>
+</section>
+
+<div class="compass" id="compass" aria-hidden="true">
+  <svg viewBox="-50 -50 100 100">
+    <circle class="ring" r="44"></circle>
+    <circle class="ring inner" r="33"></circle>
+    <g id="compass-rose">
+      <line class="tick" x1="0" y1="-44" x2="0" y2="-37"></line>
+      <line class="tick" x1="44" y1="0" x2="37" y2="0"></line>
+      <line class="tick" x1="0" y1="44" x2="-0" y2="37"></line>
+      <line class="tick" x1="-44" y1="0" x2="-37" y2="0"></line>
+      <text class="rose" x="0" y="-26">北</text>
+      <text class="rose" x="28" y="4">东</text>
+      <text class="rose" x="0" y="34">南</text>
+      <text class="rose" x="-28" y="4">西</text>
+    </g>
+    <path class="needle" d="M0,-30 L7,6 L0,1 L-7,6 Z"></path>
+  </svg>
+</div>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-ting" aria-hidden="true">
+      <svg viewBox="0 0 96 76">
+        <path d="M48,12 L48,4"></path>
+        <path d="M6,34 C22,30 34,22 48,12 C62,22 74,30 90,34"></path>
+        <path d="M6,34 C12,32 16,31 20,32 M90,34 C84,32 80,31 76,32"></path>
+        <line x1="20" y1="36" x2="20" y2="58"></line>
+        <line x1="76" y1="36" x2="76" y2="58"></line>
+        <line x1="34" y1="36" x2="34" y2="58"></line>
+        <line x1="62" y1="36" x2="62" y2="58"></line>
+        <line x1="12" y1="60" x2="84" y2="60"></line>
+      </svg>
+    </div>
+    <h2>夜放双鹤</h2>
+    <p id="loader-step">正在把山铺成一只朝西开口的环…</p>
+    <div class="bar"><i id="loader-bar"></i></div>
+  </div>
+</div>
+
+<div class="help" id="help" hidden>
+  <div class="help-card">
+    <button class="info-close" id="help-close">×</button>
+    <h2>操作说明</h2>
+    <dl>
+      <dt>左键拖动</dt><dd>全景模式转头环视 360°；自由模式环绕全山</dd>
+      <dt>右键 / 两指拖动</dt><dd>自由模式平移视点；全景模式下贴地走近</dd>
+      <dt>滚轮 / 双指捏合</dt><dd>全景模式调节视野角；自由模式推拉镜头</dd>
+      <dt>点击发光热点</dt><dd>移动到该机位并打开解说</dd>
+      <dt>底部机位条</dt><dd>湖西 · 堤上 · 缺口 · 亭上 · 泉上 · 佛前 · 龛壁 · 大士岩 · 书院 · 黄茅冈 · 石床 · 索上 · 台上 · 鸟瞰</dd>
+      <dt>「放鹤」开关</dt><dd>双鹤自亭前起、掠过湖面再绕回；同时山脊九节之灯自北而南次第亮起</dd>
+      <dt>键盘</dt><dd><kbd>A</kbd>/<kbd>D</kbd> 上一/下一机位 · <kbd>Space</kbd> 自动巡览 · <kbd>P</kbd> 切换模式 · <kbd>C</kbd> 放鹤 · <kbd>F</kbd> 全屏 · <kbd>H</kbd> 帮助 · <kbd>Esc</kbd> 关闭面板</dd>
+    </dl>
+    <p class="help-note">可考的底子：云龙山长三公里、分九节、主峰海拔 142 米，西临云龙湖（"东依云龙山"）；放鹤亭在山顶，北宋元丰元年（1078）由隐士张天骥建，苏轼有记，亭南北长 11.95 米、东西深 4.95 米，明嘉靖十一年、清同治十一年与 1979 年重修；《放鹤亭记》写山形"冈岭四合，隐然如大环，独缺其西一面，而山人之亭，适当其缺"，又写山人二鹤"旦则望西山之缺而放焉，暮则傃东山而归"；苏轼《登云龙山》（元丰元年）"醉中走上黄茅冈，满冈乱石如群羊。冈头醉倒石作床，仰看白云天茫茫……拍手大笑使君狂"；兴化禅寺在山东麓，北魏大石佛依崖雕成半身坐像，通高约三丈六尺（11.52 米），明洪武三十一年（1398）缘佛始建大殿，寺内今存明代形制的钟鼓楼、祖堂、藏经楼与一口重约三吨的铁钟；山有唐宋摩崖造像 71 龛、195 尊、题记 38 段；大士岩在山西麓，清康熙五十八年（1719）知州姜焯雕巨石为观音，其地本为放鹤亭僧舍；云龙书院创于清康熙六十年（1721）、雍正十三年（1735）知府李根云改建，在山西麓半山坡，辛亥革命后损毁，1996 年局部修复、2014 年重建为七进院落；东坡石床尺寸 3.3×1.3×1.75 米，为市级文物保护单位，其西崖有清乾隆年间杨四知题"洞天"；今有云龙山索道横越山脊，全长约 1200 米、垂直高差 88 米；云龙湖景区 2016 年 8 月获批国家 5A 级。</p>
+    <p class="help-note">存疑与分歧：大石佛始凿年代一记北魏正平（政平）年间约 450 年、一记太和十年（486 年），故这里只写"北魏"；石佛高度一源作"三丈二尺"；摩崖龛数一源作"七组 195 尊、1993 年发掘"，与"71 龛 195 尊 38 段"并存，取两源同数者；云龙湖水域面积诸源自 7.5 至 44.7 平方公里不等，故全景不标湖之大小；"黄茅冈"三字传为明王守仁题、清乾隆重书，仅见一说；湖旧名"簸箕洼""石狗湖"亦单源；九节的起讫与自哪一头起数无定说；观景台、索道建成年份、夜游节目均查无可靠记载。</p>
+    <p class="help-note">写意之处：山体是按《放鹤亭记》那句话摆的——主脊纵贯南北、南北两支折向东围成环、西面留缺口对着湖，各节高度与坡面皆非测绘；山上建筑形制取北方寺观与书院通例，殿名、匾额、院落的排法都是补配；云龙山没有可考的常设夜游，满山灯火与"夜里放鹤"都是画出来的，鹤的航线只为把"望西山之缺而放"这句话走一遍；今市天际线、滨湖长堤、堤上灯与湖上几盏渔火皆属今构。深链：<code>?st=crane&amp;bare=1</code> 出净帧，<code>&amp;crane=1</code> 预置放鹤于湖心，<code>&amp;niche=1</code> 把七十一龛一次点满。</p>
+  </div>
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

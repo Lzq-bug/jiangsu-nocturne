@@ -1,0 +1,23 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# 生成的参赛材料：填了团队信息后含个人信息，默认不入库
+docs/*.docx
+docs/*.pptx
+
+# 截图脚本的浏览器 profile 缓存(Edge 扩展/模型缓存,非场景内容)
+shots-profile/
+.edge-profile/
+**/shots/profile/
+**/shots/p_*/
+docs/*.zip
+**/.edgeprofile*/
+**/shots/prof*/
+**/docs/*.docx
+**/docs/*.pptx

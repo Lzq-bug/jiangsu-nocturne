@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>文笔塔 · 红梅夕照 3D 夜景全景</title>
+<link rel="stylesheet" href="./styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "../vendor/three.module.js",
+    "three/addons/": "../vendor/addons/"
+  }
+}
+</script>
+</head>
+<body class="wb">
+<canvas id="stage"></canvas>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hud hud-top">
+  <div class="brand">
+    <div class="seal">笔</div>
+    <div class="brand-text">
+      <h1>文笔塔 · 红梅夕照</h1>
+      <p>常州天宁区红梅公园 三维全景漫游 &nbsp;/&nbsp; 南齐建元创建·七级八面楼阁砖塔写意重建</p>
+    </div>
+  </div>
+  <div class="top-right">
+    <div class="modes" role="tablist" aria-label="视角模式">
+      <button id="mode-pano" class="mode active" role="tab">全景 360°</button>
+      <button id="mode-free" class="mode" role="tab">自由环绕</button>
+    </div>
+    <div class="chips">
+      <span id="fps" class="chip">— fps</span>
+      <a id="btn-other" class="chip btn" href="../index.html" title="换到南京 · 夫子庙夜景">秦淮</a>
+      <button id="btn-help" class="chip btn" title="操作说明">操作</button>
+      <button id="btn-shot" class="chip btn" title="保存当前画面">截图</button>
+      <button id="btn-full" class="chip btn" title="全屏">全屏</button>
+    </div>
+  </div>
+</header>
+
+<aside class="panel" id="panel" aria-label="参数面板">
+  <button id="panel-toggle" class="panel-toggle" title="折叠/展开">参数</button>
+  <div class="panel-body" id="panel-body">
+    <div class="panel-row">
+      <label for="s-moon">城北月色 <b id="v-moon">110%</b></label>
+      <input type="range" id="s-moon" min="0" max="200" step="5" value="110">
+    </div>
+    <div class="panel-row">
+      <label for="s-lamp">七层塔灯 <b id="v-lamp">100%</b></label>
+      <input type="range" id="s-lamp" min="0" max="160" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-lantern">檐下灯火 <b id="v-lantern">100%</b></label>
+      <input type="range" id="s-lantern" min="0" max="160" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-wave">池上水波 <b id="v-wave">1.00</b></label>
+      <input type="range" id="s-wave" min="0" max="250" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-bloom">灯影辉光 <b id="v-bloom">0.30</b></label>
+      <input type="range" id="s-bloom" min="0" max="180" step="5" value="30">
+    </div>
+    <div class="switches">
+      <label class="sw"><input type="checkbox" id="c-reflect" checked><span></span>池中倒影</label>
+      <label class="sw"><input type="checkbox" id="c-labels" checked><span></span>热点标签</label>
+      <label class="sw"><input type="checkbox" id="c-tour"><span></span>自动巡览</label>
+      <label class="sw"><input type="checkbox" id="c-quality" checked><span></span>画质自适应</label>
+    </div>
+    <div class="panel-foot">
+      <button id="btn-lamp" class="primary">燃笔</button>
+      <button id="btn-reveal" class="secondary">剖视</button>
+      <button id="btn-reset" class="ghost">视角复位</button>
+      <button id="btn-defaults" class="ghost">恢复默认</button>
+    </div>
+    <p class="hint" id="perf-hint"></p>
+  </div>
+</aside>
+
+<nav class="stations" id="stations" aria-label="景点导航"></nav>
+
+<section class="info" id="info" hidden>
+  <button class="info-close" id="info-close" title="关闭">×</button>
+  <div class="info-head">
+    <h2 id="info-title">—</h2>
+    <span class="era" id="info-era"></span>
+  </div>
+  <p class="lead" id="info-lead"></p>
+  <p class="body" id="info-body"></p>
+  <ul class="tags" id="info-tags"></ul>
+</section>
+
+<div class="verse" id="verse" aria-hidden="true"></div>
+
+<div class="compass" id="compass" aria-hidden="true">
+  <svg viewBox="-50 -50 100 100">
+    <circle class="ring" r="44"></circle>
+    <circle class="ring inner" r="33"></circle>
+    <g id="compass-rose">
+      <line class="tick" x1="0" y1="-44" x2="0" y2="-37"></line>
+      <line class="tick" x1="44" y1="0" x2="37" y2="0"></line>
+      <line class="tick" x1="0" y1="44" x2="-0" y2="37"></line>
+      <line class="tick" x1="-44" y1="0" x2="-37" y2="0"></line>
+      <text class="rose" x="0" y="-26">北</text>
+      <text class="rose" x="28" y="4">东</text>
+      <text class="rose" x="0" y="34">南</text>
+      <text class="rose" x="-28" y="4">西</text>
+    </g>
+    <path class="needle" d="M0,-30 L7,6 L0,1 L-7,6 Z"></path>
+  </svg>
+</div>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-lamp"></div>
+    <h2>红梅夕照</h2>
+    <p id="loader-step">正在叠第七层腰檐…</p>
+    <div class="bar"><i id="loader-bar"></i></div>
+  </div>
+</div>
+
+<div class="help" id="help" hidden>
+  <div class="help-card">
+    <button class="info-close" id="help-close">×</button>
+    <h2>操作说明</h2>
+    <dl>
+      <dt>左键拖动</dt><dd>全景模式转头环视 360°；自由模式环绕场景</dd>
+      <dt>右键 / 两指拖动</dt><dd>自由模式平移视点</dd>
+      <dt>滚轮 / 双指捏合</dt><dd>全景模式调节视野角；自由模式推拉镜头</dd>
+      <dt>点击发光热点</dt><dd>移动到该景点机位并打开解说</dd>
+      <dt>燃笔 / <kbd>Y</kbd></dt><dd>七层五十六盏平座灯自塔基起次第点亮，末了塔刹放光</dd>
+      <dt>剖视 / <kbd>T</kbd></dt><dd>砖身与腰檐渐隐，露出宋代须弥座、各层楼板、旋梯与 16 米通天刹柱</dd>
+      <dt>底部景点条</dt><dd>直接切换 8 处机位（南门·塔基·砚池·塔影·笔架山·塔刹·红梅阁·鸟瞰）</dd>
+      <dt>键盘</dt><dd><kbd>A</kbd>/<kbd>D</kbd> 上一/下一景点 · <kbd>Space</kbd> 自动巡览 · <kbd>P</kbd> 切换模式 · <kbd>F</kbd> 全屏 · <kbd>H</kbd> 帮助 · <kbd>Esc</kbd> 关闭面板</dd>
+    </dl>
+    <p class="help-note">场景为江苏常州红梅公园文笔塔的夜景写意三维重建，不是测绘模型。<b>可考的</b>：塔在今常州市天宁区红梅公园内（园东南隅），公园 1958 年始建、1960 年建成开放，地处常州城东、天宁寺北侧；塔始建于南齐建元年间（480—482，另记 479—482），原为寺之附属，寺初名建元寺、俗称塔下寺，北宋太平兴国年间改太平兴国禅寺，明代称太平讲寺，塔因称太平讲寺塔，后俗称文笔塔；七级八面、周绕回廊、砖身木檐楼阁式，通高 48.38 米、底层外径 9.58 米，花岗岩八角须弥座直径 10.1 米、每边长 4.1 米，塔基为宋代遗物，第六层内置 16 米"通天"刹柱通向塔顶；兴废有据——南宋建炎元年（1127）毁于火，元初重建、至正间再毁，明宣德三年（1428）毁于火、正德四年（1509）修复、万历间两度修葺，清康熙三十三年（1694）火烧去顶端两层、乾隆十年（1745）修复，咸丰末再遭兵火，光绪末年（1905—1908，另记光绪三十四年由天宁寺住持募资）重建，1937 年冬日军炮击焚去木构、原铜质塔刹件被毁，1981 年 5 月动工、1982 年 11 月竣工修复并对外开放，2002 年、2017 年又各作保护性修缮；1988 年塔周修成"文笔夕照"景区，此景为红梅八景之一（红梅春晓、古刹钟声、曲池风荷、青峦倒影、凤桥花径、翠薇秋霞、孤山雪松、文笔夕照）；2019 年 3 月 20 日由江苏省人民政府公布为第八批省级文物保护单位；园内的红梅阁始建于唐昭宗年间、现存建筑为清光绪二十六年（1900）重建、阁高 17 米、上下两层、重檐歇山（一处园志）；天宁禅寺始建于唐永徽年间、在园南，寺内天宁宝塔 13 层、总高 153.79 米、2008 年 5 月 1 日开光。<b>存疑与分歧的</b>：通高另有约 48 米、48.83 米、约 44 米三说，底径另有约 7 米一说，本景取 48.38 米与 9.58 米；塔顶今作铜葫芦（园方解说称重 1.5 吨），另有"铁质塔刹"一说，原刹件毁于抗战、今刹系 1982 年补制；"北宋大观年间一科进士五十三人、朝廷敕改名文笔塔"仅见百科一处，属传说口径，"塔顶祥光腾现便有状元及第"是民间说法；常州"九状元"与"千三百进士""进士近两千"各说不一，本景不作清点；园方解说引"太平古寺劫灰余，夕阳惟照一孤塔"并署宋人杨万里，其在集中的直接归属本景未核到，只作今传；咸丰、光绪两朝的毁建年份在不同名录间互有出入。<b>写意的</b>：层净高、收分、出檐、平座出跳、栏板与角翘皆按 48.38 米总高与照片观感反推；每层四向辟券门、门朝南面，志书无征；砚池、塔影池、笔架山、碑廊、文笔楼、梦笔轩、墨香榭、塔影山房的名目见于 1988 年后景区名录，但相对方位、形状与尺度只按一处景区解说排布，堆土山形与池岸一律写意；夜景灯色、七层次第点亮、池里荷灯、游人身影、城南屋脊与天宁宝塔的距离（按画面压缩到三百米）皆为构图所需；园墙、门坊、石桥与碑廊空碑无碑文是新制；太平寺遗存的石经幢一通 2000 年 6 月已移置延陵中路"通吴门"旁，不在本景之内。本景不复原任何一年的真实面貌。</p>
+  </div>
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

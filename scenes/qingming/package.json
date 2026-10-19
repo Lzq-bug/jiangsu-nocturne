@@ -1,0 +1,45 @@
+{
+  "name": "qingming-canal-3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "清名桥 · 运河灯河 —— 无锡古运河一桥两岸夜景的 Three.js 程序化写意重建，无第三方运行时依赖",
+  "keywords": [
+    "清名桥",
+    "无锡古运河",
+    "数字文旅",
+    "three.js",
+    "夜景",
+    "全景",
+    "panorama",
+    "procedural",
+    "大运河",
+    "webgl"
+  ],
+  "author": "Lzq-bug",
+  "license": "MIT",
+  "homepage": "./index.html",
+  "contributors": [
+    "Lzq-bug"
+  ],
+  "scripts": {
+    "dev": "node tools/serve.mjs 8795",
+    "start": "node tools/serve.mjs 8795",
+    "build": "node tools/build-single.mjs index.html src/main.js \"dist/清名桥运河灯河-3D夜景.html\"",
+    "submission": "node tools/make-qingming-submission.mjs",
+    "build:site": "node tools/build-single.mjs index.html src/main.js dist/index.html",
+    "build:all": "npm run build && npm run build:site && npm run submission",
+    "preview": "node tools/serve.mjs 4173 dist",
+    "lint": "eslint .",
+    "shoot": "node tools/shoot.mjs",
+    "submission": "node tools/make-qingming-submission.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "docx": "^9.9.0",
+    "eslint": "^9.39.5",
+    "pptxgenjs": "^4.0.1"
+  }
+}

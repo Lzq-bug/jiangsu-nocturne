@@ -1,0 +1,15 @@
+{
+  "name": "nantong-museum-haohe-3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "南通博物苑 · 濠河夜月 —— Three.js 程序化夜景重建，无第三方运行时依赖",
+  "scripts": {
+    "dev": "node tools/serve.mjs 8820",
+    "start": "node tools/serve.mjs 8820",
+    "build": "node tools/build-single.mjs index.html src/main.js \"dist/南通博物苑濠河夜月-3D夜景.html\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

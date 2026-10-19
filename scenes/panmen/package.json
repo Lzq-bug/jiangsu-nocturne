@@ -1,0 +1,15 @@
+{
+  "name": "panmen-three-views-3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "盘门三景 · 水陆城门 / 吴门桥 / 瑞光塔 —— Three.js 程序化夜景重建，无第三方运行时依赖",
+  "scripts": {
+    "dev": "node tools/serve.mjs 8794",
+    "start": "node tools/serve.mjs 8794",
+    "build": "node tools/build-single.mjs index.html src/main.js \"dist/盘门三景-运河夜阑-3D夜景.html\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

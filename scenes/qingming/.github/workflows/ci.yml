@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-build:
+    name: lint + build (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20.x, 24.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      # 只有 devDependencies（eslint + 生成参赛材料用的 docx/pptxgenjs），
+      # 场景本身零运行时依赖
+      - name: Install
+        run: npm ci --no-audit --no-fund
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build single-file site
+        run: npm run build:site
+
+      - name: Check the bundle is self-contained
+        run: |
+          test -s dist/index.html
+          ! grep -q 'src="\./' dist/index.html
+          ! grep -q 'type="importmap"' dist/index.html
+          ! grep -q '<link rel="stylesheet"' dist/index.html
+          ls -l dist/index.html
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qingming-canal-dist-node${{ matrix.node-version }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14

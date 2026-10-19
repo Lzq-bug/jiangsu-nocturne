@@ -1,0 +1,17 @@
+{
+  "name": "ge-garden-3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "个园 · 一园四季 3D 夜景全景 —— Three.js 程序化重建四季假山与盐商住宅，无第三方运行时依赖",
+  "scripts": {
+    "dev": "node tools/serve.mjs 8793",
+    "start": "node tools/serve.mjs 8793",
+    "shoot": "node tools/shoot.mjs",
+    "probe": "node tools/probe.mjs",
+    "build": "node tools/build-single.mjs dist/个园一园四季-3D夜景.html"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

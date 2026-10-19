@@ -1,0 +1,15 @@
+{
+  "name": "mengxiyuan-alley-3d",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "梦溪园巷 · 泉声灯影 —— 镇江沈括故居夜景写意三维重建，Three.js 程序化生成，无第三方运行时依赖",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "start": "node tools/serve.mjs",
+    "build": "node tools/build-single.mjs index.html src/main.js \"dist/梦溪园巷-泉声灯影-3D夜景.html\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

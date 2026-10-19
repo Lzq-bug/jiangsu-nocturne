@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>茅山 · 上清灯山 3D 夜景全景</title>
+<link rel="stylesheet" href="./styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "../vendor/three.module.js",
+    "three/addons/": "../vendor/addons/"
+  }
+}
+</script>
+</head>
+<body class="ms">
+<canvas id="stage"></canvas>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hud hud-top">
+  <div class="brand">
+    <div class="seal">茅</div>
+    <div class="brand-text">
+      <h1>茅山 · 上清灯山</h1>
+      <p>镇江句容 &nbsp;/&nbsp; 常州金坛 界山 &nbsp; 三维全景漫游 &nbsp;/&nbsp; 道教上清宗坛 夜景写意重建</p>
+    </div>
+  </div>
+  <div class="top-right">
+    <div class="modes" role="tablist" aria-label="视角模式">
+      <button id="mode-pano" class="mode active" role="tab">全景 360°</button>
+      <button id="mode-free" class="mode" role="tab">自由环绕</button>
+    </div>
+    <div class="chips">
+      <span id="fps" class="chip">— fps</span>
+      <a id="btn-other" class="chip btn" href="../index.html" title="换到南京 · 夫子庙夜景">秦淮</a>
+      <button id="btn-help" class="chip btn" title="操作说明">操作</button>
+      <button id="btn-shot" class="chip btn" title="保存当前画面">截图</button>
+      <button id="btn-full" class="chip btn" title="全屏">全屏</button>
+    </div>
+  </div>
+</header>
+
+<aside class="panel" id="panel" aria-label="参数面板">
+  <button id="panel-toggle" class="panel-toggle" title="折叠/展开">参数</button>
+  <div class="panel-body" id="panel-body">
+    <div class="panel-row">
+      <label for="s-moon">西北月色 <b id="v-moon">100%</b></label>
+      <input type="range" id="s-moon" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-lantern">上山灯火 <b id="v-lantern">100%</b></label>
+      <input type="range" id="s-lantern" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-cloud">云海 <b id="v-cloud">100%</b></label>
+      <input type="range" id="s-cloud" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-mist">山雾 <b id="v-mist">100%</b></label>
+      <input type="range" id="s-mist" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-bloom">灯影辉光 <b id="v-bloom">0.34</b></label>
+      <input type="range" id="s-bloom" min="0" max="180" step="2" value="34">
+    </div>
+    <div class="switches">
+      <label class="sw"><input type="checkbox" id="c-labels" checked><span></span>热点标签</label>
+      <label class="sw"><input type="checkbox" id="c-tour"><span></span>自动巡览</label>
+      <label class="sw"><input type="checkbox" id="c-quality" checked><span></span>画质自适应</label>
+    </div>
+    <div class="panel-foot">
+      <button id="btn-lamp" class="primary">上灯</button>
+      <button id="btn-cave" class="secondary">洞天</button>
+      <button id="btn-reset" class="ghost">视角复位</button>
+      <button id="btn-defaults" class="ghost">恢复默认</button>
+    </div>
+    <p class="hint" id="perf-hint"></p>
+  </div>
+</aside>
+
+<nav class="stations" id="stations" aria-label="景点导航"></nav>
+
+<section class="info" id="info" hidden>
+  <button class="info-close" id="info-close" title="关闭">×</button>
+  <div class="info-head">
+    <h2 id="info-title">—</h2>
+    <span class="era" id="info-era"></span>
+  </div>
+  <p class="lead" id="info-lead"></p>
+  <p class="body" id="info-body"></p>
+  <ul class="tags" id="info-tags"></ul>
+</section>
+
+<div class="verse" id="verse" aria-hidden="true"></div>
+
+<div class="compass" id="compass" aria-hidden="true">
+  <svg viewBox="-50 -50 100 100">
+    <circle class="ring" r="44"></circle>
+    <circle class="ring inner" r="33"></circle>
+    <g id="compass-rose">
+      <line class="tick" x1="0" y1="-44" x2="0" y2="-37"></line>
+      <line class="tick" x1="44" y1="0" x2="37" y2="0"></line>
+      <line class="tick" x1="0" y1="44" x2="-0" y2="37"></line>
+      <line class="tick" x1="-44" y1="0" x2="-37" y2="0"></line>
+      <text class="rose" x="0" y="-26">北</text>
+      <text class="rose" x="28" y="4">东</text>
+      <text class="rose" x="0" y="34">南</text>
+      <text class="rose" x="-28" y="4">西</text>
+    </g>
+    <path class="needle" d="M0,-30 L7,6 L0,1 L-7,6 Z"></path>
+  </svg>
+</div>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-lamp"></div>
+    <h2>上清灯山</h2>
+    <p id="loader-step">正在起三峰一脊的山体…</p>
+    <div class="bar"><i id="loader-bar"></i></div>
+  </div>
+</div>
+
+<div class="help" id="help" hidden>
+  <div class="help-card">
+    <button class="info-close" id="help-close">×</button>
+    <h2>操作说明</h2>
+    <dl>
+      <dt>左键拖动</dt><dd>全景模式转头环视 360°；自由模式环绕场景</dd>
+      <dt>右键 / 两指拖动</dt><dd>自由模式平移视点</dd>
+      <dt>滚轮 / 双指捏合</dt><dd>全景模式调节视野角；自由模式推拉镜头</dd>
+      <dt>点击发光热点</dt><dd>移动到该景点机位并打开解说</dd>
+      <dt>上灯 / <kbd>Y</kbd></dt><dd>灯串自景区牌坊起，经盘山道、道祖广场、印宫、华阳洞，一路放到顶宫</dd>
+      <dt>洞天 / <kbd>T</kbd></dt><dd>刀口自南而北切开山体，露出华阳洞内的洞天与摩崖题刻</dd>
+      <dt>底部景点条</dt><dd>直接切换 10 处机位 + 空中鸟瞰</dd>
+      <dt>键盘</dt><dd><kbd>A</kbd>/<kbd>D</kbd> 上一/下一景点 · <kbd>Space</kbd> 自动巡览 · <kbd>P</kbd> 切换模式 · <kbd>F</kbd> 全屏 · <kbd>H</kbd> 帮助 · <kbd>Esc</kbd> 关闭面板</dd>
+    </dl>
+    <p class="help-note">
+      场景为江苏茅山的夜景写意三维重建，不是测绘模型。<br>
+      <b>可考的</b>：茅山在镇江句容茅山镇与常州金坛薛埠镇之间，景区 18.19 平方公里、核心 11.51 平方公里，旧名句曲山，因西汉茅盈（字申叔）、茅固（字季伟）、茅衷（字思和）三兄弟结庵修道而改名，三峰又称大、中、小茅君山，宋代加封后合称"九天司命三茅应化真君"；道教书把它排在"第一福地、第八洞天"；"秦汉神仙府，梁唐宰相家"是其常用一联；陆修静（406—477，南朝宋）编第一部道教经书总目《三洞经书目录》，元代茅山宗尊为第七代宗师；陶弘景隐居茅山四十余年、号华阳隐居、人称"山中宰相"，承杨羲、许谧所传上清经编《真诰》《登真隐诀》等两百余卷。<b>海拔</b>：大茅峰 372.5、二茅峰 301、抱朴峰 288、积金峰 271.5、三茅峰 267.9，山势由南向北蜿蜒递次降低、形如绿色苍龙。<b>九霄万福宫</b>在大茅峰巅（俗称顶宫），始于汉、齐梁间易为殿宇，元延祐三年（1316）敕建赐额圣佑观，明万历二十六年（1598）赐名九霄万福宫，1982、1985 年起修复，主祀大茅真君茅盈；殿名可考者为灵官殿、藏经楼、宗师殿、坎离宫、太元宝殿、二圣殿（另有一说作正殿太元宝殿、后高真殿、左圣父殿、前藏经阁附六道院近百余间），灵官殿面阔三间进深两间，太元宝殿面阔五间进深三间、二百余平方米，宫前广场 80×40 米；东山门匾"茅山道院"，西山门为古正门，侧门刻"出玄""入牝"，台上石坊刻"三天门"。<b>元符万宁宫</b>在积金峰南腰（俗称印宫），"元符"为宋哲宗年号，南宋淳祐九年（1249）理宗御书"上清宗坛"存于此宫宗坛祠，今存建筑名可考者有睹星门、三天门、万寿台、太元殿、三官殿、慈航殿、勉斋道院，占地三千余平方米、房屋 107 间。<b>露天老子铜像</b>立于印宫道祖广场，与景区牌坊同在一中轴上：净高 33 米（一说高 99 尺）、坐像法身净高 28 米、重 106 吨、226 块特制紫铜板铆焊、1996 年动工 1998 年落成、2000 年获吉尼斯纪录、基座直径 18.8 米，座下为老君殿，赵朴初题"道法自然"，身后贴山壁建 120 米东西向文化长廊，两侧为玉皇殿、王母殿；铜色记作紫铜、远观呈金色。<b>华阳洞</b>在老虎岗西北坡林间山岩之下、北距印宫约三百米，仙人洞与之相连；崖上摩崖石刻跨唐至清、早期二十多方后世数十方，宋黄佑年间题名、明乔宇、清康熙御批"第八洞天"，洞口"华阳洞"榜书传为苏轼书、字一米见方，为江苏省文物保护单位。<b>三宫五观</b>为崇禧万寿宫、九霄万福宫、元符万宁宫三宫，德佑、仁佑、玉晨、白云、乾元五观：崇禧万寿宫俗称红庙，元延祐六年（1319）赐名，1966 年建东进水库时宫址全部淹没，后在原址东侧、青玉峰南麓迁建，2016 年 8 月 28 日开放，记为"红墙飞檐、黑色顶瓦、黄色大字"；德佑观占地 1600 平方米，元延祐年间建、1958 年拆除、2013 年复建。<b>苏南抗战胜利纪念碑</b>在北麓望母山巅，1995 年 9 月 1 日建成，碑宽 6 米，碑前 317 级台阶分 6 组、每组 50 级，1997 年冬有人在碑前燃放鞭炮时碑林传出"嘀嘀达"的军号声。<b>茅山新四军纪念馆</b>1985 年初筹建、同年 9 月建成开放，在万福路 1 号。<b>夜景的出处</b>：《茅山志》卷二十五记"預啟玉錄道場七晝夜，散日設醮三百六十分位"（道场跨夜），香期自农历腊月二十四日至次年三月十八日、"每日多时达万人，有时达数万人"，三月十八称"鹤会"（《茅山志》卷二十八），十月初三为大茅君圣诞；2023 年元宵灯会作"山上山下、道观内外"，元符万宁宫有燃灯祈福拜太岁；2026 年 2 月 15—23 日景区首次引入新春游园灯会、十余组大型灯组点亮夜色。道教音乐（茅山）列国家级非物质文化遗产第四批（2014 年，编号Ⅱ-139，申报地区句容市），韵腔有《香赞》《步虚》《至心朝礼》《三茅诰》《回向鹤》。山上属北亚热带常绿阔叶与落叶阔叶混交林带，原生植被稀少、多为人工林，森林覆盖率 91.6%，故坡面作深绿松竹。<b>诗句</b>只用能核到原文的两句：陶弘景"山中何所有，岭上多白云。只可自怡悦，不堪持赠君"（"持赠"一作"持寄"），宋·褚环中《宗坛秋夕》"疏绮平云彻夜开，月明峰顶见楼台。璚璈声里天灯近，知是三真谒帝回"（《茅山志》卷三十二）。<br>
+      <b>存疑与分歧（两套都记，不静默择一）</b>：三茅活动时代通行记西汉，另一处词条作"东汉景帝"（景帝属西汉，系笔误），"公元前 122 年"无出处；"第一福地、第八洞天"有一处倒写作"第八洞天、第一福地"；元符宫始建有南朝梁"潜神庵"、北宋绍圣四年（1098）敕建元符观、唐代至德年间至崇宁五年（1106）建成三路说法，"印宫"之名亦有玉印、盖印、保管传坛玉印三说；老子像另有"法身 28 米"与"净高 33 米"并存，而常被引用的"81 米""33.33 米""取意《道德经》八十一章"及像的精确朝向、设计者在可用 sources 中均无记载，本景不采用；纪念碑高度两说（通高 36 米，或碑身 28 米加须弥座 3.13 米），模型取通高 36 米，位置除"望母山巅"外另有系于景区南部之说，回响记载作"军号声"而非"枪声"；新四军纪念馆藏品一处记"文物一万件（套）、图片六百余幅"，另一处记"实物及图片 3000 余件"；茅山的辖境一说"句容、金坛、溧水、丹徒、丹阳五县之间"；金牛岭索道"全长八百多米、可直达九霄万福宫"，但 2024—2026 年的票务里已无索道一项，疑已停用，故本景不画缆车，顶宫按"盘山公路＋驳运车"处理。<br>
+      <b>写意与明确排除的</b>：山体水平尺度作了压缩（牌坊至顶宫实际盘山数公里，此景约一点六公里，故纵坡比实测陡）；宫观总平面排布、台地高差与勒脚挡土墙、各殿开间与屋顶形制（除"面阔五间、进深三间"一类口径外）皆为写意；老虎岗、望母山、青玉峰没有志书海拔；华阳洞洞深旧志称"深约数百里"或"三里"，皆无实测，"洞天"剖视的洞室尺度纯为把这一说法画出来的写意；全山灯位、色温、上灯次第与云海出现的高度、时节均为写意（云海多在下雨后清早铺谷底，此刻是夜里）；老子像的面相、衣纹、手姿按常见坐像推定；东进水库的水面与岸线、德佑观与万寿宫形制、山门牌坊样式均新制。"约六千多阶登顶""三十七级""317 级象征什么""鞭炮回响的地磁解释""跨年撞钟""同上来历两千一百年"等，或出自游记或今人讲解，志书无征，一律不作史实；李白、孟浩然、范仲淹、苏轼、陆游等写茅山的句子本次未取到可靠原文，故不引不刻。模型口径详见各机位解说。
+    </p>
+  </div>
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

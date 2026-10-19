@@ -1,0 +1,35 @@
+{
+  "name": "qinhuai-panorama-3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "夫子庙 · 秦淮画廊 / 平江路 · 灯河夜巷 —— Three.js 程序化夜景重建，无第三方运行时依赖",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "start": "node tools/serve.mjs",
+    "build": "node tools/build-single.mjs index.html src/main.js \"dist/夫子庙秦淮画廊-3D全景.html\"",
+    "build:pingjiang": "node tools/build-single.mjs pingjiang.html src/pj/main.js \"dist/平江路灯河夜巷-3D全景.html\"",
+    "build:gate": "node tools/build-single.mjs gate/index.html gate/src/main.js \"dist/东方之门金鸡湖-3D夜景.html\"",
+    "build:canglang": "node tools/build-single.mjs canglang/index.html canglang/src/main.js \"dist/沧浪亭清风明月-3D夜景.html\"",
+    "build:sxh": "node tools/build-single.mjs sxh.html src/sxh/main.js \"dist/瘦西湖五亭桥月-3D夜景.html\"",
+    "build:mingyue": "node tools/build-single.mjs mingyue/index.html mingyue/src/main.js \"dist/二分明月楼一园明月-3D夜景.html\"",
+    "build:taicheng": "node tools/build-single.mjs taicheng.html src/tc/main.js \"dist/台城明城墙湖山入城-3D夜景.html\"",
+    "build:haichun": "node tools/build-single.mjs haichun/index.html haichun/src/main.js \"dist/海春轩塔一塔两朝-3D夜景.html\"",
+    "build:baoen": "node tools/build-single.mjs baoen/index.html baoen/src/main.js \"dist/大报恩寺琉璃塔夜必灯-3D夜景.html\"",
+    "build:yunlong": "node tools/build-single.mjs yunlong/index.html yunlong/src/main.js \"dist/云龙山冈岭四合-3D夜景.html\"",
+    "build:langshan": "node tools/build-single.mjs langshan/index.html langshan/src/main.js \"dist/狼山江海第一山-3D夜景.html\"",
+    "build:njbridge": "node tools/build-single.mjs njbridge/index.html njbridge/src/main.js \"dist/南京长江大桥天堑飞虹-3D夜景.html\"",
+    "build:huaguo": "node tools/build-single.mjs huaguo/index.html huaguo/src/main.js \"dist/花果山海上一夜-3D夜景.html\"",
+    "build:tongli": "node tools/build-single.mjs tongli/index.html tongli/src/main.js \"dist/同里古镇川字河灯-3D夜景.html\"",
+    "build:all": "npm run build && npm run build:pingjiang && npm run build:gate && npm run build:canglang && npm run build:sxh && npm run build:mingyue && npm run build:taicheng && npm run build:haichun && npm run build:baoen && npm run build:yunlong && npm run build:langshan && npm run build:huaguo",
+    "submission": "node tools/make-submission.mjs",
+    "submission:gate": "node tools/make-gate-submission.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "docx": "^9.9.0",
+    "pptxgenjs": "^4.0.1"
+  }
+}

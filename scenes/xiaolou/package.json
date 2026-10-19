@@ -1,0 +1,16 @@
+{
+  "name": "xiaolou-lane-3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "常州 · 小娄巷 一巷明月 3D 夜景全景 —— Three.js 程序化写意重建，无第三方运行时依赖",
+  "scripts": {
+    "dev": "node tools/serve.mjs 8798",
+    "start": "node tools/serve.mjs 8798",
+    "build": "node tools/build-single.mjs index.html src/main.js \"dist/小娄巷一巷明月-3D夜景.html\"",
+    "shoot": "node tools/shoot.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

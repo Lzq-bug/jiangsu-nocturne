@@ -1,0 +1,34 @@
+# ---- 依赖 ----
+node_modules/
+
+# ---- 构建产物（npm run build / build:site 的输出，可随时重新生成）----
+dist/
+
+# ---- 校验截图与无头浏览器 Profile：tools/shoot.mjs 的本机临时输出 ----
+# 锚定在仓库根，别把 docs/shots/ 的素材一起吞掉
+/shots/
+/shots-profile/
+docs/shots-profile/
+
+# ---- docs/shots/ 下的 JPEG 是 tools/make-qingming-submission.mjs 的素材输入，必须入库 ----
+!docs/shots/
+!docs/shots/**
+
+# ---- 生成的参赛材料：填了团队信息后含个人信息，默认不入库 ----
+docs/*.docx
+docs/*.pptx
+
+# ---- 日志 ----
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# ---- 系统与编辑器垃圾 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+.vscode/
+.idea/
+*.swp
+*.tmp

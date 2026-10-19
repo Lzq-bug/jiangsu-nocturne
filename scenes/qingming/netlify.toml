@@ -1,0 +1,39 @@
+# 清名桥 · 运河灯河 —— Netlify 静态托管
+# 单文件产物：npm run build:site 会把整场 Three.js 场景（含 vendored three r160）
+# 内联进 dist/index.html，站点里没有第二个请求，所以不需要任何 serverless/DB。
+
+[build]
+  command = "npm run build:site"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# 本地预览不需要 Netlify CLI：npm run dev（源码，8795）/ npm run preview（dist，4173）
+
+# 单文件 HTML：不缓存（改名即生效），其余静态资源走常规缓存。
+# Content-Type 与 Netlify 对 .html 的默认值一致，写出来是为了明确带上 charset。
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Content-Type = "text/html; charset=utf-8"
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# 整站只有一个页面：任何路径都回/index.html（含 404），避免出现空白错误页
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "http://"
+  to = "https://"
+  scheme = "https"
+  status = 301
+  force = true

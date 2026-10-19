@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>同里古镇 · 川字河灯 3D 夜景全景</title>
+<link rel="stylesheet" href="./styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "../vendor/three.module.js",
+    "three/addons/": "../vendor/addons/"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="stage"></canvas>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hud hud-top">
+  <div class="brand">
+    <div class="seal">同</div>
+    <div class="brand-text">
+      <h1>同里古镇 · 川字河灯</h1>
+      <p>江南水镇写意 三维全景漫游 &nbsp;/&nbsp; 镇河·三桥·退思园程序化夜景重建</p>
+    </div>
+  </div>
+  <div class="top-right">
+    <div class="modes" role="tablist" aria-label="视角模式">
+      <button id="mode-pano" class="mode active" role="tab">全景 360°</button>
+      <button id="mode-free" class="mode" role="tab">自由环绕</button>
+    </div>
+    <div class="chips">
+      <span id="fps" class="chip">— fps</span>
+      <button id="btn-help" class="chip btn" title="操作说明">操作</button>
+      <button id="btn-shot" class="chip btn" title="保存当前画面">截图</button>
+      <button id="btn-full" class="chip btn" title="全屏">全屏</button>
+    </div>
+  </div>
+</header>
+
+<aside class="panel" id="panel" aria-label="参数面板">
+  <button id="panel-toggle" class="panel-toggle" title="折叠/展开">参数</button>
+  <div class="panel-body" id="panel-body">
+    <div class="panel-row">
+      <label for="s-lamp">沿河灯笼 <b id="v-lamp">100%</b></label>
+      <input type="range" id="s-lamp" min="0" max="200" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-window">家家窗灯 <b id="v-window">62%</b></label>
+      <input type="range" id="s-window" min="0" max="150" step="5" value="62">
+    </div>
+    <div class="panel-row">
+      <label for="s-float">河灯 <b id="v-float">36%</b></label>
+      <input type="range" id="s-float" min="0" max="150" step="5" value="36">
+    </div>
+    <div class="panel-row">
+      <label for="s-ripple">水面波纹 <b id="v-ripple">1.00</b></label>
+      <input type="range" id="s-ripple" min="0" max="250" step="5" value="100">
+    </div>
+    <div class="panel-row">
+      <label for="s-bloom">灯影辉光 <b id="v-bloom">0.30</b></label>
+      <input type="range" id="s-bloom" min="0" max="150" step="5" value="30">
+    </div>
+    <div class="switches">
+      <label class="sw"><input type="checkbox" id="c-walk"><span></span>走三桥（灯船过桥）</label>
+      <label class="sw"><input type="checkbox" id="c-reflect" checked><span></span>水中灯影</label>
+      <label class="sw"><input type="checkbox" id="c-labels" checked><span></span>热点标签</label>
+      <label class="sw"><input type="checkbox" id="c-tour"><span></span>自动巡览</label>
+      <label class="sw"><input type="checkbox" id="c-quality" checked><span></span>画质自适应</label>
+    </div>
+    <div class="panel-foot">
+      <button id="btn-reset" class="ghost">视角复位</button>
+      <button id="btn-defaults" class="ghost">恢复默认</button>
+    </div>
+    <p class="hint" id="perf-hint"></p>
+  </div>
+</aside>
+
+<nav class="stations" id="stations" aria-label="机位导航"></nav>
+
+<section class="info" id="info" hidden>
+  <button class="info-close" id="info-close" title="关闭">×</button>
+  <div class="info-head">
+    <h2 id="info-title">—</h2>
+    <span class="era" id="info-era"></span>
+  </div>
+  <p class="lead" id="info-lead"></p>
+  <p class="body" id="info-body"></p>
+  <ul class="tags" id="info-tags"></ul>
+</section>
+
+<div class="compass" id="compass" aria-hidden="true">
+  <svg viewBox="-50 -50 100 100">
+    <circle class="ring" r="44"></circle>
+    <circle class="ring inner" r="33"></circle>
+    <g id="compass-rose">
+      <line class="tick" x1="0" y1="-44" x2="0" y2="-37"></line>
+      <line class="tick" x1="44" y1="0" x2="37" y2="0"></line>
+      <line class="tick" x1="0" y1="44" x2="-0" y2="37"></line>
+      <line class="tick" x1="-44" y1="0" x2="-37" y2="0"></line>
+      <text class="rose" x="0" y="-26">北</text>
+      <text class="rose" x="28" y="4">东</text>
+      <text class="rose" x="0" y="34">南</text>
+      <text class="rose" x="-28" y="4">西</text>
+    </g>
+    <path class="needle" d="M0,-30 L7,6 L0,1 L-7,6 Z"></path>
+  </svg>
+</div>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-ting" aria-hidden="true">
+      <svg viewBox="0 0 96 76">
+        <path d="M8,46 C22,26 34,20 48,20 C62,20 74,26 88,46"></path>
+        <path d="M8,46 L8,58 M88,46 L88,58"></path>
+        <path d="M20,52 C30,40 40,34 48,34 C56,34 66,40 76,52"></path>
+        <line x1="4" y1="62" x2="92" y2="62"></line>
+        <path d="M30,62 C34,58 40,56 46,58 L52,62 Z"></path>
+        <circle cx="46" cy="52" r="2.4"></circle>
+      </svg>
+    </div>
+    <h2>灯上三桥</h2>
+    <p id="loader-step">正在把镇子铺到水上…</p>
+    <div class="bar"><i id="loader-bar"></i></div>
+  </div>
+</div>
+
+<div class="help" id="help" hidden>
+  <div class="help-card">
+    <button class="info-close" id="help-close">×</button>
+    <h2>操作说明</h2>
+    <dl>
+      <dt>左键拖动</dt><dd>全景模式转头环视 360°；自由模式环绕全镇</dd>
+      <dt>右键 / 两指拖动</dt><dd>自由模式平移视点；全景模式下贴地走近</dd>
+      <dt>滚轮 / 双指捏合</dt><dd>全景模式调节视野角；自由模式推拉镜头</dd>
+      <dt>点击发光热点</dt><dd>移动到该机位并打开解说</dd>
+      <dt>底部机位条</dt><dd>三桥 · 船底 · 河街 · 园中 · 园门 · 崇本堂 · 嘉荫堂 · 耕乐堂 · 故居 · 洲上 · 湖望 · 鸟瞰</dd>
+      <dt>「走三桥」开关</dt><dd>三条船解缆入河，一路过太平、吉利、长庆——一走太平、二走吉利、三走长庆，过一桥亮一桥</dd>
+      <dt>键盘</dt><dd><kbd>A</kbd>/<kbd>D</kbd> 上一/下一机位 · <kbd>Space</kbd> 自动巡览 · <kbd>P</kbd> 切换模式 · <kbd>W</kbd> 走三桥 · <kbd>F</kbd> 全屏 · <kbd>H</kbd> 帮助 · <kbd>Esc</kbd> 关闭面板</dd>
+    </dl>
+    <p class="help-note">可考的底子：同里在苏州吴江区（旧吴县），今存镇图以市河为南北主轴；退思园在新填街（今竹行街），光绪十一年至十三年（1885—1887）任兰生归乡后所筑，袁龙（字子振，同里人）设计，园名取《左传·宣公十二年》"退思补过"，格局不作常规南北纵深而取东西横列，长 112 米、南北宽 83 米、占地 9.9 亩，俗称"贴水园"，2000 年 11 月 30 日随苏州古典园林列入世界文化遗产名录；镇中有太平、吉利、长庆三桥相接，旧有"一走太平、二走吉利、三走长庆"的走法，图的是桥名里的六个字，其中吉利桥为石梁平桥、余二桥作拱桥，今貌多为清嘉庆、道光间改建，咸丰及同治、光绪几度重修；崇本堂清光绪元年（1875）任兰生购地建正厅，2088 平米，前厅后楼，营造作五柱计十四头、九界梁、六架椽，檐柱用造船余楠，故又称楠木殿；嘉荫堂在竹行街，清光绪乙亥年（1875）任锡厚建，800 平米，明间作船篷轩、拱眼雕鲤鱼跳龙门，1999 年迁建；耕乐堂原址在百间楼（旧称浦南弄），明天顺六年（1457）处士任完（号乐痴）始建，取"耕者乐得其食"，692 平米，前后两进、后进五楼，硬山，2006 年列入全国重点文物保护单位；陈去病故居在百尺梧桐，西屋为曲尺形上下两层楼；清初天文学家王锡阐（1628—1689）为同里人，《清史稿》有传；罗星洲在同里湖中，明嘉靖四十二年（1563）筑圩、清道光三年（1823）因淘河堆土而成，四面环水、无桥可通、须渡船乃登；环绕之五湖得名于《嘉庆同里志》与《苏州府志》：同里湖、九里湖、南星湖、叶泽湖、庞山湖。</p>
+    <p class="help-note">存疑与分歧：退思园的全国重点文物保护单位两条——"1989 年列省保"与"2001 年 7 月 11 日列第四批国保"——在可取文本中实为沧浪亭与耦园等他园之条，故此处不写其国保身份；世界文化遗产日期另有 2001 年 7 月一说，"随列十园"与"十一园"两表并存（沧浪亭多列入 2000 年名录却不在文本所附十园名单）；园主任兰生卒于光绪十六年（1890）而落职在"光绪十四年黄河决口获议"，两纪年于可取文本中不相合；桥数"镇内四十二座"与"古镇四十九座"皆为晚近统计口径，同里镇志所记桥梁仅至嘉庆间九桥，故本景不标桥数；罗星洲面积今 4500 平米、原 17000 平米两数并存，另有 17 亩、250 亩、"一千余亩"诸说；崇本堂面积 1644 与 2088 平米并存，始建年一源作"任兰生置产"、一源作任祖泰创构；同里十景名目仅见志书点校前言一篇（渔庄、长庆、九坡、菱溪曲水、武洲春浪、丽谯晓月、扶珊小隐、真子曲湖、寒沙鹤泪、石淙山房），未逐景复核，故不入解说；"走三桥"的功能一说"祛病求子"（单源），本景只走次序、不写缘由。</p>
+    <p class="help-note">须避的误传：唐至德 / 乾符"连镇置市、因以成村"与"后山先水""先有同里、后有陈泊""陈防筑城"皆出自《同里镇志稿》一类后世追记，与"宋代始建""吉姓筑城"同列，本景一律不采；"珍珠塔"实至乾隆四年（1739）构园、与《珍珠塔》弹词之关系无考、园址已毁无遗存，故不入景；"三桥以垂虹桥为邻"之说过于单源（垂虹桥在吴江，与同里三桥无涉）；退思园"1981 补植、1982 开放"与"1989 列省保"系他园条目，"五湖环同里"的歌诀与"太湖三万六千顷，尽入吴县西"（实出白居易《长洲曲》）皆不用。</p>
+    <p class="help-note">写意之处：镇内河宽、地块轮廓、桥位与桥的形制、街巷走向都按江南水乡通例撑出来，不是测绘的镇图——画面只保证"川字水系、为水所分、以桥相连"这三件事的体势；沿河民居的粉墙黛瓦、硬山举架、山墙作观音兜（苏南的圆头山尖，不作徽州的马头墙）、后檐挑水作水阁，皆属通例补配；退思园各栋的名字取自旧记与《园话》，栋与栋的相对位置、面阔进深与屋顶做法是画出来的，园墙、池形、叠石、小径同样；崇本堂等四宅的门楼砖雕纹样、天井铺法与堂内陈设皆新制；罗星洲洲上殿阁名目查无可核来源，故一匾不题，只按"湖心一块地、岸边一处渡口"摆；同里没有可考的常设夜游，满镇灯火、河灯与"灯船过三桥"都是画出来的，那条航线只为把"一走太平、二走吉利、三走长庆"走一遍；圩岸、塘路、湖上渔火与镇外村落属今构。深链：<code>?st=qiaojie&amp;bare=1</code> 出净帧，<code>&amp;walk=1</code> 把三条船泊在三桥上并一次点满，<code>&amp;window=0</code> 熄去家家窗灯，<code>&amp;noaq=1</code> 关掉画质自适应。</p>
+  </div>
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

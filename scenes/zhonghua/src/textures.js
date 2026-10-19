@@ -1,0 +1,346 @@
+import * as THREE from 'three';
+
+const cache = new Map();
+const memo = (key, make) => {
+  if (!cache.has(key)) cache.set(key, make());
+  return cache.get(key);
+};
+
+function canvas(w, h) {
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  return { c, x: c.getContext('2d') };
+}
+
+function tex(c, { srgb = true, repeat = [1, 1], aniso = 8 } = {}) {
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = srgb ? THREE.SRGBColorSpace : THREE.NoColorSpace;
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(repeat[0], repeat[1]);
+  t.anisotropy = aniso;
+  t.needsUpdate = true;
+  return t;
+}
+
+/** radial falloff, used for lantern halos, stars, moon bloom, foam */
+export function softGlow(hue = '255,220,170', hard = 0.12) {
+  return memo(`glow-${hue}-${hard}`, () => {
+    const { c, x } = canvas(128, 128);
+    const g = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+    g.addColorStop(0, `rgba(255,255,255,1)`);
+    g.addColorStop(hard, `rgba(${hue},0.72)`);
+    g.addColorStop(0.45, `rgba(${hue},0.22)`);
+    g.addColorStop(1, `rgba(${hue},0)`);
+    x.fillStyle = g; x.fillRect(0, 0, 128, 128);
+    return tex(c, { repeat: [1, 1] });
+  });
+}
+
+/** 瓦垄 — ribbed roof tiles, laid out so `u` runs down the slope */
+export function roofTiles(base = '#2b3242', ridge = '#454f63', highlight = '#6d7b93') {
+  return memo(`tiles-${base}`, () => {
+    const { c, x } = canvas(256, 256);
+    x.fillStyle = base; x.fillRect(0, 0, 256, 256);
+    for (let i = 0; i < 16; i++) {
+      const u = i * 16;
+      const g = x.createLinearGradient(u, 0, u + 16, 0);
+      g.addColorStop(0, 'rgba(0,0,0,0.42)');
+      g.addColorStop(0.42, ridge);
+      g.addColorStop(0.62, highlight);
+      g.addColorStop(1, 'rgba(0,0,0,0.4)');
+      x.fillStyle = g; x.fillRect(u, 0, 16, 256);
+    }
+    // tile courses across the slope
+    for (let j = 0; j < 20; j++) {
+      x.fillStyle = 'rgba(0,0,0,0.2)';
+      x.fillRect(0, j * 13 + (Math.random() * 2 | 0), 256, 2);
+      x.fillStyle = 'rgba(255,255,255,0.05)';
+      x.fillRect(0, j * 13 + 3, 256, 1);
+    }
+    return tex(c, { repeat: [4, 2] });
+  });
+}
+
+export function wood(base = '#5a2f22', grain = '#3a1d15') {
+  return memo(`wood-${base}`, () => {
+    const { c, x } = canvas(128, 128);
+    x.fillStyle = base; x.fillRect(0, 0, 128, 128);
+    for (let i = 0; i < 90; i++) {
+      x.strokeStyle = `rgba(0,0,0,${0.03 + Math.random() * 0.1})`;
+      x.lineWidth = 0.6 + Math.random() * 1.6;
+      x.beginPath();
+      const y0 = Math.random() * 128;
+      x.moveTo(0, y0);
+      x.bezierCurveTo(40, y0 + (Math.random() * 8 - 4), 90, y0 + (Math.random() * 8 - 4), 128, y0);
+      x.stroke();
+    }
+    for (let i = 0; i < 12; i++) {
+      x.fillStyle = grain;
+      x.beginPath();
+      x.ellipse(Math.random() * 128, Math.random() * 128, 2 + Math.random() * 3, 1 + Math.random() * 2, 0, 0, 7);
+      x.fill();
+    }
+    return tex(c, { repeat: [2, 2] });
+  });
+}
+
+export function stone(base = '#8d9199') {
+  return memo(`stone-${base}`, () => {
+    const { c, x } = canvas(256, 256);
+    x.fillStyle = base; x.fillRect(0, 0, 256, 256);
+    for (let i = 0; i < 5200; i++) {
+      const a = Math.random();
+      x.fillStyle = a > 0.5 ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.07)';
+      x.fillRect(Math.random() * 256, Math.random() * 256, 1.6, 1.6);
+    }
+    // joint lines for masonry blocks
+    for (let r = 0; r < 8; r++) {
+      const y = r * 32;
+      x.fillStyle = 'rgba(0,0,0,0.3)';
+      x.fillRect(0, y, 256, 1.6);
+      for (let k = 0; k < 4; k++) {
+        const xx = k * 64 + (r % 2 ? 32 : 0);
+        x.fillRect(xx, y, 1.6, 32);
+      }
+    }
+    return tex(c, { repeat: [4, 2] });
+  });
+}
+
+export function plaster(base = '#cfc4ad') {
+  return memo(`plaster-${base}`, () => {
+    const { c, x } = canvas(128, 128);
+    x.fillStyle = base; x.fillRect(0, 0, 128, 128);
+    for (let i = 0; i < 3000; i++) {
+      x.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,0.05)' : 'rgba(70,55,40,0.06)';
+      x.fillRect(Math.random() * 128, Math.random() * 128, 1.4, 1.4);
+    }
+    return tex(c, { repeat: [3, 2] });
+  });
+}
+
+/** 匾额 / signboard. dir: 'h' horizontal (right→left reading), 'v' vertical */
+export function plaque(text, { dir = 'h', bg = '#123057', fg = '#f2dcae', border = '#c9974f', note = '' } = {}) {
+  return memo(`plaque-${dir}-${text}-${bg}`, () => {
+    const wide = dir === 'h';
+    const W = wide ? 512 : 190, H = wide ? 190 : 512;
+    const { c, x } = canvas(W, H);
+    const g = x.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#07182d'); g.addColorStop(0.5, bg); g.addColorStop(1, '#050f1e');
+    x.fillStyle = g; x.fillRect(0, 0, W, H);
+    x.strokeStyle = border; x.lineWidth = 9; x.strokeRect(9, 9, W - 18, H - 18);
+    x.strokeStyle = 'rgba(255,255,255,0.16)'; x.lineWidth = 2; x.strokeRect(24, 24, W - 48, H - 48);
+    x.fillStyle = fg;
+    x.textAlign = 'center'; x.textBaseline = 'middle';
+    const chars = [...text];
+    const font = '"KaiTi","STKaiti","Songti SC","SimSun",serif';
+    if (wide) {
+      const size = Math.min(112, (W - 80) / chars.length);
+      x.font = `600 ${size}px ${font}`;
+      chars.forEach((ch, i) => x.fillText(ch, W / 2 + (chars.length / 2 - i - 0.5) * size, H / 2 + size * 0.04));
+    } else {
+      const size = Math.min(116, (H - 80) / chars.length);
+      x.font = `600 ${size}px ${font}`;
+      chars.forEach((ch, i) => x.fillText(ch, W / 2, H / 2 + (chars.length / 2 - i - 0.5) * size * 1.02));
+    }
+    if (note) {
+      x.font = `400 26px ${font}`;
+      x.fillStyle = 'rgba(242,220,174,0.62)';
+      x.fillText(note, wide ? W - 54 : W / 2, wide ? H / 2 : H - 42);
+    }
+    return tex(c, { repeat: [1, 1] });
+  });
+}
+
+/** 灯笼 ribbed paper surface */
+export function lanternPaper(core = '#fff3d0', edge = '#e8734a') {
+  return memo(`lamp-${core}-${edge}`, () => {
+    const { c, x } = canvas(256, 128);
+    const g = x.createLinearGradient(0, 0, 0, 128);
+    g.addColorStop(0, edge); g.addColorStop(0.5, core); g.addColorStop(1, edge);
+    x.fillStyle = g; x.fillRect(0, 0, 256, 128);
+    for (let i = 0; i <= 14; i++) {
+      x.strokeStyle = 'rgba(120,40,20,0.22)'; x.lineWidth = 2;
+      x.beginPath(); x.moveTo(i * 256 / 14, 0); x.lineTo(i * 256 / 14, 128); x.stroke();
+    }
+    // faint calligraphy band
+    x.fillStyle = 'rgba(150,40,25,0.3)';
+    x.fillRect(0, 54, 256, 20);
+    return tex(c, { repeat: [1, 1] });
+  });
+}
+
+/** 窗棂 lattice, alpha-cut so light shines through */
+export function lattice(cols = 5, rows = 4, frame = '#4a2417', light = '#ffd79a') {
+  return memo(`lat-${cols}-${rows}`, () => {
+    const S = 256, { c, x } = canvas(S, S);
+    x.fillStyle = light; x.fillRect(0, 0, S, S);
+    const g = x.createRadialGradient(S / 2, S / 2, 4, S / 2, S / 2, S * 0.72);
+    g.addColorStop(0, '#fff0c8'); g.addColorStop(1, '#e08a3c');
+    x.fillStyle = g; x.fillRect(0, 0, S, S);
+    x.strokeStyle = frame; x.lineCap = 'square';
+    const cw = S / cols, rh = S / rows;
+    for (let i = 0; i <= cols; i++) { x.lineWidth = i === 0 || i === cols ? 16 : 7; x.beginPath(); x.moveTo(i * cw, 0); x.lineTo(i * cw, S); x.stroke(); }
+    for (let j = 0; j <= rows; j++) { x.lineWidth = j === 0 || j === rows ? 16 : 7; x.beginPath(); x.moveTo(0, j * rh); x.lineTo(S, j * rh); x.stroke(); }
+    // diamond infill
+    x.lineWidth = 4;
+    for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
+      const cx = i * cw + cw / 2, cy = j * rh + rh / 2, r = Math.min(cw, rh) * 0.3;
+      x.beginPath(); x.moveTo(cx - r, cy); x.lineTo(cx, cy - r); x.lineTo(cx + r, cy); x.lineTo(cx, cy + r); x.closePath(); x.stroke();
+    }
+    return tex(c, { repeat: [1, 1] });
+  });
+}
+
+export function cloudPuff() {
+  return memo('cloud', () => {
+    const { c, x } = canvas(256, 128);
+    for (let i = 0; i < 12; i++) {
+      const r = 26 + Math.random() * 40;
+      const cx = 40 + Math.random() * 176, cy = 64 + (Math.random() * 34 - 17);
+      const g = x.createRadialGradient(cx, cy, 0, cx, cy, r);
+      g.addColorStop(0, 'rgba(150,168,210,0.3)');
+      g.addColorStop(1, 'rgba(150,168,210,0)');
+      x.fillStyle = g; x.beginPath(); x.arc(cx, cy, r, 0, 7); x.fill();
+    }
+    return tex(c, { repeat: [1, 1] });
+  });
+}
+
+/** vertical gradient used for the light columns drawn on the water */
+export function columnFade() {
+  return memo('column', () => {
+    const { c, x } = canvas(32, 128);
+    const g = x.createLinearGradient(0, 0, 0, 128);
+    g.addColorStop(0, 'rgba(255,255,255,0.02)');
+    g.addColorStop(0.14, 'rgba(255,255,255,0.85)');
+    g.addColorStop(0.5, 'rgba(255,255,255,0.32)');
+    g.addColorStop(1, 'rgba(255,255,255,0)');
+    x.fillStyle = g; x.fillRect(0, 0, 32, 128);
+    const s = x.createLinearGradient(0, 0, 32, 0);
+    s.addColorStop(0, 'rgba(0,0,0,1)'); s.addColorStop(0.5, 'rgba(255,255,255,1)'); s.addColorStop(1, 'rgba(0,0,0,1)');
+    x.globalCompositeOperation = 'destination-in';
+    x.fillStyle = s; x.fillRect(0, 0, 32, 128);
+    return tex(c, { repeat: [1, 1] });
+  });
+}
+
+export function noise() {
+  return memo('noise', () => {
+    const { c, x } = canvas(128, 128);
+    const d = x.createImageData(128, 128);
+    for (let i = 0; i < d.data.length; i += 4) {
+      const v = Math.random() * 255;
+      d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255;
+    }
+    x.putImageData(d, 0, 0);
+    return tex(c, { srgb: false });
+  });
+}
+
+/**
+ * 明城墙城砖 — 青灰陶质，错缝平砌。贴图覆盖 2m×2m，砖面约 40×20cm，
+ * 所以 UV 直接按米走、repeat 设 0.5 就是真实尺度。
+ */
+export function cityBrick(base = '#6e7176', joint = '#3c3f45', fleck = '#8b8f96') {
+  return memo(`brick-${base}-${joint}-${fleck}`, () => {
+    const S = 512;
+    const { c, x } = canvas(S, S);
+    const bw = S / 5, bh = S / 10;
+    x.fillStyle = joint; x.fillRect(0, 0, S, S);
+    const bx = (v) => v.toString(16).padStart(2, '0');
+    const bc = new THREE.Color(base);
+    for (let row = 0; row < 10; row++) {
+      const off = (row % 2) * bw * 0.5;
+      for (let col = -1; col < 6; col++) {
+        const px = col * bw + off, py = row * bh;
+        // 每块砖单独调色：窑火候不同，青灰里泛出深浅与一点赭
+        const v = 0.82 + Math.random() * 0.36;
+        const warm = Math.random() < 0.16 ? 1.06 : 1;
+        const cc = new THREE.Color(bc.r * v * warm, bc.g * v, bc.b * v * (Math.random() < 0.1 ? 0.9 : 1));
+        x.fillStyle = `#${bx((cc.r * 255) | 0)}${bx((cc.g * 255) | 0)}${bx((cc.b * 255) | 0)}`;
+        const g = 1.6;
+        x.fillRect(px + g, py + g, bw - g * 2, bh - g * 2);
+        // 砖面麻点与磨痕
+        for (let k = 0; k < 26; k++) {
+          const q = Math.random();
+          x.fillStyle = q > 0.6 ? `rgba(255,255,255,${0.03 + Math.random() * 0.05})`
+            : `rgba(0,0,0,${0.04 + Math.random() * 0.07})`;
+          x.fillRect(px + g + Math.random() * (bw - g * 2), py + g + Math.random() * (bh - g * 2),
+            1 + Math.random() * 4, 1 + Math.random() * 2.4);
+        }
+        // 上棱受光、下棱压暗，砌出来的墙面才有层次
+        x.fillStyle = `rgba(${fleck.replace('#', '').match(/../g).map((h) => parseInt(h, 16)).join(',')},0.16)`;
+        x.fillRect(px + g, py + g, bw - g * 2, 2.2);
+        x.fillStyle = 'rgba(0,0,0,0.22)';
+        x.fillRect(px + g, py + bh - g - 2.2, bw - g * 2, 2.2);
+      }
+    }
+    return tex(c, { repeat: [1, 1], aniso: 2 });
+  });
+}
+
+/**
+ * 城砖题刻 —— "物勒工名"：一块砖的侧面刻着烧造责任链。
+ * 竖排、右起读，字口刻得深浅不一。
+ */
+export function brickCarving(lines, { bg = '#7c7a74', fg = '#2f2c27' } = {}) {
+  return memo(`carve-${lines.join('|')}-${bg}`, () => {
+    const cols = lines.length;
+    const W = 128 * cols + 96, H = 512;
+    const { c, x } = canvas(W, H);
+    x.fillStyle = bg; x.fillRect(0, 0, W, H);
+    for (let k = 0; k < 900; k++) {
+      x.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)';
+      x.fillRect(Math.random() * W, Math.random() * H, 1 + Math.random() * 6, 1 + Math.random() * 3);
+    }
+    // 右起：第一列画在最右
+    const colW = 128;
+    lines.forEach((line, i) => {
+      const cx = W - 48 - colW * i - colW / 2;
+      const chars = [...line];
+      const step = Math.min(58, (H - 120) / Math.max(1, chars.length));
+      const y0 = (H - step * (chars.length - 1)) / 2;
+      chars.forEach((ch, j) => {
+        const cy = y0 + step * j;
+        x.font = `600 ${Math.round(step * 0.92)}px "KaiTi","STKaiti","Songti SC","SimSun",serif`;
+        x.textAlign = 'center'; x.textBaseline = 'middle';
+        // 刻痕：先亮边后暗底，字口才有凹陷感
+        x.fillStyle = 'rgba(255,255,255,0.30)';
+        x.fillText(ch, cx + 1.6, cy + 2.0);
+        x.fillStyle = fg;
+        x.fillText(ch, cx, cy);
+        x.fillStyle = 'rgba(0,0,0,0.28)';
+        x.fillText(ch, cx - 0.8, cy - 0.9);
+      });
+    });
+    x.strokeStyle = 'rgba(0,0,0,0.25)'; x.lineWidth = 6;
+    x.strokeRect(18, 18, W - 36, H - 36);
+    return tex(c, { repeat: [1, 1] });
+  });
+}
+
+/** 瓮城地面：条石与夯土混铺，中间被踩亮 */
+export function paving(base = '#4a4a4e', joint = '#2b2b30') {
+  return memo(`paving-${base}`, () => {
+    const S = 512;
+    const { c, x } = canvas(S, S);
+    x.fillStyle = joint; x.fillRect(0, 0, S, S);
+    const rows = 6, sw = S / 3, sh = S / rows;
+    for (let r = 0; r < rows; r++) {
+      const off = (r % 2) * sw * 0.5;
+      for (let i = -1; i < 4; i++) {
+        const v = 0.78 + Math.random() * 0.44;
+        const cc = new THREE.Color(base).multiplyScalar(v);
+        x.fillStyle = `rgb(${(cc.r * 255) | 0},${(cc.g * 255) | 0},${(cc.b * 255) | 0})`;
+        x.fillRect(i * sw + off + 2, r * sh + 2, sw - 4, sh - 4);
+        for (let k = 0; k < 60; k++) {
+          x.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,0.035)' : 'rgba(0,0,0,0.05)';
+          x.fillRect(i * sw + off + Math.random() * sw, r * sh + Math.random() * sh, 2 + Math.random() * 7, 1 + Math.random() * 3);
+        }
+      }
+    }
+    return tex(c, { repeat: [1, 1] });
+  });
+}
+

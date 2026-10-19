@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# 生成的参赛材料：填了团队信息后含个人信息，默认不入库
+docs/*.docx
+docs/*.pptx

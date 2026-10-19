@@ -1,0 +1,13 @@
+{
+  "name": "santai-huaxin-3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "三台山 · 衲田花信 3D 夜景全景 —— Three.js 程序化重建，无第三方运行时依赖",
+  "scripts": {
+    "dev": "node tools/serve.mjs 8790",
+    "start": "node tools/serve.mjs 8790",
+    "build": "node tools/build-single.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
